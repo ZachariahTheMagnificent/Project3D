@@ -100,9 +100,6 @@
     <ClCompile Include="Source\Vertex.cpp">
       <Filter>Source Files\Mesh</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Animation.cpp">
-      <Filter>Source Files\Animations</Filter>
-    </ClCompile>
     <ClCompile Include="Source\GlobalList.cpp">
       <Filter>Source Files\Globals</Filter>
     </ClCompile>
@@ -210,9 +207,6 @@
     <ClInclude Include="Source\D3DColor.h">
       <Filter>Header Files\Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Animation.h">
-      <Filter>Header Files\Animations</Filter>
-    </ClInclude>
     <ClInclude Include="Source\GlobalList.h">
       <Filter>Header Files\Globals</Filter>
     </ClInclude>
@@ -264,12 +258,6 @@
     </Filter>
     <Filter Include="Header Files\Scenes">
       <UniqueIdentifier>{4bd7678f-90f4-4a0c-a860-655bd6e75a53}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Animations">
-      <UniqueIdentifier>{1da6f345-00c4-4477-9298-5bb38c232b79}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Animations">
-      <UniqueIdentifier>{977f87f4-775b-4148-b1f9-3c70d15c798c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Trees">
       <UniqueIdentifier>{c23a8140-a8a3-4608-b352-ebf3e69a061b}</UniqueIdentifier>

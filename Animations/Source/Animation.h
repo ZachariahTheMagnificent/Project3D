@@ -6,4 +6,3 @@ public:
 	Animation();
 	~Animation();
 };
-

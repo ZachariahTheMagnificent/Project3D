@@ -14,7 +14,6 @@
     <ClCompile Include="Source\AABBTree.cpp" />
     <ClCompile Include="Source\AABBTreeLeaf.cpp" />
     <ClCompile Include="Source\AABBTreeNode.cpp" />
-    <ClCompile Include="Source\Animation.cpp" />
     <ClCompile Include="Source\Application.cpp" />
     <ClCompile Include="Source\Camera.cpp" />
     <ClCompile Include="Source\CollisionBody.cpp" />
@@ -51,7 +50,6 @@
     <ClInclude Include="Source\AABBTree.h" />
     <ClInclude Include="Source\AABBTreeLeaf.h" />
     <ClInclude Include="Source\AABBTreeNode.h" />
-    <ClInclude Include="Source\Animation.h" />
     <ClInclude Include="Source\Application.h" />
     <ClInclude Include="Source\Camera.h" />
     <ClInclude Include="Source\CollisionBody.h" />
