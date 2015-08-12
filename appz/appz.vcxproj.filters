@@ -10,9 +10,6 @@
     <ClCompile Include="Source\Contacts.cpp">
       <Filter>Source Files\Physics</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Force.cpp">
-      <Filter>Source Files\Physics</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Graphics.cpp">
       <Filter>Source Files\Rendering</Filter>
     </ClCompile>
@@ -118,9 +115,6 @@
       <Filter>Header Files\Physics</Filter>
     </ClInclude>
     <ClInclude Include="Source\Contacts.h">
-      <Filter>Header Files\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Force.h">
       <Filter>Header Files\Physics</Filter>
     </ClInclude>
     <ClInclude Include="Source\shader.hpp">

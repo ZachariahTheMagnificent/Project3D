@@ -22,7 +22,6 @@
     <ClCompile Include="Source\ContactSolver.cpp" />
     <ClCompile Include="Source\D3DColor.cpp" />
     <ClCompile Include="Source\DrawOrder.cpp" />
-    <ClCompile Include="Source\Force.cpp" />
     <ClCompile Include="Source\GLMouse.cpp" />
     <ClCompile Include="Source\GlobalList.cpp" />
     <ClCompile Include="Source\Graphics.cpp" />
@@ -59,7 +58,6 @@
     <ClInclude Include="Source\D3DColor.h" />
     <ClInclude Include="Source\D4DColor.h" />
     <ClInclude Include="Source\DrawOrder.h" />
-    <ClInclude Include="Source\Force.h" />
     <ClInclude Include="Source\GLMouse.h" />
     <ClInclude Include="Source\GlobalList.h" />
     <ClInclude Include="Source\Graphics.h" />
@@ -127,13 +125,13 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\glew\include;$(SolutionDir)\glfw\include;$(SolutionDir)\nyeh\Source;$(SolutionDir)\nyeh\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\glew\include;$(SolutionDir)\glfw\include;$(SolutionDir)\nyeh\Source;$(SolutionDir)\AI\Source;$(SolutionDir)\Animations\Source;$(SolutionDir)\Events\Source;$(SolutionDir)\GameObjects\Source;$(SolutionDir)\Physics\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)\glew\lib;$(SolutionDir)\glfw\lib-msvc100;$(SolutionDir)$(Configuration);$(SolutionDir)\irrKlang\lib\Win32-visualStudio;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glew32.lib;glfw3.lib;opengl32.lib;winmm.lib;scrubs.lib;irrKlang.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glew32.lib;glfw3.lib;opengl32.lib;winmm.lib;scrubs.lib;irrKlang.lib;Animations.lib;AI.lib;Events.lib;GameObjects.lib;Physics.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -145,7 +143,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\glew\include;$(SolutionDir)\glfw\include;$(SolutionDir)\nyeh\Source;$(SolutionDir)\nyeh\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\glew\include;$(SolutionDir)\glfw\include;$(SolutionDir)\nyeh\Source;$(SolutionDir)\AI\Source;$(SolutionDir)\Animations\Source;$(SolutionDir)\Events\Source;$(SolutionDir)\GameObjects\Source;$(SolutionDir)\Physics\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -153,7 +151,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(SolutionDir)\glew\lib;$(SolutionDir)\glfw\lib-msvc100;$(SolutionDir)$(Configuration);$(SolutionDir)\irrKlang\lib\Win32-visualStudio;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glew32.lib;glfw3.lib;opengl32.lib;winmm.lib;scrubs.lib;irrKlang.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glew32.lib;glfw3.lib;opengl32.lib;winmm.lib;scrubs.lib;irrKlang.lib;Animations.lib;AI.lib;Events.lib;GameObjects.lib;Physics.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

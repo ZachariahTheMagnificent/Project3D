@@ -14,6 +14,7 @@ Class SceneMain that updates and init, main scene to be rendered
 #include "MatrixStack.h"
 #include "GlobalList.h"
 #include "CollisionSystem.h"
+
 /****************************************************************************/
 /*!
 Class SceneMain:
