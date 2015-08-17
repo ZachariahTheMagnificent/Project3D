@@ -1,8 +1,8 @@
 #pragma once
 #include "Object2D.h"
-#include "Damagers2D.h"
+#include "DamagesThings.h"
 
-class Bullet2D : public Damagers, public Object2D
+class Bullet2D : public DamagesThings, public Object2D
 {
 public:
 	Bullet2D();
