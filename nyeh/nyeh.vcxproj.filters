@@ -18,65 +18,11 @@
     <Filter Include="Source Files\Math">
       <UniqueIdentifier>{8ef9353c-de6f-415c-95f1-6e9719daaefc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Mesh">
-      <UniqueIdentifier>{569be0bd-cae3-463b-8085-9da778c32c15}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Mesh">
-      <UniqueIdentifier>{66d71dc6-6235-48b4-8fba-741e55889a54}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Texture">
-      <UniqueIdentifier>{4cecec97-cd81-46ce-89a1-97161a3d0a07}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Texture">
-      <UniqueIdentifier>{03ac131b-6eb8-43d7-ab81-9cebe6fde2e3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Transformation">
-      <UniqueIdentifier>{d4f2bffd-1925-4f6e-8b43-d0c980138546}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Transformation">
-      <UniqueIdentifier>{f3de73ad-3a30-4a04-b8f2-baccb0c9f2a6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Timer">
-      <UniqueIdentifier>{f8e2a997-7352-4e80-8deb-5b24f03fb535}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Timer">
-      <UniqueIdentifier>{ac412c39-4fbc-478f-a50e-12c16efc2161}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Sound">
-      <UniqueIdentifier>{1f0d42e9-f10f-4f3d-b848-036fb95adc4b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Sound">
-      <UniqueIdentifier>{efa55a7b-9492-4181-8ef5-3ba30ad5c522}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Camera">
-      <UniqueIdentifier>{6bc178e2-c9ef-4e95-9739-15bea09b0360}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Material">
-      <UniqueIdentifier>{8ff924c3-2933-4b8b-9759-3609dff9afdf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Light">
-      <UniqueIdentifier>{92cd0da4-5363-48e3-96fa-cef45785c0a1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Camera">
-      <UniqueIdentifier>{77e7ce2f-11ac-4d23-95d3-1c61cca9906e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Material">
-      <UniqueIdentifier>{ac4b8a52-ca6f-40ac-82aa-97cc37462773}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Light">
-      <UniqueIdentifier>{c4f5bef3-88f2-47b1-8c8f-a8cde3fbc4ee}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Triggers">
-      <UniqueIdentifier>{6d0898df-ad47-468d-bae7-0f083ac8d493}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Voxel">
-      <UniqueIdentifier>{389e69e0-633d-46f7-be88-9943f5338de7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Voxel">
-      <UniqueIdentifier>{125df42a-42eb-4bbd-b6c7-30e5b95901a2}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\timer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="Source\MatrixStack.cpp">
       <Filter>Source Files\Math</Filter>
     </ClCompile>
@@ -86,53 +32,17 @@
     <ClCompile Include="Source\Vector3.cpp">
       <Filter>Source Files\Math</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Sound.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="Source\Vector2.cpp">
       <Filter>Source Files\Math</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Mesh.cpp">
-      <Filter>Source Files\Mesh</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Polygon.cpp">
-      <Filter>Source Files\Mesh</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Vertex.cpp">
-      <Filter>Source Files\Mesh</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\D3DColor.cpp">
-      <Filter>Source Files\Texture</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Texture.cpp">
-      <Filter>Source Files\Texture</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\D4DColor.cpp">
-      <Filter>Source Files\Texture</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Transformation.cpp">
-      <Filter>Source Files\Transformation</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\timer.cpp">
-      <Filter>Source Files\Timer</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Sound.cpp">
-      <Filter>Source Files\Sound</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Light.cpp">
-      <Filter>Source Files\Light</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Material.cpp">
-      <Filter>Source Files\Material</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Camera.cpp">
-      <Filter>Source Files\Camera</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Rotation.cpp">
-      <Filter>Source Files\Transformation</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Voxel.cpp">
-      <Filter>Source Files\Voxel</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\timer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Source\BackwardNode.h">
       <Filter>Header Files\Link List</Filter>
     </ClInclude>
@@ -157,56 +67,20 @@
     <ClInclude Include="Source\Vector3.h">
       <Filter>Header Files\Math</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Vector2.h">
-      <Filter>Header Files\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Vertex.h">
-      <Filter>Header Files\Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Mesh.h">
-      <Filter>Header Files\Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Polygon.h">
-      <Filter>Header Files\Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Texture.h">
-      <Filter>Header Files\Texture</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\D4DColor.h">
-      <Filter>Header Files\Texture</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\D3DColor.h">
-      <Filter>Header Files\Texture</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Transformation.h">
-      <Filter>Header Files\Transformation</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\timer.h">
-      <Filter>Header Files\Timer</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Sound.h">
-      <Filter>Header Files\Sound</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Camera.h">
-      <Filter>Header Files\Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Material.h">
-      <Filter>Header Files\Material</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Light.h">
-      <Filter>Header Files\Light</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Range.h">
-      <Filter>Header Files\Triggers</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\BoundingBox.h">
-      <Filter>Header Files\Triggers</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Rotation.h">
-      <Filter>Header Files\Transformation</Filter>
+    <ClInclude Include="AwesomePointer.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Voxel.h">
-      <Filter>Header Files\Voxel</Filter>
+    <ClInclude Include="Source\Vector2.h">
+      <Filter>Header Files\Math</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

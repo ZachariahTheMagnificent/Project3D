@@ -8,7 +8,8 @@
 A class used to help render a scene at a certain position and view
 */
 /****************************************************************************/
-#include "Transformation.h"
+#include "Vector3.h"
+#include "DrawOrder.h"
 /****************************************************************************/
 /*!
 Class Camera:

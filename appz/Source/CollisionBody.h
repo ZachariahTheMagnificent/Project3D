@@ -2,6 +2,7 @@
 #include "Force.h"
 #include "Sound.h"
 #include "DrawOrder.h"
+#include "AABBTree.h"
 /****************************************************************************/
 /*!
 \file CollisionBody.h
@@ -61,6 +62,7 @@ public:
 	float staticFriction;
 	float kineticFriction;
 
+	AABBTree tree;
 	Sound* soundSys;
 private:
 	float deceleration;

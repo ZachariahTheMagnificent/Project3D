@@ -86,7 +86,7 @@ Initializes Sound
 void SceneMain::InnitSounds()
 {
 	snd.loadWave("halot","sound//halot.wav");
-	snd.loadWave("hitsound","sound//jump-small.wav");
+	snd.loadWave("hitsound","sound//hitsound.wav");
 }
 /****************************************************************************/
 /*!
@@ -308,8 +308,11 @@ void SceneMain::InnitDraws()
 	//Draw player
 	draw = globals.GetDraw(L"player");
 	draw->SetTo(globals.GetMesh(L"cube"), globals.GetMaterial(L"forerunner plate"), globals.GetDraw(L"main"), false);
-	//draw->transform.translate.Set(21.7, 5, 68.3);
-	draw->transform.translate.Set(-217, -631, 0);
+	draw->transform.translate.Set(21.7, 5, 68.3);
+	//draw->transform.translate.Set(-217, -631, 0);
+	//draw->mass = 75;
+	//draw->bounce = 0.5;
+	//draw->staticFriction = 0.03;
 
 	//draw one of the lifts
 	draw = globals.GetDraw(L"left lift");
@@ -320,7 +323,7 @@ void SceneMain::InnitDraws()
 	
 	//draw the level
 	draw = globals.GetDraw(L"nirvana");
-	draw->SetTo(globals.GetMesh(L"building"), globals.GetMaterial(L"metal floor"), globals.GetDraw(L"main"), true);
+	draw->SetTo(globals.GetMesh(L"nirvana"), globals.GetMaterial(L"metal floor"), globals.GetDraw(L"main"), true);
 	//draw->SetTo(globals.GetMesh(L"stadium"), globals.GetMaterial(L"metal floor"), globals.GetDraw(L"main"), true);
 	//draw->transform.translate.Set(0,0,0);
 	//draw->kineticFriction = 0.25;
@@ -392,43 +395,26 @@ void SceneMain::InnitCollisions()
 	body->SetDecelerationTo(10);
 	body->soundSys = &snd;
 
-	//body = globals.GetCollisionBody(L"nirvana");
-	//body->draw = globals.GetDraw(L"nirvana");
-	//body->mesh = globals.GetMesh(L"nirvana");
-	//body->mass = 0;
+	body = globals.GetCollisionBody(L"nirvana");
+	body->draw = globals.GetDraw(L"nirvana");
+	body->mesh = globals.GetMesh(L"nirvana");
 
 	body = globals.GetCollisionBody(L"football field");
 	body->draw = globals.GetDraw(L"football field");
 	body->mesh = globals.GetMesh(L"football field");
-	body->mass = 0;
 
 	body = globals.GetCollisionBody(L"ring");
 	body->draw = globals.GetDraw(L"ring");
 	body->mesh = globals.GetMesh(L"ring");
 	body->rotationVelocity.x = 3;
 	
-	//body = globals.GetCollisionBody(L"pure sentinel");
-	//body->draw = globals.GetDraw(L"pure sentinel");
-	//body->mesh = globals.GetMesh(L"sentinel");
+	body = globals.GetCollisionBody(L"pure sentinel");
+	body->draw = globals.GetDraw(L"pure sentinel");
+	body->mesh = globals.GetMesh(L"sentinel");
 	
-	//body = globals.GetCollisionBody(L"currupted sentinel");
-	//body->draw = globals.GetDraw(L"currupted sentinel");
-	//body->mesh = globals.GetMesh(L"sentinel");
-
-	unsigned totalPolies = 0;
-
-	CollisionBody*const begin = globals.GetBodies();
-	CollisionBody*const end = globals.GetLastBody();
-	for(CollisionBody* body = begin; body != end; ++body)
-	{
-		Mesh* mesh = body->mesh;
-		if(mesh)
-		{
-			totalPolies += mesh->GetNPolies();
-		}
-	}
-
-	world.IncreaseCapacityTo(totalPolies);
+	body = globals.GetCollisionBody(L"currupted sentinel");
+	body->draw = globals.GetDraw(L"currupted sentinel");
+	body->mesh = globals.GetMesh(L"sentinel");
 }
 
 /****************************************************************************/
@@ -525,12 +511,6 @@ updating draws
 /****************************************************************************/
 void SceneMain::UpdateDraws()
 {
-	//the box encompassing the entire world
-	AABBBox box;
-
-	AABBTreeNode* node = world.GetBegin();
-	AABBTreeNode* nodeEnd = world.GetEnd();
-
 	//Update the velocity of all draws before doing collision
 	CollisionBody*const begin = globals.GetBodies();
 	CollisionBody*const end = globals.GetLastBody();
@@ -543,31 +523,44 @@ void SceneMain::UpdateDraws()
 		{
 			const Polygonn* polies = mesh->GetPolyBuffer();
 			const unsigned size = mesh->GetNPolies();
+			body->tree.IncreaseCapacityTo(size);
 
-			//get the transformation matrix for the next frame
 			body->TempUpdateTo(dDeltatime);
 			Mtx44 mtx1 = body->GetMatrix();
 			body->TempUpdateTo(-dDeltatime);
 
+			AABBTreeNode* node = body->tree.GetBegin();
+			AABBTreeNode* nodeEnd = body->tree.GetEnd();
+
+			AABBBox box;
 			const Polygonn* begin = polies;
 			const Polygonn* end = begin + size;
 			for(Polygonn const* it = begin; it != end && node != nodeEnd; ++it, ++node)
 			{
 				node->data = *it;
 				node->data.MoveBy(mtx1);
-
 				node->box = node->data.GetBoundingBox();
 
-				node->body = body;
+				//if(node->box.rangeX.Length() <= Math::EPSILON)
+				//{
+				//	node->box.rangeX.end += 0.0001;
+				//}
+				//if(node->box.rangeY.Length() <= Math::EPSILON)
+				//{
+				//	node->box.rangeY.end += 0.0001;
+				//}
+				//if(node->box.rangeZ.Length() <= Math::EPSILON)
+				//{
+				//	node->box.rangeZ.end += 0.0001;
+				//}
 
 				box.ResizeToFit(node->box);
 			}
+			body->tree.Sort(box, end - begin);
 		}
 	}
 
-	world.Sort(box, node - world.GetBegin());
-
-	collisionSystem.UpdateTo(dDeltatime, &world);
+	collisionSystem.UpdateTo(dDeltatime, begin, end);
 
 	//update the draws
 	for(CollisionBody* body = begin; body != end; ++body)
