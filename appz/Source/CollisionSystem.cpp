@@ -82,30 +82,42 @@ void CollisionSystem::Respond(CollisionBody* body1, CollisionBody* body2, Polygo
 }
 
 //Update function for the interface
-void CollisionSystem::UpdateTo(const double& deltaTime, AABBTree* tree)
+void CollisionSystem::UpdateTo(const double& deltaTime, CollisionBody*const begin, CollisionBody*const end)
 {
-	bool collisionIsDone = false;
-			
-	Contact* bufferBegin = contactBuffer;
-	Contact* bufferEnd = contactBuffer;
-	tree->GetContacts(&bufferEnd);
-
-	//std::cout << bufferEnd - bufferBegin << std::endl;
-
-	for(Contact* contact = bufferBegin; contact != bufferEnd; ++contact)
+	for(CollisionBody* body1 = begin; body1 != end; ++body1)
 	{
-		Polygonn& poly1 = contact->node1->data;
-		Polygonn& poly2 = contact->node2->data;
-
-		if(poly1.Intersects(poly2))
+		bool Velocity1IsZero = body1->velocity.IsZero();
+		for(CollisionBody* body2 = body1 + 1; body2 != end; ++body2)
 		{
-			Respond(contact->node1->body, contact->node2->body, poly1, poly2);
-						
-			if(!collisionIsDone)
+			bool Velocity2IsZero = body2->velocity.IsZero();
+			if(Velocity1IsZero && Velocity2IsZero)
 			{
-				collisionIsDone = true;
-				contact->node1->body->Decelerate(deltaTime);
-				contact->node2->body->Decelerate(deltaTime);
+				continue;
+			}
+			bool collisionIsDone = false;
+			
+			Contact* bufferBegin = contactBuffer;
+			Contact* bufferEnd = contactBuffer;
+			body1->tree.GetContacts(&body2->tree, bufferBegin, &bufferEnd);
+
+			//std::cout << bufferEnd - bufferBegin << std::endl;
+			for(Contact* contact = bufferBegin; contact != bufferEnd; ++contact)
+			{
+				Polygonn& poly1 = contact->node1->data;
+				Polygonn& poly2 = contact->node2->data;
+
+				if(poly1.Intersects(poly2))
+				{
+					Respond(body1, body2, poly1, poly2);
+						
+					if(!collisionIsDone)
+					{
+						collisionIsDone = true;
+						body1->Decelerate(deltaTime);
+						body2->Decelerate(deltaTime);
+					}
+					//break;
+				}
 			}
 		}
 	}
