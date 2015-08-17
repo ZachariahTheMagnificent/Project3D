@@ -14,6 +14,7 @@ Class SceneMain that updates and init, main scene to be rendered
 #include "MatrixStack.h"
 #include "GlobalList.h"
 #include "CollisionSystem.h"
+#include "AABBTree.h"
 
 /****************************************************************************/
 /*!
@@ -33,8 +34,11 @@ public:
 	virtual void Render();
 	virtual void Exit();
 private:
+	//storage
 	GlobalList globals;
-	Color* screenBuffer;
+
+	//physics
+	AABBTree world;
 
 	//rendering
 	int screenX;
@@ -44,6 +48,7 @@ private:
 	float fFarPlane;
 	Light light[1];
 	Camera camera;
+	Color* screenBuffer;
 
 	//print fps
 	double dDeltatime;

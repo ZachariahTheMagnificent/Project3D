@@ -43,17 +43,14 @@ void AABBTree::Sort(const AABBBox& box, const unsigned& size)
 	AABBTreeNode* begin = nodes;
 	AABBTreeNode* end = begin + size - 1;
 
-	const unsigned char xFlag = 0x01;
-	const unsigned char yFlag = 0x02;
-	const unsigned char zFlag = 0x04;
-	//mainLeaf.Sort2(box, begin, end);
-	mainLeaf.Sort3(box, begin, end, xFlag | yFlag | zFlag);
+	mainLeaf.Sort2(box, begin, end);
+	//mainLeaf.Sort3(box, begin, end);
 }
 
 void AABBTree::GetContacts(AABBTree* tree, Contact* buffer, Contact** end)
 {
 	*end = buffer;
-	mainLeaf.GetContacts(&tree->mainLeaf, end);
+	//mainLeaf.GetContacts(&tree->mainLeaf, end);
 }
 
 AABBTreeNode* AABBTree::GetBegin()
@@ -64,4 +61,9 @@ AABBTreeNode* AABBTree::GetBegin()
 AABBTreeNode* AABBTree::GetEnd()
 {
 	return nodes + capacity;
+}
+
+void AABBTree::GetContacts(Contact** iterator)
+{
+	mainLeaf.GetContacts(iterator);
 }

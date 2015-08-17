@@ -6,6 +6,9 @@
 class AABBTreeLeaf
 {
 private:
+	static const unsigned char xFlag = 0x01;
+	static const unsigned char yFlag = 0x02;
+	static const unsigned char zFlag = 0x04;
 	enum SPLIT
 	{
 		X_SPLIT,
@@ -23,10 +26,11 @@ public:
 	AABBTreeNode* GetEnd();
 	void Sort1(const AABBBox& box, AABBTreeNode* begin, AABBTreeNode* end);
 	void Sort2(const AABBBox& box, AABBTreeNode* begin, AABBTreeNode* end);
-	void Sort3(const AABBBox& box, AABBTreeNode* begin, AABBTreeNode* end, unsigned char avaliableAxis);
+	void Sort3(const AABBBox& box, AABBTreeNode* begin, AABBTreeNode* end, unsigned char avaliableAxis = xFlag | yFlag | zFlag);
 	AABBTreeLeaf* GetLeaf(const AABBBox& box);
+	void GetContacts(Contact** iterator);
 	void GetContacts(AABBTreeNode* node, Contact** iterator);
-	void GetContacts(AABBTreeLeaf* leaf, Contact** iterator);
+	//void GetContacts(AABBTreeLeaf* leaf, Contact** iterator);
 	bool HasAlreadySubdivided() const;
 	bool IsEmpty() const;
 	const AABBBox& GetBox() const;

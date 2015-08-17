@@ -25,6 +25,10 @@ const AABBBox& AABBTreeLeaf::GetBox() const
 
 unsigned AABBTreeLeaf::GetSize()
 {
+	if(IsEmpty())
+	{
+		return 0;
+	}
 	return end - begin + 1;
 }
 
@@ -132,13 +136,7 @@ void AABBTreeLeaf::Sort3(const AABBBox& box, AABBTreeNode* begin, AABBTreeNode* 
 
 	if((avaliableAxis & xFlag) && (box.rangeX.Length() >= box.rangeY.Length() || !(avaliableAxis & yFlag)) && (box.rangeX.Length() >= box.rangeZ.Length() || (avaliableAxis & zFlag)))
 	{
-		for(AABBTreeNode* node = begin; node != begin + size; ++node)
-		{
-			const float midPoint = node->box.rangeX.MidPoint();
-			split += midPoint;
-		}
-
-		split /= size;
+		split = box.rangeX.MidPoint();
 		for(AABBTreeNode* node = begin; node != begin + size; ++node)
 		{
 			if(node->box.rangeX.MidPoint() <= split)
@@ -167,13 +165,7 @@ void AABBTreeLeaf::Sort3(const AABBBox& box, AABBTreeNode* begin, AABBTreeNode* 
 	}
 	else if((avaliableAxis & yFlag) && (box.rangeY.Length() >= box.rangeZ.Length() || !(avaliableAxis & zFlag)))
 	{
-		for(AABBTreeNode* node = begin; node != begin + size; ++node)
-		{
-			const float midPoint = node->box.rangeY.MidPoint();
-			split += midPoint;
-		}
-
-		split /= size;
+		split = box.rangeY.MidPoint();
 		for(AABBTreeNode* node = begin; node != begin + size; ++node)
 		{
 			if(node->box.rangeY.MidPoint() <= split)
@@ -202,13 +194,7 @@ void AABBTreeLeaf::Sort3(const AABBBox& box, AABBTreeNode* begin, AABBTreeNode* 
 	}
 	else if(avaliableAxis & zFlag)
 	{
-		for(AABBTreeNode* node = begin; node != begin + size; ++node)
-		{
-			const float midPoint = node->box.rangeZ.MidPoint();
-			split += midPoint;
-		}
-
-		split /= size;
+		split = box.rangeZ.MidPoint();
 		for(AABBTreeNode* node = begin; node != begin + size; ++node)
 		{
 			if(node->box.rangeZ.MidPoint() <= split)
@@ -235,7 +221,7 @@ void AABBTreeLeaf::Sort3(const AABBBox& box, AABBTreeNode* begin, AABBTreeNode* 
 		leaves[LEFT].Sort3(leftBox, begin, leftNodeEnd, avaliableAxis);
 		leaves[RIGHT].Sort3(rightBox, leftNodeEnd + 1, end, avaliableAxis);
 	}
-	else
+	else if(!leaves[LEFT].IsEmpty())
 	{
 		leaves[LEFT].DumpData();
 		leaves[RIGHT].DumpData();
@@ -268,14 +254,63 @@ AABBTreeLeaf* AABBTreeLeaf::GetLeaf(const AABBBox& box)
 	return NULL;
 }
 
-void AABBTreeLeaf::GetContacts(AABBTreeNode* node, Contact** iterator)
+void AABBTreeLeaf::GetContacts(Contact** iterator)
 {
 	if(leaves[LEFT].IsEmpty())
 	{
-		unsigned size = GetSize();
-		for(AABBTreeNode* ourNode = begin; ourNode != begin + size; ++ourNode)
+		AABBTreeNode* testBegin = begin;
+		AABBTreeNode* testEnd = end;
+
+		for(AABBTreeNode* node = testBegin; node != testEnd; ++node)
 		{
-   			if(node->box.IsOverlapping(ourNode->box))
+			GetContacts(node, iterator);
+		}
+	}
+
+	leaves[LEFT].GetContacts(iterator);
+	leaves[RIGHT].GetContacts(iterator);
+}
+
+void AABBTreeLeaf::GetContacts(AABBTreeNode* node, Contact** iterator)
+{
+	//if(leaves[LEFT].IsEmpty())
+	//{
+	//	unsigned size = GetSize();
+	//	for(AABBTreeNode* ourNode = begin; ourNode != begin + size; ++ourNode)
+	//	{
+	//		if(node->box.IsOverlapping(ourNode->box))
+	//		{
+	//			(*iterator)->node2 = ourNode;
+	//			(*iterator)->node1 = node;
+	//			++(*iterator);
+	//		}
+	//	}
+	//}
+	//if(leaves[LEFT].box.IsOverlapping(node->box))
+	//{
+	//	leaves[LEFT].GetContacts(node, iterator);
+	//}
+	//if(leaves[RIGHT].box.IsOverlapping(node->box))
+	//{
+	//	leaves[RIGHT].GetContacts(node, iterator);
+	//}
+	
+	if(leaves[LEFT].IsEmpty())
+	{
+		AABBTreeNode* testBegin = NULL;
+		AABBTreeNode* testEnd = end;
+		if(node >= begin && node <= end)
+		{
+			testBegin = node;
+		}
+		else
+		{
+			testBegin = begin;
+		}
+
+		for(AABBTreeNode* ourNode = testBegin; ourNode != testEnd; ++ourNode)
+		{
+			if(node->box.IsOverlapping(ourNode->box) && node->body != ourNode->body)
 			{
 				(*iterator)->node2 = ourNode;
 				(*iterator)->node1 = node;
@@ -283,55 +318,56 @@ void AABBTreeLeaf::GetContacts(AABBTreeNode* node, Contact** iterator)
 			}
 		}
 	}
-	if(leaves[LEFT].box.IsOverlapping(node->box))
+	//skip the check if the node being checked against is the last one in the list or ahead of it as there is nothing to check against
+	if(leaves[LEFT].box.IsOverlapping(node->box) && leaves[LEFT].end > node)
 	{
 		leaves[LEFT].GetContacts(node, iterator);
 	}
-	if(leaves[RIGHT].box.IsOverlapping(node->box))
+	if(leaves[RIGHT].box.IsOverlapping(node->box) && leaves[RIGHT].end > node)
 	{
 		leaves[RIGHT].GetContacts(node, iterator);
 	}
 }
 
-void AABBTreeLeaf::GetContacts(AABBTreeLeaf* leaf, Contact** iterator)
-{
-	if(leaves[LEFT].IsEmpty())
-	{
-		leaf = leaf->GetLeaf(box);
-		unsigned size = GetSize();
-		for(AABBTreeNode* node = begin; node != begin + size; ++node)
-		{
-			leaf->GetContacts(node, iterator);
-		}
-		return;
-	}
-
-	bool hitsLeft = leaf->leaves[LEFT].box.IsOverlapping(box);
-	bool hitsRight = leaf->leaves[RIGHT].box.IsOverlapping(box);
-
-	if(hitsLeft && hitsRight || leaf->leaves[LEFT].IsEmpty())
-	{
-		if(leaves[LEFT].box.IsOverlapping(leaf->box))
-		{
-			leaves[LEFT].GetContacts(leaf, iterator);
-		}
-		if(leaves[RIGHT].box.IsOverlapping(leaf->box))
-		{
-			leaves[RIGHT].GetContacts(leaf, iterator);
-		}
-	}
-	else
-	{
-		if(hitsLeft)
-		{
-			GetContacts(&leaf->leaves[LEFT], iterator);
-		}
-		else if(hitsRight)
-		{
-			GetContacts(&leaf->leaves[RIGHT], iterator);
-		}
-	}
-}
+//void AABBTreeLeaf::GetContacts(AABBTreeLeaf* leaf, Contact** iterator)
+//{
+//	if(leaves[LEFT].IsEmpty())
+//	{
+//		leaf = leaf->GetLeaf(box);
+//		unsigned size = GetSize();
+//		for(AABBTreeNode* node = begin; node != begin + size; ++node)
+//		{
+//			leaf->GetContacts(node, iterator);
+//		}
+//		return;
+//	}
+//
+//	bool hitsLeft = leaf->leaves[LEFT].box.IsOverlapping(box);
+//	bool hitsRight = leaf->leaves[RIGHT].box.IsOverlapping(box);
+//
+//	if(hitsLeft && hitsRight || leaf->leaves[LEFT].IsEmpty())
+//	{
+//		if(leaves[LEFT].box.IsOverlapping(leaf->box))
+//		{
+//			leaves[LEFT].GetContacts(leaf, iterator);
+//		}
+//		if(leaves[RIGHT].box.IsOverlapping(leaf->box))
+//		{
+//			leaves[RIGHT].GetContacts(leaf, iterator);
+//		}
+//	}
+//	else
+//	{
+//		if(hitsLeft)
+//		{
+//			GetContacts(&leaf->leaves[LEFT], iterator);
+//		}
+//		else if(hitsRight)
+//		{
+//			GetContacts(&leaf->leaves[RIGHT], iterator);
+//		}
+//	}
+//}
 
 bool AABBTreeLeaf::HasAlreadySubdivided() const
 {
