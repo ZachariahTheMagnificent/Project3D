@@ -15,7 +15,7 @@
     <ClInclude Include="Source\AsteroidFactory.h" />
     <ClInclude Include="Source\Bullet2D.h" />
     <ClInclude Include="Source\Bullet2DFactory.h" />
-    <ClInclude Include="Source\Damagers2D.h" />
+    <ClInclude Include="Source\DamagesThings.h" />
     <ClInclude Include="Source\EnemyShip2D.h" />
     <ClInclude Include="Source\Factory.h" />
     <ClInclude Include="Source\GameObject.h" />
@@ -33,7 +33,7 @@
     <ClCompile Include="Source\AsteroidFactory.cpp" />
     <ClCompile Include="Source\Bullet2D.cpp" />
     <ClCompile Include="Source\Bullet2DFactory.cpp" />
-    <ClCompile Include="Source\Damagers2D.cpp" />
+    <ClCompile Include="Source\DamagesThings.cpp" />
     <ClCompile Include="Source\EnemyShip2D.cpp" />
     <ClCompile Include="Source\Factory.cpp" />
     <ClCompile Include="Source\GameObject.cpp" />

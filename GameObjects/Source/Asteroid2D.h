@@ -1,9 +1,9 @@
 #pragma once
 #include "Object2d.h"
 #include "Killable.h"
-#include "Damagers2D.h"
+#include "DamagesThings.h"
 
-class Asteroid2D : public Object2D, public Damagers, public Killable
+class Asteroid2D : public Object2D, public DamagesThings, public Killable
 {
 public:
 	Asteroid2D();

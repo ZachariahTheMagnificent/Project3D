@@ -1,11 +1,11 @@
 #pragma once
 #include "Killable.h"
 
-class Damagers
+class DamagesThings
 {
 public:
-	Damagers();
-	~Damagers();
+	DamagesThings();
+	~DamagesThings();
 
 	void DoDamageTo(Killable* theKill);
 
