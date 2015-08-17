@@ -19,26 +19,14 @@
     <ClCompile Include="Source\MeshBuilder.cpp">
       <Filter>Source Files\Mesh</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Mesh.cpp">
-      <Filter>Source Files\Mesh</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Voxel.cpp">
-      <Filter>Source Files\Physics</Filter>
-    </ClCompile>
     <ClCompile Include="Source\SceneMain.cpp">
       <Filter>Source Files\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Polygon.cpp">
-      <Filter>Source Files\Mesh</Filter>
     </ClCompile>
     <ClCompile Include="Source\main.cpp">
       <Filter>Source Files\Application</Filter>
     </ClCompile>
     <ClCompile Include="Source\Application.cpp">
       <Filter>Source Files\Application</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Camera.cpp">
-      <Filter>Source Files\Rendering</Filter>
     </ClCompile>
     <ClCompile Include="Source\DrawOrder.cpp">
       <Filter>Source Files\Rendering</Filter>
@@ -79,23 +67,8 @@
     <ClCompile Include="Source\AABBTreeNode.cpp">
       <Filter>Source Files\Trees</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Texture.cpp">
-      <Filter>Source Files\Rendering</Filter>
-    </ClCompile>
     <ClCompile Include="Source\LoadOBJ.cpp">
       <Filter>Source Files\Application</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Light.cpp">
-      <Filter>Source Files\Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\D3DColor.cpp">
-      <Filter>Source Files\Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Material.cpp">
-      <Filter>Source Files\Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Vertex.cpp">
-      <Filter>Source Files\Mesh</Filter>
     </ClCompile>
     <ClCompile Include="Source\GlobalList.cpp">
       <Filter>Source Files\Globals</Filter>
@@ -104,9 +77,6 @@
   <ItemGroup>
     <ClInclude Include="Source\Application.h">
       <Filter>Header Files\Application</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Camera.h">
-      <Filter>Header Files\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Source\CollisionBody.h">
       <Filter>Header Files\Physics</Filter>
@@ -120,9 +90,6 @@
     <ClInclude Include="Source\shader.hpp">
       <Filter>Header Files\Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Polygon.h">
-      <Filter>Header Files\Mesh</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Keyboard.h">
       <Filter>Header Files\Application</Filter>
     </ClInclude>
@@ -132,22 +99,10 @@
     <ClInclude Include="Source\GLMouse.h">
       <Filter>Header Files\Application</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Light.h">
-      <Filter>Header Files\Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Material.h">
-      <Filter>Header Files\Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Mesh.h">
-      <Filter>Header Files\Mesh</Filter>
-    </ClInclude>
     <ClInclude Include="Source\SceneMain.h">
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="Source\MeshBuilder.h">
-      <Filter>Header Files\Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Vertex.h">
       <Filter>Header Files\Mesh</Filter>
     </ClInclude>
     <ClInclude Include="Source\Scene.h">
@@ -155,9 +110,6 @@
     </ClInclude>
     <ClInclude Include="Source\Graphics.h">
       <Filter>Header Files\Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Voxel.h">
-      <Filter>Header Files\Physics</Filter>
     </ClInclude>
     <ClInclude Include="Source\VoxelOctree.h">
       <Filter>Header Files\Trees</Filter>
@@ -189,17 +141,8 @@
     <ClInclude Include="Source\AABBTreeNode.h">
       <Filter>Header Files\Trees</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Texture.h">
-      <Filter>Header Files\Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\D4DColor.h">
-      <Filter>Header Files\Rendering</Filter>
-    </ClInclude>
     <ClInclude Include="Source\LoadOBJ.h">
       <Filter>Header Files\Application</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\D3DColor.h">
-      <Filter>Header Files\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Source\GlobalList.h">
       <Filter>Header Files\Globals</Filter>

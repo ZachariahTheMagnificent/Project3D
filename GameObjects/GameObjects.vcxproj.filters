@@ -9,19 +9,111 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="Header Files\Object2D">
+      <UniqueIdentifier>{2716de78-6772-4722-ac27-bc77189dd13f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Object2D">
+      <UniqueIdentifier>{05729883-9107-4eda-96c1-5756f8d38c8d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\World2D.h">
+      <Filter>Header Files\Object2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Ship2D.h">
+      <Filter>Header Files\Object2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Asteroid2D.h">
+      <Filter>Header Files\Object2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Bullet2D.h">
+      <Filter>Header Files\Object2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EnemyShip2D.h">
+      <Filter>Header Files\Object2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Object2D.h">
+      <Filter>Header Files\Object2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Object2DFactory.h">
+      <Filter>Header Files\Object2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PlayerShip2D.h">
+      <Filter>Header Files\Object2D</Filter>
+    </ClInclude>
     <ClInclude Include="Source\GameObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Killable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SpawnsObjects.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Factory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Damagers2D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Bullet2DFactory.h">
+      <Filter>Header Files\Object2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\AsteroidFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ShipFactory.h">
+      <Filter>Header Files\Object2D</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Asteroid2D.cpp">
+      <Filter>Source Files\Object2D</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\World2D.cpp">
+      <Filter>Source Files\Object2D</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Bullet2D.cpp">
+      <Filter>Source Files\Object2D</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EnemyShip2D.cpp">
+      <Filter>Source Files\Object2D</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Object2D.cpp">
+      <Filter>Source Files\Object2D</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Object2DFactory.cpp">
+      <Filter>Source Files\Object2D</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PlayerShip2D.cpp">
+      <Filter>Source Files\Object2D</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Ship2D.cpp">
+      <Filter>Source Files\Object2D</Filter>
+    </ClCompile>
     <ClCompile Include="Source\GameObject.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Killable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SpawnsObjects.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Factory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Damagers2D.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Bullet2DFactory.cpp">
+      <Filter>Source Files\Object2D</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AsteroidFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ShipFactory.cpp">
+      <Filter>Source Files\Object2D</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

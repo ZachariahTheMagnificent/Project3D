@@ -1,6 +1,7 @@
 #pragma once
 #include "BoundingBox.h"
 #include "Polygon.h"
+#include "CollisionBody.h"
 /****************************************************************************/
 /*!
 \file OctreeNode.h
@@ -29,4 +30,5 @@ public:
 
 	AABBBox box;
 	Polygonn data;
+	CollisionBody* body;
 };
