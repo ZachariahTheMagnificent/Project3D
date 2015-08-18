@@ -308,8 +308,8 @@ void SceneMain::InnitDraws()
 	//Draw player
 	draw = globals.GetDraw(L"player");
 	draw->SetTo(globals.GetMesh(L"cube"), globals.GetMaterial(L"forerunner plate"), globals.GetDraw(L"main"), false);
-	draw->transform.translate.Set(21.7, 5, 68.3);
-	//draw->transform.translate.Set(-217, -631, 0);
+	//draw->transform.translate.Set(21.7, 5, 68.3);
+	draw->transform.translate.Set(-217, -631, 0);
 	//draw->mass = 75;
 	//draw->bounce = 0.5;
 	//draw->staticFriction = 0.03;

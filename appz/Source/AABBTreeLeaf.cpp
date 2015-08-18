@@ -301,19 +301,69 @@ void AABBTreeLeaf::GetContacts(AABBTreeLeaf* leaf, Contact** iterator)
 {
 	if(leaves[LEFT].IsEmpty())
 	{
-		leaf = leaf->GetLeaf(box);
+		//leaf = leaf->GetLeaf(box);
 		unsigned size = GetSize();
 		for(AABBTreeNode* node = begin; node != begin + size; ++node)
 		{
 			leaf->GetContacts(node, iterator);
 		}
+		//if(leaf->leaves[LEFT].IsEmpty())
+		//{
+		//	const unsigned size = GetSize();
+		//	const AABBTreeNode* end = begin + size;
+		//	for(AABBTreeNode* node = begin; node != end; ++node)
+		//	{
+		//		unsigned theirSize = leaf->GetSize();
+		//		AABBTreeNode* theirEnd = leaf->begin + theirSize;
+		//		for(AABBTreeNode* theirNode = leaf->begin; theirNode != theirEnd; ++theirNode)
+		//		{
+		//			if(node->box.IsOverlapping(theirNode->box))
+		//			{
+		//				(*iterator)->node1 = node;
+		//				(*iterator)->node2 = theirNode;
+		//				++(*iterator);
+		//			}
+		//		}
+		//	}
+		//}
+		//else
+		//{
+		//	leaf->leaves[LEFT].GetContacts(this, iterator);
+		//	leaf->leaves[RIGHT].GetContacts(this, iterator);
+		//}
 		return;
 	}
+	//else if(leaf->leaves[LEFT].IsEmpty())
+	//{
+	//	unsigned size = leaf->GetSize();
+	//	for(AABBTreeNode* node = leaf->begin; node != leaf->begin + size; ++node)
+	//	{
+	//		GetContacts(node, iterator);
+	//	}
+	//	return;
+	//}
+
+	//if(leaves[LEFT].box.IsOverlapping(leaf->leaves[LEFT].box))
+	//{
+	//	leaves[LEFT].GetContacts(&leaf->leaves[LEFT], iterator);
+	//}
+	//if(leaves[LEFT].box.IsOverlapping(leaf->leaves[RIGHT].box))
+	//{
+	//	leaves[LEFT].GetContacts(&leaf->leaves[RIGHT], iterator);
+	//}
+	//if(leaves[RIGHT].box.IsOverlapping(leaf->leaves[LEFT].box))
+	//{
+	//	leaves[RIGHT].GetContacts(&leaf->leaves[LEFT], iterator);
+	//}
+	//if(leaves[RIGHT].box.IsOverlapping(leaf->leaves[RIGHT].box))
+	//{
+	//	leaves[RIGHT].GetContacts(&leaf->leaves[RIGHT], iterator);
+	//}
 
 	bool hitsLeft = leaf->leaves[LEFT].box.IsOverlapping(box);
 	bool hitsRight = leaf->leaves[RIGHT].box.IsOverlapping(box);
 
-	if(hitsLeft && hitsRight || leaf->leaves[LEFT].IsEmpty())
+	if((hitsLeft && hitsRight) || leaf->leaves[LEFT].IsEmpty())
 	{
 		if(leaves[LEFT].box.IsOverlapping(leaf->box))
 		{
