@@ -69,3 +69,8 @@ Rotation Rotation::operator+(const Rotation& rotate)
 {
 	return Rotation(yaw + rotate.yaw, pitch + rotate.pitch, roll + rotate.roll);
 }
+
+Rotation Rotation::operator-(const Rotation& rotate)
+{
+	return Rotation(yaw - rotate.yaw, pitch - rotate.pitch, roll - rotate.roll);
+}

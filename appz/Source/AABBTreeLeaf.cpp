@@ -48,7 +48,7 @@ void AABBTreeLeaf::DumpData()
 	end = NULL;
 }
 
-void AABBTreeLeaf::Sort1(const AABBBox& box, AABBTreeNode* begin, AABBTreeNode* end)
+void AABBTreeLeaf::Sort1(const AABBBox& box, AABBTreeNode*const begin, AABBTreeNode*const end)
 {
 	this->begin = begin;
 	this->end = end;
@@ -58,9 +58,61 @@ void AABBTreeLeaf::Sort1(const AABBBox& box, AABBTreeNode* begin, AABBTreeNode* 
 	{
 		leaves = new AABBTreeLeaf[TOTAL_LEAVES];
 	}
+
+	//if there is only one node left
+	if(end == begin)
+	{
+		if(!leaves[LEFT].IsEmpty())
+		{
+			leaves[LEFT].DumpData();
+			leaves[RIGHT].DumpData();
+		}
+		return;
+	}
+
+	AABBBox leftBox;
+	AABBBox rightBox;
+	AABBTreeNode* leftNodeEnd = begin - 1;
+
+	float split = box.rangeX.MidPoint();
+	const unsigned size = GetSize();
+
+	//for(AABBTreeNode* node = begin; node != begin + size; ++node)
+	//{
+	//	const float midPoint = node->box.rangeX.MidPoint();
+	//	split += midPoint;
+	//}
+
+	//split /= size;
+	for(AABBTreeNode* node = begin; node != begin + size; ++node)
+	{
+		if(node->box.rangeX.start <= split)
+		{
+			leftBox.ResizeToFit(node->box);
+
+			++leftNodeEnd;
+
+			AABBTreeNode temp = *leftNodeEnd;
+			*leftNodeEnd = *node;
+			*node = temp;
+		}
+		else
+		{
+			rightBox.ResizeToFit(node->box);
+		}
+	}
+		
+	if(leftNodeEnd == begin - 1 || leftNodeEnd == end)
+	{
+		leaves[LEFT].DumpData();
+		leaves[RIGHT].DumpData();
+		return;
+	}
+	leaves[LEFT].Sort1(leftBox, begin, leftNodeEnd);
+	leaves[RIGHT].Sort1(rightBox, leftNodeEnd + 1, end);
 }
 
-void AABBTreeLeaf::Sort2(const AABBBox& box, AABBTreeNode* begin, AABBTreeNode* end)
+void AABBTreeLeaf::Sort2(const AABBBox& box, AABBTreeNode*const begin, AABBTreeNode*const end)
 {
 	this->begin = begin;
 	this->end = end;
@@ -100,15 +152,11 @@ void AABBTreeLeaf::Sort2(const AABBBox& box, AABBTreeNode* begin, AABBTreeNode* 
 	leaves[RIGHT].Sort2(rightBox, leftEnd + 1, rightEnd);
 }
 
-void AABBTreeLeaf::Sort3(const AABBBox& box, AABBTreeNode* begin, AABBTreeNode* end, unsigned char avaliableAxis)
+void AABBTreeLeaf::Sort3(const AABBBox& box, AABBTreeNode*const begin, AABBTreeNode*const end, const unsigned char avaliableAxis)
 {
 	this->begin = begin;
 	this->end = end;
 	this->box = box;
-
-	const unsigned char xFlag = 0x01;
-	const unsigned char yFlag = 0x02;
-	const unsigned char zFlag = 0x04;
 
 
 	if(!HasAlreadySubdivided())
@@ -119,6 +167,7 @@ void AABBTreeLeaf::Sort3(const AABBBox& box, AABBTreeNode* begin, AABBTreeNode* 
 	//if there is only one node left
 	if(end == begin)
 	{
+		//std::cout << 1 << std::endl;
 		if(!leaves[LEFT].IsEmpty())
 		{
 			leaves[LEFT].DumpData();
@@ -127,25 +176,19 @@ void AABBTreeLeaf::Sort3(const AABBBox& box, AABBTreeNode* begin, AABBTreeNode* 
 		return;
 	}
 
-	AABBBox leftBox;
-	AABBBox rightBox;
+	AABBBox leftBox(Range<float>(FLT_MAX, -FLT_MAX), Range<float>(FLT_MAX, -FLT_MAX), Range<float>(FLT_MAX, -FLT_MAX));
+	AABBBox rightBox(Range<float>(FLT_MAX, -FLT_MAX), Range<float>(FLT_MAX, -FLT_MAX), Range<float>(FLT_MAX, -FLT_MAX));
 	AABBTreeNode* leftNodeEnd = begin - 1;
 
 	float split = 0;
 	const unsigned size = GetSize();
 
-	if((avaliableAxis & xFlag) && (box.rangeX.Length() >= box.rangeY.Length() || !(avaliableAxis & yFlag)) && (box.rangeX.Length() >= box.rangeZ.Length() || (avaliableAxis & zFlag)))
+	if((avaliableAxis & xFlag) && (box.rangeX.Length() >= box.rangeY.Length() || !(avaliableAxis & yFlag)) && (box.rangeX.Length() >= box.rangeZ.Length() || !(avaliableAxis & zFlag)))
 	{
+		split = box.rangeX.MidPoint();
 		for(AABBTreeNode* node = begin; node != begin + size; ++node)
 		{
-			const float midPoint = node->box.rangeX.MidPoint();
-			split += midPoint;
-		}
-
-		split /= size;
-		for(AABBTreeNode* node = begin; node != begin + size; ++node)
-		{
-			if(node->box.rangeX.MidPoint() <= split)
+			if(node->box.rangeX.MidPoint() < split)
 			{
 				leftBox.ResizeToFit(node->box);
 
@@ -171,16 +214,10 @@ void AABBTreeLeaf::Sort3(const AABBBox& box, AABBTreeNode* begin, AABBTreeNode* 
 	}
 	else if((avaliableAxis & yFlag) && (box.rangeY.Length() >= box.rangeZ.Length() || !(avaliableAxis & zFlag)))
 	{
+		split = box.rangeY.MidPoint();
 		for(AABBTreeNode* node = begin; node != begin + size; ++node)
 		{
-			const float midPoint = node->box.rangeY.MidPoint();
-			split += midPoint;
-		}
-
-		split /= size;
-		for(AABBTreeNode* node = begin; node != begin + size; ++node)
-		{
-			if(node->box.rangeY.MidPoint() <= split)
+			if(node->box.rangeY.MidPoint() < split)
 			{
 				leftBox.ResizeToFit(node->box);
 
@@ -206,16 +243,10 @@ void AABBTreeLeaf::Sort3(const AABBBox& box, AABBTreeNode* begin, AABBTreeNode* 
 	}
 	else if(avaliableAxis & zFlag)
 	{
+		split = box.rangeZ.MidPoint();
 		for(AABBTreeNode* node = begin; node != begin + size; ++node)
 		{
-			const float midPoint = node->box.rangeZ.MidPoint();
-			split += midPoint;
-		}
-
-		split /= size;
-		for(AABBTreeNode* node = begin; node != begin + size; ++node)
-		{
-			if(node->box.rangeZ.MidPoint() <= split)
+			if(node->box.rangeZ.MidPoint() < split)
 			{
 				leftBox.ResizeToFit(node->box);
 
@@ -241,6 +272,20 @@ void AABBTreeLeaf::Sort3(const AABBBox& box, AABBTreeNode* begin, AABBTreeNode* 
 	}
 	else
 	{
+		//if(Math::IsEqual(begin->box.rangeX.start, end->box.rangeX.start))
+		//{
+		//	std::cout << begin - end << std::endl;
+		//}
+		//if(GetSize() < 0)
+		//{
+		//	int size = GetSize();
+		//	std::cout << size << std::endl;
+		//}
+		//if(avaliableAxis != 0)
+		//{
+		//	std::cout << avaliableAxis << std::endl;
+		//}
+		//std::cout << GetSize() << std::endl;
 		leaves[LEFT].DumpData();
 		leaves[RIGHT].DumpData();
 	}

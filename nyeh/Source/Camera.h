@@ -29,6 +29,7 @@ public:
 	Rotation GetRotation() const;
 	Mtx44 GetRotationMatrix(bool x, bool y, bool z) const;
 	Vector3 GetTarget() const;
+	void SetRotate(const Rotation rotate);
 	void Rotate(const float x, const float y, const float z);
 	void Rotate(const Rotation rotate);
 	void Translate(const float x, const float y, const float z);

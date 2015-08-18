@@ -24,6 +24,7 @@ public:
 	Rotation& operator=(const Rotation& rotate);
 	Rotation& operator+=(const Rotation& rotate);
 	Rotation operator+(const Rotation& rotate);
+	Rotation operator-(const Rotation& rotate);
 
 	float yaw;
 	float pitch;

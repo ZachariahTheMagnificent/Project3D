@@ -57,7 +57,6 @@ void SceneMain::Init()
 	InnitCollisions();
 	InnitForces();
 	InnitLogic();
-	//snd.playSound("halot",true);
 
 	gfx.GetWindowSize(&screenX, &screenY);
 	screenBuffer = new Color[screenX*screenY];
@@ -86,7 +85,7 @@ Initializes Sound
 void SceneMain::InnitSounds()
 {
 	snd.loadWave("halot","sound//halot.wav");
-	snd.loadWave("hitsound","sound//hitsound.wav");
+	snd.loadWave("hitsound","sound//jump-small.wav");
 }
 /****************************************************************************/
 /*!
@@ -305,14 +304,22 @@ void SceneMain::InnitDraws()
 	draw = globals.GetDraw(L"voxel");
 	draw->SetTo(globals.GetMesh(L"cube"), globals.GetMaterial(L"voxel"), NULL, false);
 
-	//Draw player
-	draw = globals.GetDraw(L"player");
-	draw->SetTo(globals.GetMesh(L"cube"), globals.GetMaterial(L"forerunner plate"), globals.GetDraw(L"main"), false);
+	//Draw player1
+	draw = globals.GetDraw(L"player1");
+	draw->SetTo(globals.GetMesh(L"sentinel"), globals.GetMaterial(L"forerunner plate"), globals.GetDraw(L"main"), false);
 	//draw->transform.translate.Set(21.7, 5, 68.3);
 	draw->transform.translate.Set(-217, -631, 0);
-	//draw->mass = 75;
-	//draw->bounce = 0.5;
-	//draw->staticFriction = 0.03;
+	
+	//Draw player2
+	draw = globals.GetDraw(L"player2");
+	draw->SetTo(globals.GetMesh(L"sentinel"), globals.GetMaterial(L"metal floor"), globals.GetDraw(L"main"), false);
+	//draw->transform.translate.Set(21.7, 5, 68.3);
+	draw->transform.translate.Set(-217, -631, -20);
+
+	//Draw ball
+	draw = globals.GetDraw(L"sphere");
+	draw->SetTo(globals.GetMesh(L"sphere"), globals.GetMaterial(L"rock"), globals.GetDraw(L"main"), false);
+	draw->transform.translate.Set(-217, -631, 20);
 
 	//draw one of the lifts
 	draw = globals.GetDraw(L"left lift");
@@ -387,13 +394,29 @@ void SceneMain::InnitCollisions()
 {
 	CollisionBody* body;
 
-	body = globals.GetCollisionBody(L"player");
-	body->draw = globals.GetDraw(L"player");
-	body->mesh = globals.GetMesh(L"sentinel");
+	body = globals.GetCollisionBody(L"player1");
+	body->draw = globals.GetDraw(L"player1");
+	body->mesh = globals.GetMesh(L"sphere");
 	body->mass = 1;
 	body->SetTerminalVelocityTo(100);
 	body->SetDecelerationTo(10);
 	body->soundSys = &snd;
+	currentPlayer = body;
+	
+	body = globals.GetCollisionBody(L"player2");
+	body->draw = globals.GetDraw(L"player2");
+	body->mesh = globals.GetMesh(L"sphere");
+	body->mass = 1;
+	body->SetTerminalVelocityTo(100);
+	body->SetDecelerationTo(10);
+	//body->soundSys = &snd;
+	
+	body = globals.GetCollisionBody(L"sphere");
+	body->draw = globals.GetDraw(L"sphere");
+	body->mesh = globals.GetMesh(L"sphere");
+	body->mass = 1;
+	body->SetTerminalVelocityTo(100);
+	body->SetDecelerationTo(10);
 
 	body = globals.GetCollisionBody(L"nirvana");
 	body->draw = globals.GetDraw(L"nirvana");
@@ -416,6 +439,8 @@ void SceneMain::InnitCollisions()
 	body->draw = globals.GetDraw(L"currupted sentinel");
 	body->mesh = globals.GetMesh(L"sentinel");
 	
+	unsigned numOfPolys = 0;
+
 	//Update the velocity of all draws before doing collision
 	CollisionBody*const begin = globals.GetBodies();
 	CollisionBody*const end = globals.GetLastBody();
@@ -426,14 +451,16 @@ void SceneMain::InnitCollisions()
 		{
 			const Polygonn* polies = mesh->GetPolyBuffer();
 			const unsigned size = mesh->GetNPolies();
+			numOfPolys += size;
+
 			body->tree.IncreaseCapacityTo(size);
 
 			Mtx44 mtx1 = body->GetMatrix();
 
 			AABBTreeNode* node = body->tree.GetBegin();
 			AABBTreeNode* nodeEnd = body->tree.GetEnd();
-
-			AABBBox box;
+			
+			AABBBox box(Range<float>(FLT_MAX, -FLT_MAX), Range<float>(FLT_MAX, -FLT_MAX), Range<float>(FLT_MAX, -FLT_MAX));
 			const Polygonn* begin = polies;
 			const Polygonn* end = begin + size;
 			for(Polygonn const* it = begin; it != end && node != nodeEnd; ++it, ++node)
@@ -447,6 +474,7 @@ void SceneMain::InnitCollisions()
 			body->tree.Sort(box, end - begin);
 		}
 	}
+	world.IncreaseCapacityTo(numOfPolys);
 }
 
 /****************************************************************************/
@@ -512,15 +540,15 @@ updating view in frog and player perspective, camera lock on.
 void SceneMain::UpdateView()
 {
 	DrawOrder* skybox = globals.GetDraw(L"skybox");
-	DrawOrder* player = globals.GetDraw(L"player");
 
 	//the skybox is moved according to the camera position
 	skybox->transform.translate = Vector3(0,0,0) + camera.ReturnPosition();
-	Vector3 displacement(0, 0, 0);
+	Vector3 displacement(0, 0, -1);
+	//camera.SetRotate(currentPlayer->draw->transform.rotate);
 	Mtx44 rotation;
 	rotation = camera.GetRotationMatrix(0,0,1);
-	//displacement = rotation * displacement;
-	camera.Translate(player->transform.translate - camera.ReturnPosition() + displacement);
+	displacement = rotation * displacement;
+	camera.Translate(currentPlayer->draw->transform.translate - camera.ReturnPosition() + displacement);
 
 	gfx.SetProjectionTo(fFov, screenX / (float)screenY, fNearPlane, fFarPlane);
 	gfx.SetViewAt(camera);
@@ -543,6 +571,9 @@ updating draws
 /****************************************************************************/
 void SceneMain::UpdateDraws()
 {
+	Rotation rotate = camera.GetRotation() - currentPlayer->draw->transform.rotate;
+	currentPlayer->rotationVelocity.Set(rotate.yaw, 0, 0);
+
 	//Update the velocity of all draws before doing collision
 	CollisionBody*const begin = globals.GetBodies();
 	CollisionBody*const end = globals.GetLastBody();
@@ -570,7 +601,7 @@ void SceneMain::UpdateDraws()
 			AABBTreeNode* node = body->tree.GetBegin();
 			AABBTreeNode* nodeEnd = body->tree.GetEnd();
 
-			AABBBox box;
+			AABBBox box(Range<float>(FLT_MAX, -FLT_MAX), Range<float>(FLT_MAX, -FLT_MAX), Range<float>(FLT_MAX, -FLT_MAX));
 			const Polygonn* begin = polies;
 			const Polygonn* end = begin + size;
 			for(Polygonn const* it = begin; it != end && node != nodeEnd; ++it, ++node)
@@ -629,7 +660,7 @@ void SceneMain::Render()
 
 	char buffer1[126];
 	char buffer2[126];
-	Vector3 position = globals.GetDraw(L"player")->GetGlobalPosition();
+	Vector3 position = currentPlayer->draw->GetGlobalPosition();
 	sprintf(buffer1,"position:%.3f, %.3f, %.3f",position.x, position.y, position.z);
 	gfx.RenderTextOnScreen(buffer1,Color(0,1,0),20,1,1);
 	dCurrentFPS = 1 / dDeltatime;
@@ -728,7 +759,7 @@ void SceneMain::DoUserInput()
 	Force force;
 	force.SetLifespanTo(0.001);
 	force.SetVector(direction);
-	globals.GetCollisionBody(L"player")->AddForce(force);
+	currentPlayer->AddForce(force);
 
 	if(keyboard.isKeyHold('Q'))
 	{

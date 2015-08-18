@@ -37,7 +37,6 @@ public:
 	const std::vector<DrawOrder*>& GetChildrenVector() const;
 
 	DrawOrder* parent;
-	unsigned drawMode;
 	bool enableLight;
 	Mesh* geometry;
 	Material* material;

@@ -56,14 +56,14 @@
     <ClInclude Include="Source\Bullet2DFactory.h">
       <Filter>Header Files\Object2D</Filter>
     </ClInclude>
-    <ClInclude Include="Source\AsteroidFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\ShipFactory.h">
       <Filter>Header Files\Object2D</Filter>
     </ClInclude>
     <ClInclude Include="Source\DamagesThings.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\AsteroidFactory.h">
+      <Filter>Header Files\Object2D</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -106,14 +106,14 @@
     <ClCompile Include="Source\Bullet2DFactory.cpp">
       <Filter>Source Files\Object2D</Filter>
     </ClCompile>
-    <ClCompile Include="Source\AsteroidFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\ShipFactory.cpp">
       <Filter>Source Files\Object2D</Filter>
     </ClCompile>
     <ClCompile Include="Source\DamagesThings.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AsteroidFactory.cpp">
+      <Filter>Source Files\Object2D</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

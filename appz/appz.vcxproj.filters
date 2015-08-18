@@ -28,9 +28,6 @@
     <ClCompile Include="Source\Application.cpp">
       <Filter>Source Files\Application</Filter>
     </ClCompile>
-    <ClCompile Include="Source\DrawOrder.cpp">
-      <Filter>Source Files\Rendering</Filter>
-    </ClCompile>
     <ClCompile Include="Source\ContactSolver.cpp">
       <Filter>Source Files\Physics</Filter>
     </ClCompile>
@@ -92,9 +89,6 @@
     </ClInclude>
     <ClInclude Include="Source\Keyboard.h">
       <Filter>Header Files\Application</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\DrawOrder.h">
-      <Filter>Header Files\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Source\GLMouse.h">
       <Filter>Header Files\Application</Filter>

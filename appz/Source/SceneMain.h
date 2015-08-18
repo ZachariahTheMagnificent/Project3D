@@ -35,6 +35,9 @@ private:
 	GlobalList globals;
 	Color* screenBuffer;
 
+	//physics
+	AABBTree world;
+
 	//rendering
 	int screenX;
 	int screenY;
@@ -50,6 +53,7 @@ private:
 	CollisionSystem collisionSystem;
 
 	//logic
+	CollisionBody* currentPlayer;
 	bool bDrawVoxels;
 	bool lookWithMouse;
 

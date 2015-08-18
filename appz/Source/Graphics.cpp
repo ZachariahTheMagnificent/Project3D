@@ -316,7 +316,7 @@ void Graphics::RenderDraw(const DrawOrder& object, const Mtx44& matrix)
 	{
 		glUniform1i(m_parameters[U_COLOR_TEXTURE_ENABLED], 0);
 	}
-	RenderMesh(object.geometry, ID, object.drawMode);
+	RenderMesh(object.geometry, ID, GL_TRIANGLES);
 }
 
 void Graphics::SendMeshInfo(Mesh* begin, Mesh* end)
@@ -405,7 +405,7 @@ void Graphics::RenderText(const std::string text, const Color color)
 		
 		const unsigned numofverts = 6;
 		unsigned ID = GetID(meshText->material->texture);
-		RenderMesh(meshText->geometry ,(unsigned)text[i] * numofverts, numofverts, ID, meshText->drawMode);
+		RenderMesh(meshText->geometry ,(unsigned)text[i] * numofverts, numofverts, ID, GL_TRIANGLES);
 	}
 	
 	glUniform1i(m_parameters[U_TEXT_ENABLED], 0);
@@ -469,7 +469,7 @@ void Graphics::RenderTextOnScreen(const std::string text, const Color color, con
 		
 		const unsigned numofverts = 6;
 		unsigned ID = GetID(meshText->material->texture);
-		RenderMesh(meshText->geometry, (unsigned)text[i] * numofverts, numofverts, ID, meshText->drawMode);
+		RenderMesh(meshText->geometry, (unsigned)text[i] * numofverts, numofverts, ID, GL_TRIANGLES);
 	}
 
 	projectionStack.PopMatrix();
@@ -533,7 +533,7 @@ void Graphics::RenderMeshOnScreen(const DrawOrder& object, const Mtx44& matrix, 
 	{
 		glUniform1i(m_parameters[U_COLOR_TEXTURE_ENABLED], 0);
 	}
-	RenderMesh(object.geometry, ID, object.drawMode);
+	RenderMesh(object.geometry, ID, GL_TRIANGLES);
 
 	projectionStack.PopMatrix();
 	viewStack.PopMatrix();

@@ -269,3 +269,8 @@ Mtx44 Camera::GetRotationMatrix(bool x, bool y, bool z) const
 	}
 	return rotationMatrix;
 }
+
+void Camera::SetRotate(const Rotation rotate)
+{
+	transform.rotate = rotate;
+}

@@ -10,60 +10,10 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Source\Camera.cpp" />
-    <ClCompile Include="Source\D3DColor.cpp" />
-    <ClCompile Include="Source\D4DColor.cpp" />
-    <ClCompile Include="Source\DrawOrder.cpp" />
-    <ClCompile Include="Source\Light.cpp" />
-    <ClCompile Include="Source\Material.cpp" />
-    <ClCompile Include="Source\MatrixStack.cpp" />
-    <ClCompile Include="Source\Mesh.cpp" />
-    <ClCompile Include="Source\Mtx44.cpp" />
-    <ClCompile Include="Source\Polygon.cpp" />
-    <ClCompile Include="Source\Rotation.cpp" />
-    <ClCompile Include="Source\Sound.cpp" />
-    <ClCompile Include="Source\Texture.cpp" />
-    <ClCompile Include="Source\timer.cpp" />
-    <ClCompile Include="Source\Transformation.cpp" />
-    <ClCompile Include="Source\Vector2.cpp" />
-    <ClCompile Include="Source\Vector3.cpp" />
-    <ClCompile Include="Source\Vertex.cpp" />
-    <ClCompile Include="Source\Voxel.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Source\BackwardNode.h" />
-    <ClInclude Include="Source\BoundingBox.h" />
-    <ClInclude Include="Source\Camera.h" />
-    <ClInclude Include="Source\D3DColor.h" />
-    <ClInclude Include="Source\D4DColor.h" />
-    <ClInclude Include="Source\DrawOrder.h" />
-    <ClInclude Include="Source\ForwardNode.h" />
-    <ClInclude Include="Source\Light.h" />
-    <ClInclude Include="Source\LinkList.h" />
-    <ClInclude Include="Source\Material.h" />
-    <ClInclude Include="Source\MatrixStack.h" />
-    <ClInclude Include="Source\Mesh.h" />
-    <ClInclude Include="Source\Mtx44.h" />
-    <ClInclude Include="Source\MyMath.h" />
-    <ClInclude Include="Source\Node.h" />
-    <ClInclude Include="Source\Polygon.h" />
-    <ClInclude Include="Source\Range.h" />
-    <ClInclude Include="Source\Rotation.h" />
-    <ClInclude Include="Source\Sound.h" />
-    <ClInclude Include="Source\Texture.h" />
-    <ClInclude Include="Source\timer.h" />
-    <ClInclude Include="Source\Transformation.h" />
-    <ClInclude Include="Source\Vector2.h" />
-    <ClInclude Include="Source\Vector3.h" />
-    <ClInclude Include="Source\Vertex.h" />
-    <ClInclude Include="Source\Voxel.h" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{010C0C3A-CF26-4B60-B562-38654622455E}</ProjectGuid>
+    <ProjectGuid>{6AD2F4EE-2426-4939-B9D5-E7FCE422DC91}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>nyeh</RootNamespace>
-    <ProjectName>scrubs</ProjectName>
+    <RootNamespace>UI</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -118,6 +68,9 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

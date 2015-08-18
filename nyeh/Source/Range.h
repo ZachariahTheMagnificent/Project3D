@@ -27,6 +27,7 @@ public:
 	type MidPoint() const;
 	bool IsInRange(const type& test) const;
 	bool IsInRange(const Range<type>& test) const;
+	bool IsZero() const;
 
 	type start;
 	type end;
@@ -118,4 +119,9 @@ const Range<type>& Range<type>::Set(const type& start, const type& end)
 	this->start = start;
 	this->end = end;
 	return *this;
+}
+template<class type>
+bool Range<type>::IsZero() const
+{
+	return start == 0 && end == 0;
 }

@@ -1,5 +1,4 @@
 #include "DrawOrder.h"
-#include "Graphics.h"
 #include "Mesh.h"
 /****************************************************************************/
 /*!
@@ -32,7 +31,6 @@ DrawOrder::DrawOrder(Mesh* geometry, Material* material, DrawOrder* parent, bool
 geometry(geometry),
 material(material),
 enableLight(enableLight),
-drawMode(GL_TRIANGLES),
 parent(NULL)
 {
 	SetParentAs(parent);
@@ -44,7 +42,6 @@ void DrawOrder::SetTo(Mesh* geometry, Material* material, DrawOrder* parent, boo
 	this->geometry = geometry;
 	this->material = material;
 	this->enableLight = enableLight;
-	this->drawMode = GL_TRIANGLES;
 	SetParentAs(parent);
 }
 

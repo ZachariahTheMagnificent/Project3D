@@ -75,6 +75,12 @@
     <Filter Include="Source Files\Voxel">
       <UniqueIdentifier>{125df42a-42eb-4bbd-b6c7-30e5b95901a2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\DrawOrder">
+      <UniqueIdentifier>{90260238-c73b-4967-bc3f-585cda6cd4f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\DrawOrder">
+      <UniqueIdentifier>{b732ca5b-c984-4efa-9f92-fd581bff8a06}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\MatrixStack.cpp">
@@ -130,6 +136,9 @@
     </ClCompile>
     <ClCompile Include="Source\Voxel.cpp">
       <Filter>Source Files\Voxel</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DrawOrder.cpp">
+      <Filter>Source Files\DrawOrder</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -207,6 +216,9 @@
     </ClInclude>
     <ClInclude Include="Source\Voxel.h">
       <Filter>Header Files\Voxel</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\DrawOrder.h">
+      <Filter>Header Files\DrawOrder</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
