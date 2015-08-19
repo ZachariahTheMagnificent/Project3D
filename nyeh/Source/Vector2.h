@@ -14,5 +14,7 @@ public:
 	~Vector2();
 	void Set(const float& x, const float& y);
 
+	Vector2 operator-(const Vector2& vec) const;
+
 	float x, y;
 };

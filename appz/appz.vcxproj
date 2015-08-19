@@ -22,7 +22,6 @@
     <ClCompile Include="Source\GLMouse.cpp" />
     <ClCompile Include="Source\GlobalList.cpp" />
     <ClCompile Include="Source\Graphics.cpp" />
-    <ClCompile Include="Source\Keyboard.cpp" />
     <ClCompile Include="Source\LoadOBJ.cpp" />
     <ClCompile Include="Source\LoadTGA.cpp" />
     <ClCompile Include="Source\main.cpp" />
@@ -30,10 +29,12 @@
     <ClCompile Include="Source\Octree.cpp" />
     <ClCompile Include="Source\OctreeLeaf.cpp" />
     <ClCompile Include="Source\OctreeNode.cpp" />
+    <ClCompile Include="Source\Scene.cpp" />
     <ClCompile Include="Source\SceneMain.cpp" />
     <ClCompile Include="Source\shader.cpp" />
     <ClCompile Include="Source\VoxelLeaf.cpp" />
     <ClCompile Include="Source\VoxelOctree.cpp" />
+    <ClCompile Include="Source\WindowsKeyboard.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\AABBTree.h" />
@@ -47,7 +48,6 @@
     <ClInclude Include="Source\GLMouse.h" />
     <ClInclude Include="Source\GlobalList.h" />
     <ClInclude Include="Source\Graphics.h" />
-    <ClInclude Include="Source\Keyboard.h" />
     <ClInclude Include="Source\LoadOBJ.h" />
     <ClInclude Include="Source\LoadTGA.h" />
     <ClInclude Include="Source\MeshBuilder.h" />
@@ -59,6 +59,7 @@
     <ClInclude Include="Source\shader.hpp" />
     <ClInclude Include="Source\VoxelLeaf.h" />
     <ClInclude Include="Source\VoxelOctree.h" />
+    <ClInclude Include="Source\WindowsKeyboard.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shader\MultiLight.fragmentshader" />
@@ -104,13 +105,13 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\glew\include;$(SolutionDir)\glfw\include;$(SolutionDir)\nyeh\Source;$(SolutionDir)\AI\Source;$(SolutionDir)\Animations\Source;$(SolutionDir)\Events\Source;$(SolutionDir)\GameObjects\Source;$(SolutionDir)\Physics\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\glew\include;$(SolutionDir)\glfw\include;$(SolutionDir)\nyeh\Source;$(SolutionDir)\AI\Source;$(SolutionDir)\Animations\Source;$(SolutionDir)\Events\Source;$(SolutionDir)\GameObjects\Source;$(SolutionDir)\Physics\Source;$(SolutionDir)\UI\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)\glew\lib;$(SolutionDir)\glfw\lib-msvc100;$(SolutionDir)$(Configuration);$(SolutionDir)\irrKlang\lib\Win32-visualStudio;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glew32.lib;glfw3.lib;opengl32.lib;winmm.lib;scrubs.lib;irrKlang.lib;Animations.lib;AI.lib;Events.lib;GameObjects.lib;Physics.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glew32.lib;glfw3.lib;opengl32.lib;winmm.lib;scrubs.lib;irrKlang.lib;Animations.lib;AI.lib;Events.lib;GameObjects.lib;Physics.lib;UI.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -122,7 +123,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\glew\include;$(SolutionDir)\glfw\include;$(SolutionDir)\nyeh\Source;$(SolutionDir)\AI\Source;$(SolutionDir)\Animations\Source;$(SolutionDir)\Events\Source;$(SolutionDir)\GameObjects\Source;$(SolutionDir)\Physics\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\glew\include;$(SolutionDir)\glfw\include;$(SolutionDir)\nyeh\Source;$(SolutionDir)\AI\Source;$(SolutionDir)\Animations\Source;$(SolutionDir)\Events\Source;$(SolutionDir)\GameObjects\Source;$(SolutionDir)\Physics\Source;$(SolutionDir)\UI\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -130,7 +131,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(SolutionDir)\glew\lib;$(SolutionDir)\glfw\lib-msvc100;$(SolutionDir)$(Configuration);$(SolutionDir)\irrKlang\lib\Win32-visualStudio;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glew32.lib;glfw3.lib;opengl32.lib;winmm.lib;scrubs.lib;irrKlang.lib;Animations.lib;AI.lib;Events.lib;GameObjects.lib;Physics.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glew32.lib;glfw3.lib;opengl32.lib;winmm.lib;scrubs.lib;irrKlang.lib;Animations.lib;AI.lib;Events.lib;GameObjects.lib;Physics.lib;UI.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

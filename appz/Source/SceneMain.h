@@ -13,7 +13,10 @@ Class SceneMain that updates and init, main scene to be rendered
 #include "Camera.h"
 #include "MatrixStack.h"
 #include "GlobalList.h"
+#include "UI.h"
 #include "CollisionSystem.h"
+#include "FirstPersonMouse.h"
+#include "Keyboard.h"
 /****************************************************************************/
 /*!
 Class SceneMain:
@@ -23,7 +26,7 @@ Class SceneMain:
 class SceneMain : public Scene
 {
 public:
-	SceneMain(Keyboard& keyboard, GLMouse& mouse, Sound& snd, Graphics& gfx);
+	SceneMain(Keyboard* keyboard, FirstPersonMouse* mouse, Sound& snd, Graphics& gfx);
 	~SceneMain(void);
 	
 	virtual void Init();
@@ -34,6 +37,10 @@ public:
 private:
 	GlobalList globals;
 	Color* screenBuffer;
+
+	//input
+	Keyboard* keyboard;
+	FirstPersonMouse* mouse;
 
 	//physics
 	AABBTree world;

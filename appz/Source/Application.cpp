@@ -96,14 +96,14 @@ void Application::Run()
 {
 	//Main Loop
 	bool gameQuit = false;
-	Scene* pScene = new SceneMain(keyboard, mouse, snd, gfx);
+	Scene* pScene = new SceneMain(&keyboard, &mouse, snd, gfx);
 	pScene->Init();
 	pScene->SendInfoToGFXCard();
 	m_timer.startTimer();    // Start timer to calculate how long it takes to render this frame
 	while (!glfwWindowShouldClose(m_window) && !gameQuit)
 	{
-		int width, height;
-		keyboard.updateinput();
+		mouse.Update();
+		keyboard.UpdateInput();
 		gameQuit = pScene->Update(m_timer.getElapsedTime());
 		pScene->Render();
 		//Swap buffers

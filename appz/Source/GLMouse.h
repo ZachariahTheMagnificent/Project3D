@@ -1,6 +1,7 @@
 #pragma once
 #include "GL\glew.h"
 #include "GLFW\glfw3.h"
+#include "FirstPersonMouse.h"
 /****************************************************************************/
 /*!
 \file GLMouse.h
@@ -18,20 +19,15 @@ Class GLMouse:
 handles mouse input
 */
 /****************************************************************************/
-class GLMouse
+class GLMouse : public FirstPersonMouse
 {
 public:
 	GLMouse(GLFWwindow* m_window = NULL);
 	~GLMouse();
 	void InitWindow(GLFWwindow* window);
-	void Update(double& destX, double& destY);
-	void UpdateScreenSize();
-	void GetPosition(double* destX, double* destY);
+	void Update();
 	void SetToCentre();
 private:
 	GLFWwindow* m_window;
-	bool fixedmouse;
-	int screenX;
-	int screenY;
 };
 

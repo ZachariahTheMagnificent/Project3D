@@ -10,6 +10,40 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\FirstPersonMouse.h" />
+    <ClInclude Include="Source\Keyboard.h" />
+    <ClInclude Include="Source\Mouse.h" />
+    <ClInclude Include="Source\UI.h" />
+    <ClInclude Include="Source\UIButton.h" />
+    <ClInclude Include="Source\UIDisplay.h" />
+    <ClInclude Include="Source\UIElement.h" />
+    <ClInclude Include="Source\UIKey.h" />
+    <ClInclude Include="Source\UIKeyHold.h" />
+    <ClInclude Include="Source\UIKeyPress.h" />
+    <ClInclude Include="Source\UIMain.h" />
+    <ClInclude Include="Source\UIOptions.h" />
+    <ClInclude Include="Source\UIPlay.h" />
+    <ClInclude Include="Source\UIQuit.h" />
+    <ClInclude Include="Source\UIShowScore.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\FirstPersonMouse.cpp" />
+    <ClCompile Include="Source\Keyboard.cpp" />
+    <ClCompile Include="Source\Mouse.cpp" />
+    <ClCompile Include="Source\UI.cpp" />
+    <ClCompile Include="Source\UIButton.cpp" />
+    <ClCompile Include="Source\UIDisplay.cpp" />
+    <ClCompile Include="Source\UIElement.cpp" />
+    <ClCompile Include="Source\UIKey.cpp" />
+    <ClCompile Include="Source\UIKeyHold.cpp" />
+    <ClCompile Include="Source\UIKeyPress.cpp" />
+    <ClCompile Include="Source\UIMain.cpp" />
+    <ClCompile Include="Source\UIOptions.cpp" />
+    <ClCompile Include="Source\UIPlay.cpp" />
+    <ClCompile Include="Source\UIQuit.cpp" />
+    <ClCompile Include="Source\UIShowScore.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{6AD2F4EE-2426-4939-B9D5-E7FCE422DC91}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
@@ -45,6 +79,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)\nyeh\Source;$(SolutionDir)\GameObjects\Source;$(SolutionDir)\Events\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -60,6 +95,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)\nyeh\Source;$(SolutionDir)\GameObjects\Source;$(SolutionDir)\Events\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -68,9 +104,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <None Include="ReadMe.txt" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

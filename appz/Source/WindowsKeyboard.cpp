@@ -1,4 +1,4 @@
-#include "Keyboard.h"
+#include "WindowsKeyboard.h"
 #include <iostream>
 /****************************************************************************/
 /*!
@@ -16,7 +16,7 @@ A class that handles keyboard input
 Default constructor
 */
 /****************************************************************************/
-Keyboard::Keyboard()
+WindowsKeyboard::WindowsKeyboard()
 {
 }
 /****************************************************************************/
@@ -25,7 +25,7 @@ Keyboard::Keyboard()
 Default destructor
 */
 /****************************************************************************/
-Keyboard::~Keyboard()
+WindowsKeyboard::~WindowsKeyboard()
 {
 }
 /****************************************************************************/
@@ -36,7 +36,7 @@ Returns if a key is pressed
 		the key to be checked
 */
 /****************************************************************************/
-bool Keyboard::isKeyHold(unsigned short key)
+bool WindowsKeyboard::IsKeyHold(const unsigned short& key)
 {
 	return keyishold[key];
 }
@@ -48,7 +48,7 @@ Returns the key state from windows directly
 		the key to be checked
 */
 /****************************************************************************/
-bool Keyboard::getkey(unsigned short key)
+bool WindowsKeyboard::GetKey(const unsigned short& key)
 {
 	return ((GetAsyncKeyState(key) & 0x8001) != 0);
 }
@@ -58,24 +58,25 @@ bool Keyboard::getkey(unsigned short key)
 Updates the keyboard values
 */
 /****************************************************************************/
-void Keyboard::updateinput()
+void WindowsKeyboard::UpdateInput()
 {
 	keyboardbuffer.clear();
 	for(int index = 0; index < 256; index++)
 	{
-		if(keyAlreadyPressed[index] && !getkey(index))
+		unsigned short keyIsPressed = GetKey(index);
+		if(keyAlreadyPressed[index] && !keyIsPressed)
 		{
 			keyAlreadyPressed[index] = false;
 			keyispressed[index] = false;
 			keyishold[index] = false;
 		}
-		else if(!keyAlreadyPressed[index] && getkey(index))
+		else if(!keyAlreadyPressed[index] && keyIsPressed)
 		{
 			keyAlreadyPressed[index] = true;
 			keyispressed[index] = true;
 			keyishold[index] = true;
 		}
-		else if(keyAlreadyPressed[index] && getkey(index))
+		else if(keyAlreadyPressed[index] && keyIsPressed)
 		{
 			keyispressed[index] = false;
 			keyishold[index] = true;
@@ -88,7 +89,7 @@ void Keyboard::updateinput()
 	}
 	for(int index = ' '; index < '~'; index++)
 	{
-		if(isKeyPressed(index))
+		if(IsKeyPressed(index))
 		{
 			keyboardbuffer.push_back((char)index);
 		}
@@ -102,7 +103,7 @@ Returns if a key is pressed once and won't return true again until the key is re
 		the key to be checked
 */
 /****************************************************************************/
-bool Keyboard::isKeyPressed(unsigned short key)
+bool WindowsKeyboard::IsKeyPressed(const unsigned short& key)
 {
 	return keyispressed[key];
 }
@@ -112,7 +113,7 @@ bool Keyboard::isKeyPressed(unsigned short key)
 Returns the last key stored in the keyboard's buffer then deletes it from the buffer(for keyboard input)
 */
 /****************************************************************************/
-char Keyboard::getkeyboardbuffer()
+char WindowsKeyboard::GetKeyboardBuffer()
 {
 	if(keyboardbuffer.empty())
 	{
@@ -133,7 +134,7 @@ Returns if a key that has been previously pressed has been released
 		the key to be checked
 */
 /****************************************************************************/
-bool Keyboard::isKeyReleased(unsigned short key)
+bool WindowsKeyboard::IsKeyReleased(const unsigned short& key)
 {
-	return !(isKeyHold(key));
+	return !(IsKeyHold(key));
 }

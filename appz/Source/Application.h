@@ -5,7 +5,7 @@
 #include "timer.h"
 #include "Sound.h"
 #include "Graphics.h"
-#include "Keyboard.h"
+#include "WindowsKeyboard.h"
 #include "GLMouse.h"
 
 class Application
@@ -21,7 +21,7 @@ private:
 	StopWatch m_timer;
 	GLFWwindow* m_window;
 	GLMouse mouse;
-	Keyboard keyboard;
+	WindowsKeyboard keyboard;
 	Sound snd;
 	Graphics gfx;
 };

@@ -13,9 +13,6 @@
     <ClCompile Include="Source\Graphics.cpp">
       <Filter>Source Files\Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Keyboard.cpp">
-      <Filter>Source Files\Application</Filter>
-    </ClCompile>
     <ClCompile Include="Source\MeshBuilder.cpp">
       <Filter>Source Files\Mesh</Filter>
     </ClCompile>
@@ -70,6 +67,12 @@
     <ClCompile Include="Source\GlobalList.cpp">
       <Filter>Source Files\Globals</Filter>
     </ClCompile>
+    <ClCompile Include="Source\WindowsKeyboard.cpp">
+      <Filter>Source Files\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Application.h">
@@ -86,9 +89,6 @@
     </ClInclude>
     <ClInclude Include="Source\shader.hpp">
       <Filter>Header Files\Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Keyboard.h">
-      <Filter>Header Files\Application</Filter>
     </ClInclude>
     <ClInclude Include="Source\GLMouse.h">
       <Filter>Header Files\Application</Filter>
@@ -140,6 +140,9 @@
     </ClInclude>
     <ClInclude Include="Source\GlobalList.h">
       <Filter>Header Files\Globals</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\WindowsKeyboard.h">
+      <Filter>Header Files\Application</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

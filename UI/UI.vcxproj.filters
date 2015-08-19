@@ -13,8 +13,117 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Controller">
+      <UniqueIdentifier>{af74079b-5c1b-4ae0-87c3-1932d2585a9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Controller">
+      <UniqueIdentifier>{a4964801-b17a-43fa-93ec-9929d9ff2916}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\UI">
+      <UniqueIdentifier>{9de9d0de-696f-4149-973f-33a74513be07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UI">
+      <UniqueIdentifier>{876aaabc-15b1-43ff-a5b6-88d74399ca0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\UI Elements">
+      <UniqueIdentifier>{d0828b41-f40e-4cb6-beba-22e7ef32bff5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UI Element">
+      <UniqueIdentifier>{23f3b7e9-e06b-44d2-af14-84a2e4edf0ed}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ReadMe.txt" />
+    <ClInclude Include="Source\Mouse.h">
+      <Filter>Header Files\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Keyboard.h">
+      <Filter>Header Files\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UI.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UIKeyPress.h">
+      <Filter>Header Files\UI Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UIDisplay.h">
+      <Filter>Header Files\UI Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UIButton.h">
+      <Filter>Header Files\UI Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UIElement.h">
+      <Filter>Header Files\UI Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UIMain.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UIOptions.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UIPlay.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UIQuit.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UIShowScore.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UIKeyHold.h">
+      <Filter>Header Files\UI Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UIKey.h">
+      <Filter>Header Files\UI Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\FirstPersonMouse.h">
+      <Filter>Header Files\Controller</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Mouse.cpp">
+      <Filter>Source Files\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Keyboard.cpp">
+      <Filter>Source Files\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UI.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UIButton.cpp">
+      <Filter>Source Files\UI Element</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UIDisplay.cpp">
+      <Filter>Source Files\UI Element</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UIKeyPress.cpp">
+      <Filter>Source Files\UI Element</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UIElement.cpp">
+      <Filter>Source Files\UI Element</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UIMain.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UIOptions.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UIPlay.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UIQuit.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UIShowScore.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UIKeyHold.cpp">
+      <Filter>Source Files\UI Element</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UIKey.cpp">
+      <Filter>Source Files\UI Element</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FirstPersonMouse.cpp">
+      <Filter>Source Files\Controller</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

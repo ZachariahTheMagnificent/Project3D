@@ -12,9 +12,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Event.h" />
+    <ClInclude Include="Source\Trigger.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Event.cpp" />
+    <ClCompile Include="Source\Trigger.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{5542AF3A-EF95-47DD-A8E1-0C85277CC0CB}</ProjectGuid>

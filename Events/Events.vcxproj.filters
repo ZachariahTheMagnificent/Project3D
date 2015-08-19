@@ -14,9 +14,15 @@
     <ClInclude Include="Source\Event.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Trigger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Event.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Trigger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -24,9 +24,11 @@ object from Sound class
 object from Graphics class
 */
 /****************************************************************************/
-SceneMain::SceneMain(Keyboard& keyboard, GLMouse& mouse, Sound& snd, Graphics& gfx)
+SceneMain::SceneMain(Keyboard* keyboard, FirstPersonMouse* mouse, Sound& snd, Graphics& gfx)
 	:
-Scene(keyboard, mouse, snd, gfx),
+Scene(snd, gfx),
+keyboard(keyboard),
+mouse(mouse),
 collisionSystem(),
 screenBuffer(NULL)
 {
@@ -509,7 +511,7 @@ bool SceneMain::Update(const double& dt)
 {
 	dDeltatime = dt;
 	dCurrentFPS = 1 / dDeltatime;
-	if(keyboard.isKeyPressed(VK_ESCAPE))
+	if(keyboard->IsKeyPressed(VK_ESCAPE))
 	{
 		return true;
 	}
@@ -652,11 +654,9 @@ void SceneMain::Render()
 	//gfx.RenderPixels(screenBuffer, globals.GetMesh(L"plane"), screenX, screenY);
 
 	//rendering mouse
-	double mouseX;
-	double mouseY;
-	mouse.Update(mouseX, mouseY);
+	Vector2 mousePosition = mouse->GetPosition();
 	Mtx44 cursorPosition;
-	cursorPosition.SetToTranslation(Vector3(mouseX,mouseY,0));
+	cursorPosition.SetToTranslation(Vector3(mousePosition.x, mousePosition.y, 0));
 
 	char buffer1[126];
 	char buffer2[126];
@@ -698,13 +698,10 @@ All user inputs
 /****************************************************************************/
 void SceneMain::DoUserInput()
 {
-	double mouseX;
-	double mouseY;
-	mouse.Update(mouseX, mouseY);
+	Vector2 mouseVector = mouse->GetDisplacementFromCentre();
 	const double CAMERA_SPEED = 2.5;
 	double movingSpeed = 30;
-	Vector3 mouseVector(mouseX, mouseY, 0);
-	if(keyboard.isKeyPressed('X'))
+	if(keyboard->IsKeyPressed('X'))
 	{
 		lookWithMouse = !lookWithMouse;
 	}
@@ -714,39 +711,39 @@ void SceneMain::DoUserInput()
 		camera.Rotate(-mouseVector.x * dDeltatime, mouseVector.y * dDeltatime, 0);
 	}
 	
-	if(keyboard.isKeyPressed('5'))
+	if(keyboard->IsKeyPressed('5'))
 	{
 		bDrawVoxels = !bDrawVoxels;
 	}
 
-	if (keyboard.isKeyHold(VK_SHIFT))
+	if (keyboard->IsKeyHold(VK_SHIFT))
 	{
 		movingSpeed *= 3 ;
 	}
 	Vector3 right = camera.GetTarget().Cross(Vector3(0,1,0)), target = camera.GetTarget();
 	target.y = 0;
 	Vector3 direction;
-	if (keyboard.isKeyHold('W'))
+	if (keyboard->IsKeyHold('W'))
 	{
 		//globals.GetDraw(L"player").transform.translate += target * dDeltatime * movingSpeed;
 		direction += target;
 	}
-	if (keyboard.isKeyHold('A'))
+	if (keyboard->IsKeyHold('A'))
 	{
 		//globals.GetDraw(L"player").transform.translate += -right * dDeltatime * movingSpeed;
 		direction += -right;
 	}
-	if (keyboard.isKeyHold('S'))
+	if (keyboard->IsKeyHold('S'))
 	{
 		//globals.GetDraw(L"player").transform.translate += -target * dDeltatime * movingSpeed;
 		direction += -target;
 	}
-	if (keyboard.isKeyHold('D'))
+	if (keyboard->IsKeyHold('D'))
 	{
 		//globals.GetDraw(L"player").transform.translate += right * dDeltatime * movingSpeed;
 		direction += right;
 	}
-	if (keyboard.isKeyHold(' '))
+	if (keyboard->IsKeyHold(' '))
 	{
 		//globals.GetDraw(L"player").transform.translate += right * dDeltatime * movingSpeed;
 		direction.y = 1;
@@ -761,36 +758,36 @@ void SceneMain::DoUserInput()
 	force.SetVector(direction);
 	currentPlayer->AddForce(force);
 
-	if(keyboard.isKeyHold('Q'))
+	if(keyboard->IsKeyHold('Q'))
 	{
 		camera.Rotate(0, 5 * dDeltatime * movingSpeed, 0);
 	}
-	if(keyboard.isKeyHold('E'))
+	if(keyboard->IsKeyHold('E'))
 	{
 		camera.Rotate(0, -5 * dDeltatime * movingSpeed, 0);
 	}
 
-	if (keyboard.isKeyHold(VK_UP))
+	if (keyboard->IsKeyHold(VK_UP))
 	{
 		camera.Move(10.0f * dDeltatime * CAMERA_SPEED, 0.0f, 0.0f);
 	}
-	if (keyboard.isKeyHold(VK_LEFT))
+	if (keyboard->IsKeyHold(VK_LEFT))
 	{
 		camera.Move(0.0f, 0.0f, -10.0f * dDeltatime * CAMERA_SPEED);
 	}
-	if (keyboard.isKeyHold(VK_DOWN))
+	if (keyboard->IsKeyHold(VK_DOWN))
 	{
 		camera.Move(-10.0f * dDeltatime * CAMERA_SPEED, 0.0f, 0.0f);
 	}
-	if (keyboard.isKeyHold(VK_RIGHT))
+	if (keyboard->IsKeyHold(VK_RIGHT))
 	{
 		camera.Move(0.0f, 0.0f, 10.0f * dDeltatime * CAMERA_SPEED);
 	}
-	if (keyboard.isKeyHold(VK_SPACE))
+	if (keyboard->IsKeyHold(VK_SPACE))
 	{
 		camera.Move(0,10 * dDeltatime * CAMERA_SPEED,0);
 	}
-	if (keyboard.isKeyHold(VK_CONTROL))
+	if (keyboard->IsKeyHold(VK_CONTROL))
 	{
 		camera.Move(0,-10 * dDeltatime * CAMERA_SPEED,0);
 	}

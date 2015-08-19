@@ -1,5 +1,4 @@
-#ifndef KEYBOARD_H
-#define KEYBOARD_H
+#pragma once
 /****************************************************************************/
 /*!
 \file Keyboard.h
@@ -11,6 +10,7 @@ A class that handles keyboard input
 /****************************************************************************/
 #include <vector>
 #include <Windows.h>
+#include "Keyboard.h"
 /****************************************************************************/
 /*!
 Class Keyboard:
@@ -18,22 +18,20 @@ Class Keyboard:
 handles keyboard input
 */
 /****************************************************************************/
-class Keyboard
+class WindowsKeyboard : public Keyboard
 {
 public:
-	Keyboard();
-	~Keyboard();
-	bool isKeyPressed(unsigned short key);
-	bool isKeyReleased(unsigned short key);
-	bool isKeyHold(unsigned short key);
-	bool getkey(unsigned short key);
-	char getkeyboardbuffer();
-	void updateinput();
+	WindowsKeyboard();
+	~WindowsKeyboard();
+	bool IsKeyPressed(const unsigned short& key);
+	bool IsKeyHold(const unsigned short& key);
+	char GetKeyboardBuffer();
+	void UpdateInput();
 private:
+	bool IsKeyReleased(const unsigned short& key);
+	bool GetKey(const unsigned short& key);
 	std::vector<char> keyboardbuffer;
 	bool keyAlreadyPressed[256];
 	bool keyispressed[256];
 	bool keyishold[256];
 };
-
-#endif

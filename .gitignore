@@ -7,6 +7,7 @@ AI/Debug/
 Events/Debug/
 GameObjects/Debug/
 Physics/Debug/
+UI/Debug/
 appz/Release/
 nyeh/Release/
 Animations/Release/
@@ -14,6 +15,7 @@ AI/Release/
 Events/Release/
 GameObjects/Release/
 Physics/Release/
+UI/Release/
 Debug/appz.exe
 Debug/appz.ilk
 Debug/appz.pdb
@@ -23,6 +25,7 @@ Debug/Animations.lib
 Debug/Events.lib
 Debug/GameObjects.lib
 Debug/Physics.lib
+Debug/UI.lib
 Release/appz.exe
 Release/appz.pdb
 Release/scrubs.lib
@@ -31,6 +34,7 @@ Release/Animations.lib
 Release/Events.lib
 Release/GameObjects.lib
 Release/Physics.lib
+Release/UI.lib
 *.opensdf
 *.sdf
 *.suo

@@ -18,8 +18,6 @@ Constructor that specifies the current window
 */
 /****************************************************************************/
 GLMouse::GLMouse(GLFWwindow* m_window)
-	:
-fixedmouse(false)
 {
 	InitWindow(m_window);
 }
@@ -32,8 +30,6 @@ Initializes the GLMouse object to our current window
 void GLMouse::InitWindow(GLFWwindow* window)
 {
 	m_window = window;
-	UpdateScreenSize();
-	SetToCentre();
 }
 /****************************************************************************/
 /*!
@@ -54,47 +50,24 @@ returns the current mouse displacement from the centre then locks it to the cent
 		a reference to a variable where we store the Y displacement
 */
 /****************************************************************************/
-void GLMouse::Update(double& destX, double& destY)
+void GLMouse::Update()
 {
 	double mouseX;
 	double mouseY;
 
-	GetPosition(&mouseX, &mouseY);
+	glfwGetCursorPos(m_window, &mouseX, &mouseY);
+	position.Set(mouseX, mouseY);
+
+	int width;
+	int height;
+
+	glfwGetWindowSize(m_window, &width, &height);
+	centre.Set(width/2, height/2);
+
 	if(fixedmouse)
 	{
-		destX = mouseX - screenX/2;
-		destY = mouseY - screenY/2;
 		SetToCentre();
 	}
-	else
-	{
-		destX = mouseX - screenX/2;
-		destY = mouseY - screenY/2;
-	}
-}
-/****************************************************************************/
-/*!
-\brief
-Updates the GLMouse to the current screen size
-*/
-/****************************************************************************/
-void GLMouse::UpdateScreenSize()
-{
-	glfwGetWindowSize(m_window, &screenX, &screenY);
-}
-/****************************************************************************/
-/*!
-\brief
-Gets the raw position of the mouse in the window
-\param destX
-		a pointer to the variable where we store the X position
-\param destY
-		a pointer to the variable where we store the Y position
-*/
-/****************************************************************************/
-void GLMouse::GetPosition(double* destX, double* destY)
-{
-	glfwGetCursorPos(m_window, destX, destY);
 }
 /****************************************************************************/
 /*!
@@ -104,5 +77,5 @@ Sets the mouse to the centre of the screen
 /****************************************************************************/
 void GLMouse::SetToCentre()
 {
-	glfwSetCursorPos(m_window, screenX/2, screenY/2);	
+	glfwSetCursorPos(m_window, centre.x, centre.y);	
 }
