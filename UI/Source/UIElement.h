@@ -10,7 +10,7 @@ public:
 	UIElement();
 	virtual ~UIElement();
 
-	virtual void Update() = 0;
+	virtual void Update(const double& dt) = 0;
 	virtual UIBox GetBoundingBox() const = 0;
 
 	float size;

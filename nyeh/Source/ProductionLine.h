@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 
 template<class t>
 class ProductionLine
@@ -61,13 +62,13 @@ t* ProductionLine<t>::GetInstance()
 }
 
 template<class t>
-t* GetBegin()
+t* ProductionLine<t>::GetBegin()
 {
 	return begin;
 }
 
 template<class t>
-t* GetEnd()
+t* ProductionLine<t>::GetEnd()
 {
 	return end;
 }

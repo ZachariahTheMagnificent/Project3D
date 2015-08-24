@@ -5,7 +5,7 @@ class DoubleData : public UIData
 {
 public:
 	DoubleData(double* doub);
-	~DoubleData();
+	virtual ~DoubleData();
 
 	virtual std::ostream& PrintInfo(std::ostream& string) const;
 

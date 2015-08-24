@@ -5,7 +5,7 @@ class CharData : public UIData
 {
 public:
 	CharData(char* character);
-	~CharData();
+	virtual ~CharData();
 	
 	virtual std::ostream& PrintInfo(std::ostream& string) const;
 

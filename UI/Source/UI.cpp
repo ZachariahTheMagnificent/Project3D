@@ -11,10 +11,10 @@ UI::~UI()
 
 void UI::Update(const double& deltaTime)
 {
-	elementFactory.UpdateAllElements();
+	elementFactory.UpdateAllElements(deltaTime);
 }
 
-UIElement* UI::AddElement()
+UIElementFactory& UI::GetFactory()
 {
-	return elementFactory.GetInstance(1);
+	return elementFactory;
 }

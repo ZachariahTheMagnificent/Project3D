@@ -7,7 +7,7 @@
 #include "Gun2D.h"
 #include "ProductionLine.h"
 
-class Object2DFactory : public Factory<Object2D>
+class Object2DFactory : public Factory
 {
 public:
 	enum OBJ_TYPE

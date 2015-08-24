@@ -8,7 +8,7 @@ public:
 	UI();
 	virtual ~UI();
 	virtual void Update(const double& deltaTime);
-	virtual UIElement* AddElement();
+	virtual UIElementFactory& GetFactory();
 
 	UIElementFactory elementFactory;
 };

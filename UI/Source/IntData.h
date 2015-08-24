@@ -5,7 +5,7 @@ class IntData : public UIData
 {
 public:
 	IntData(int* integer);
-	~IntData();
+	virtual ~IntData();
 
 	virtual std::ostream& PrintInfo(std::ostream& string) const;
 

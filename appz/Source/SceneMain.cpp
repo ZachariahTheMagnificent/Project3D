@@ -389,6 +389,23 @@ void SceneMain::InnitDraws()
 
 void SceneMain::InnitUI()
 {
+	//UIText* text = ui.GetFactory().GetText();
+
+	//text->AddToEndOfText(
+	//Vector3 position = currentPlayer->draw->GetGlobalPosition();
+	//sprintf(buffer1,"position:%.3f, %.3f, %.3f",position.x, position.y, position.z);
+	//dCurrentFPS = 1 / dDeltatime;
+
+	//UIText text;
+
+	//std::string fish = "FPS:";
+	//UIDataClient mouse(&fish);
+	//UIDataClient cow(&dCurrentFPS);
+
+	//text.AddToEndOfText(&fish);
+	//text.AddToEndOfText(&dCurrentFPS);
+
+	//sprintf(buffer2,"FPS:%.3f", dCurrentFPS);
 }
 
 /****************************************************************************/
@@ -643,41 +660,13 @@ void SceneMain::Render()
 
 	gfx.RenderDraw(globals.GetDraw(L"main"));
 
-	//for(Color* color = screenBuffer; color != screenBuffer + screenX*screenY; ++color)
-	//{
-	//	int index = color - screenBuffer;
-	//	if(index <= screenX*100)
-	//	{
-	//		color->Set(1, 0, 0);
-	//	}
-	//	else
-	//	{
-	//		color->Set(0, 0, 1);
-	//	}
-	//}
-
-	//gfx.RenderPixels(screenBuffer, globals.GetMesh(L"plane"), screenX, screenY);
-
 	//rendering mouse
 	Vector2 mousePosition = mouse->GetPosition();
 	Mtx44 cursorPosition;
 	cursorPosition.SetToTranslation(Vector3(mousePosition.x, mousePosition.y, 0));
 
-	char buffer1[126];
-	char buffer2[126];
-	Vector3 position = currentPlayer->draw->GetGlobalPosition();
-	sprintf(buffer1,"position:%.3f, %.3f, %.3f",position.x, position.y, position.z);
-	gfx.RenderTextOnScreen(buffer1,Color(0,1,0),20,1,1);
-	dCurrentFPS = 1 / dDeltatime;
-
-	std::stringstream meow;
-	std::string fish = "FPS:";
-	UIDataClient mouse(&fish);
-	UIDataClient cow(&dCurrentFPS);
-
-	meow << mouse << cow;
-	sprintf(buffer2,"FPS:%.3f", dCurrentFPS);
-	gfx.RenderTextOnScreen(meow.str(),Color(0,1,0),20,1,40, ORIENTATION_TOP);
+	//gfx.RenderTextOnScreen(buffer1,Color(0,1,0),20,1,1);
+	//gfx.RenderTextOnScreen(text.GetText(),Color(0,1,0),20,1,40, ORIENTATION_TOP);
 
 	MS matrixStack;
 	matrixStack.Translate(110,67,100);

@@ -9,6 +9,7 @@ public:
 	virtual ~UIImage();
 
 	UIBox GetBoundingBox() const;
+	void Update(const double& deltaTime);
 
 	Texture const* texture;
 };

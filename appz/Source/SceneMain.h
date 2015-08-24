@@ -53,6 +53,7 @@ private:
 	float fFarPlane;
 	Light light[1];
 	Camera camera;
+	UI ui;
 
 	//print fps
 	double dDeltatime;

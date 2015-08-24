@@ -5,7 +5,7 @@ class UnsignedData : public UIData
 {
 public:
 	UnsignedData(unsigned* uns);
-	~UnsignedData();
+	virtual ~UnsignedData();
 
 	virtual std::ostream& PrintInfo(std::ostream& string) const;
 

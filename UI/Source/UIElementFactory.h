@@ -1,15 +1,27 @@
 #pragma once
-#include "UIElement.h"
 #include "Factory.h"
-#include "UIButton.h"
-#include "UIDataClient.h"
+#include "ProductionLine.h"
+#include "UIImage.h"
+#include "UIText.h"
 
-class UIElementFactory : public Factory<UIElement>
+class UIElementFactory : public Factory
 {
 public:
+	enum ELEMENT_TYPE
+	{
+		UI_TEXT,
+		UI_IMAGE,
+		UI_TRANSITION_BUTTON,
+		TOTAL_ELEMENTS
+	};
 	UIElementFactory();
 	virtual ~UIElementFactory();
 	
-	virtual UIElement* GetInstance(unsigned type);
-	virtual void UpdateAllElements();
+	virtual UIText* GetText();
+	virtual UIImage* GetImage();
+	virtual void UpdateAllElements(const double& deltaTime);
+
+private:
+	ProductionLine<UIText> textProduction;
+	ProductionLine<UIImage> imageProduction;
 };

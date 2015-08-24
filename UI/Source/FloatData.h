@@ -5,7 +5,7 @@ class FloatData : public UIData
 {
 public:
 	FloatData(float* flt);
-	~FloatData();
+	virtual ~FloatData();
 
 	virtual std::ostream& PrintInfo(std::ostream& string) const;
 

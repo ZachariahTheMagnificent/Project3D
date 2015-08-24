@@ -84,11 +84,11 @@
     <Filter Include="Header Files\Factory">
       <UniqueIdentifier>{0120bd00-3b87-4cec-b36d-f6b9fc9e06c9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Event">
-      <UniqueIdentifier>{df4bb081-9f66-4f61-9d2a-85102244d337}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Event">
       <UniqueIdentifier>{207d405c-f214-495d-8629-15de52e3d4b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Factory">
+      <UniqueIdentifier>{df4bb081-9f66-4f61-9d2a-85102244d337}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -148,6 +148,9 @@
     </ClCompile>
     <ClCompile Include="Source\DrawOrder.cpp">
       <Filter>Source Files\DrawOrder</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Factory.cpp">
+      <Filter>Source Files\Factory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

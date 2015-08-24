@@ -15,6 +15,7 @@
     <ClCompile Include="Source\D3DColor.cpp" />
     <ClCompile Include="Source\D4DColor.cpp" />
     <ClCompile Include="Source\DrawOrder.cpp" />
+    <ClCompile Include="Source\Factory.cpp" />
     <ClCompile Include="Source\Light.cpp" />
     <ClCompile Include="Source\Material.cpp" />
     <ClCompile Include="Source\MatrixStack.cpp" />

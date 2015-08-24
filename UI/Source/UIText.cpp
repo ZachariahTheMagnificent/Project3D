@@ -23,6 +23,21 @@ UIBox UIText::GetBoundingBox() const
 
 std::string UIText::GetText() const
 {
-	std::string text;
-	return text;
+	std::stringstream text;
+
+	for(std::vector<UIDataClient>::const_iterator it = data.begin(), end = data.end(); it != end; ++it)
+	{
+		text << *it;
+	}
+
+	return text.str();
+}
+
+void UIText::AddToEndOfText(const UIDataClient& data)
+{
+	this->data.push_back(data);
+}
+
+void UIText::Update(const double& dt)
+{
 }
