@@ -62,7 +62,7 @@ void GLMouse::Update()
 	int height;
 
 	glfwGetWindowSize(m_window, &width, &height);
-	centre.Set(width/2, height/2);
+	centre.Set(width/2.0, height/2.0);
 
 	if(fixedmouse)
 	{

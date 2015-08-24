@@ -4,6 +4,7 @@ class Trigger
 {
 public:
 	Trigger();
-	~Trigger();
+	virtual ~Trigger();
+
 	virtual bool HasTriggered() = 0;
 };

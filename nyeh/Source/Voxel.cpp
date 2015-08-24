@@ -20,7 +20,7 @@ Voxel::~Voxel()
 {
 }
 
-const char& Voxel::GetSolidness() const
+const unsigned char& Voxel::GetSolidness() const
 {
 	return solidness;
 }

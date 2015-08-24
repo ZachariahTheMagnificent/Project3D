@@ -297,7 +297,7 @@ Returns a bool to whether or not the leaf has already subdivided
 /****************************************************************************/
 bool OctreeLeaf::HasAlreadySubdivided() const
 {
-	return leaves;
+	return leaves != NULL;
 }
 /****************************************************************************/
 /*!

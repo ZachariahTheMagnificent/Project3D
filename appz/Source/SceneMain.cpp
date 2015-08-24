@@ -350,7 +350,7 @@ void SceneMain::InnitDraws()
 	//draw the corrupted sentinel
 	draw = globals.GetDraw(L"currupted sentinel");
 	draw->SetTo(globals.GetMesh(L"sentinel"), globals.GetMaterial(L"corrupted"), globals.GetDraw(L"main"), true);
-	draw->transform.translate.Set(-23.3,3.7,69.9);
+	draw->transform.translate.Set(-23.3f, 3.7f, 69.9f);
 	
 	//draw the rock sentinel
 	draw = globals.GetDraw(L"rock sentinel");
@@ -375,7 +375,7 @@ void SceneMain::InnitDraws()
 	//draw the pure sentinel
 	draw = globals.GetDraw(L"pure sentinel");
 	draw->SetTo(globals.GetMesh(L"sentinel"), globals.GetMaterial(L"plate metal"), globals.GetDraw(L"main"), true);
-	draw->transform.translate.Set(-23.2, 4.25, -69.8);
+	draw->transform.translate.Set(-23.2f, 4.25f, -69.8f);
 
 	//draw the master sentinel
 	draw = globals.GetDraw(L"master sentinel");
@@ -386,6 +386,11 @@ void SceneMain::InnitDraws()
 	draw = globals.GetDraw(L"text");
 	draw->SetTo(globals.GetMesh(L"text"), globals.GetMaterial(L"text"), NULL, false);
 }
+
+void SceneMain::InnitUI()
+{
+}
+
 /****************************************************************************/
 /*!
 \brief
@@ -664,8 +669,15 @@ void SceneMain::Render()
 	sprintf(buffer1,"position:%.3f, %.3f, %.3f",position.x, position.y, position.z);
 	gfx.RenderTextOnScreen(buffer1,Color(0,1,0),20,1,1);
 	dCurrentFPS = 1 / dDeltatime;
+
+	std::stringstream meow;
+	std::string fish = "FPS:";
+	UIDataClient mouse(&fish);
+	UIDataClient cow(&dCurrentFPS);
+
+	meow << mouse << cow;
 	sprintf(buffer2,"FPS:%.3f", dCurrentFPS);
-	gfx.RenderTextOnScreen(buffer2,Color(0,1,0),20,1,40, ORIENTATION_TOP);
+	gfx.RenderTextOnScreen(meow.str(),Color(0,1,0),20,1,40, ORIENTATION_TOP);
 
 	MS matrixStack;
 	matrixStack.Translate(110,67,100);
@@ -754,7 +766,7 @@ void SceneMain::DoUserInput()
 		direction.Normalize() *= playerspeed;
 	}
 	Force force;
-	force.SetLifespanTo(0.001);
+	force.SetLifespanTo(0.001f);
 	force.SetVector(direction);
 	currentPlayer->AddForce(force);
 

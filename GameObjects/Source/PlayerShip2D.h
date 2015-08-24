@@ -4,7 +4,7 @@
 class PlayerShip2D : public Ship2D
 {
 public:
-	PlayerShip2D(Factory* factory);
-	~PlayerShip2D();
+	PlayerShip2D();
+	virtual ~PlayerShip2D();
 };
 

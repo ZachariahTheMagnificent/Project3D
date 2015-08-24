@@ -75,6 +75,7 @@ private:
 	void InnitLogic();
 	void InnitSounds();
 	void InnitMaterials();
+	void InnitUI();
 	void UpdateLogic();
 	void UpdateView();
 	void UpdateLight();

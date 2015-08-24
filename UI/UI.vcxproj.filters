@@ -9,15 +9,8 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="Header Files\Controller">
       <UniqueIdentifier>{af74079b-5c1b-4ae0-87c3-1932d2585a9c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Controller">
-      <UniqueIdentifier>{a4964801-b17a-43fa-93ec-9929d9ff2916}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\UI">
       <UniqueIdentifier>{9de9d0de-696f-4149-973f-33a74513be07}</UniqueIdentifier>
@@ -28,8 +21,23 @@
     <Filter Include="Header Files\UI Elements">
       <UniqueIdentifier>{d0828b41-f40e-4cb6-beba-22e7ef32bff5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\UI Element">
+    <Filter Include="Source Files\UI Elements">
       <UniqueIdentifier>{23f3b7e9-e06b-44d2-af14-84a2e4edf0ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Controllers">
+      <UniqueIdentifier>{a4964801-b17a-43fa-93ec-9929d9ff2916}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Factory">
+      <UniqueIdentifier>{daee3c9f-97c2-4da8-8ae2-5dee3f0776e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Factory">
+      <UniqueIdentifier>{dd65a9e7-a608-4109-9496-019646ae45bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UIData">
+      <UniqueIdentifier>{88b63bec-6a76-46c7-bd26-e004181c11f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\UIData">
+      <UniqueIdentifier>{0215cc1e-8a62-4264-b1af-84efd18b01b9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -42,88 +50,118 @@
     <ClInclude Include="Source\UI.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
-    <ClInclude Include="Source\UIKeyPress.h">
-      <Filter>Header Files\UI Elements</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\UIDisplay.h">
-      <Filter>Header Files\UI Elements</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\UIButton.h">
-      <Filter>Header Files\UI Elements</Filter>
-    </ClInclude>
     <ClInclude Include="Source\UIElement.h">
-      <Filter>Header Files\UI Elements</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\UIMain.h">
-      <Filter>Header Files\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\UIOptions.h">
-      <Filter>Header Files\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\UIPlay.h">
-      <Filter>Header Files\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\UIQuit.h">
-      <Filter>Header Files\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\UIShowScore.h">
-      <Filter>Header Files\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\UIKeyHold.h">
-      <Filter>Header Files\UI Elements</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\UIKey.h">
       <Filter>Header Files\UI Elements</Filter>
     </ClInclude>
     <ClInclude Include="Source\FirstPersonMouse.h">
       <Filter>Header Files\Controller</Filter>
     </ClInclude>
+    <ClInclude Include="Source\UIKey.h">
+      <Filter>Header Files\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UIKeyHold.h">
+      <Filter>Header Files\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UIKeyPress.h">
+      <Filter>Header Files\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UIImage.h">
+      <Filter>Header Files\UI Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UIText.h">
+      <Filter>Header Files\UI Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UIElementFactory.h">
+      <Filter>Header Files\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UIButton.h">
+      <Filter>Header Files\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UIData.h">
+      <Filter>Header Files\UIData</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CharData.h">
+      <Filter>Header Files\UIData</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\DoubleData.h">
+      <Filter>Header Files\UIData</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\FloatData.h">
+      <Filter>Header Files\UIData</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\IntData.h">
+      <Filter>Header Files\UIData</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StringData.h">
+      <Filter>Header Files\UIData</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UnsignedData.h">
+      <Filter>Header Files\UIData</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UIDataClient.h">
+      <Filter>Header Files\UIData</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Mouse.cpp">
-      <Filter>Source Files\Controller</Filter>
+      <Filter>Source Files\Controllers</Filter>
     </ClCompile>
     <ClCompile Include="Source\Keyboard.cpp">
-      <Filter>Source Files\Controller</Filter>
+      <Filter>Source Files\Controllers</Filter>
     </ClCompile>
     <ClCompile Include="Source\UI.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
-    <ClCompile Include="Source\UIButton.cpp">
-      <Filter>Source Files\UI Element</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\UIDisplay.cpp">
-      <Filter>Source Files\UI Element</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\UIKeyPress.cpp">
-      <Filter>Source Files\UI Element</Filter>
-    </ClCompile>
     <ClCompile Include="Source\UIElement.cpp">
-      <Filter>Source Files\UI Element</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\UIMain.cpp">
-      <Filter>Source Files\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\UIOptions.cpp">
-      <Filter>Source Files\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\UIPlay.cpp">
-      <Filter>Source Files\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\UIQuit.cpp">
-      <Filter>Source Files\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\UIShowScore.cpp">
-      <Filter>Source Files\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\UIKeyHold.cpp">
-      <Filter>Source Files\UI Element</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\UIKey.cpp">
-      <Filter>Source Files\UI Element</Filter>
+      <Filter>Source Files\UI Elements</Filter>
     </ClCompile>
     <ClCompile Include="Source\FirstPersonMouse.cpp">
-      <Filter>Source Files\Controller</Filter>
+      <Filter>Source Files\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UIKeyHold.cpp">
+      <Filter>Source Files\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UIKeyPress.cpp">
+      <Filter>Source Files\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UIKey.cpp">
+      <Filter>Source Files\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UIImage.cpp">
+      <Filter>Source Files\UI Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UIText.cpp">
+      <Filter>Source Files\UI Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UIElementFactory.cpp">
+      <Filter>Source Files\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UIButton.cpp">
+      <Filter>Source Files\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UIData.cpp">
+      <Filter>Source Files\UIData</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CharData.cpp">
+      <Filter>Source Files\UIData</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DoubleData.cpp">
+      <Filter>Source Files\UIData</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FloatData.cpp">
+      <Filter>Source Files\UIData</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\StringData.cpp">
+      <Filter>Source Files\UIData</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\IntData.cpp">
+      <Filter>Source Files\UIData</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UnsignedData.cpp">
+      <Filter>Source Files\UIData</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UIDataClient.cpp">
+      <Filter>Source Files\UIData</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

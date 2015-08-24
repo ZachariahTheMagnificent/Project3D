@@ -19,27 +19,27 @@ Mouse::~Mouse()
 {
 }
 
-bool Mouse::LeftMousePress()
+bool Mouse::LeftMousePress() const
 {
 	return buttonState[LEFT] && !buttonStateLastFrame[LEFT];
 }
 
-bool Mouse::RightMousePress()
+bool Mouse::RightMousePress() const
 {
 	return buttonState[RIGHT] && !buttonStateLastFrame[RIGHT];
 }
 
-bool Mouse::LeftMouseHold()
+bool Mouse::LeftMouseHold() const
 {
 	return buttonState[LEFT];
 }
 
-bool Mouse::RightMouseHold()
+bool Mouse::RightMouseHold() const
 {
 	return buttonState[RIGHT];
 }
 
-const Vector2& Mouse::GetPosition()
+const Vector2& Mouse::GetPosition() const
 {
 	return position;
 }

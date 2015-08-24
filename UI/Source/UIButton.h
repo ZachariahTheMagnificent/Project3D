@@ -1,16 +1,21 @@
 #pragma once
-#include "UIDisplay.h"
+#include "UIElement.h"
 #include "Trigger.h"
 #include "Mouse.h"
 
-class UIButton : public UIDisplay, public Trigger
+class UIButton : public Trigger
 {
 public:
-	UIButton();
-	~UIButton();
+	UIButton(const Mouse* mouse);
+	virtual ~UIButton();
 	
+	virtual UIBox GetBoundingBox() const = 0;
+
 	virtual bool HasTriggered();
 
+	UIElement* normalElement;
+	UIElement* hoverElement;
+
 private:
-	Mouse* mouse;
+	const Mouse* mouse;
 };

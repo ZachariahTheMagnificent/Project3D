@@ -1,9 +1,8 @@
 #pragma once
-#include "UIElement.h"
 #include "Trigger.h"
 #include "Keyboard.h"
 
-class UIKey : public UIElement, public Trigger
+class UIKey : public Trigger
 {
 public:
 	UIKey(Keyboard*const kbd);

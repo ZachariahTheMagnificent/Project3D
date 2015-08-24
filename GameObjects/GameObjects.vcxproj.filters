@@ -9,61 +9,73 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="Header Files\Object2D">
-      <UniqueIdentifier>{2716de78-6772-4722-ac27-bc77189dd13f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Object2D">
       <UniqueIdentifier>{05729883-9107-4eda-96c1-5756f8d38c8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Interfaces">
+      <UniqueIdentifier>{ff3a9dcd-563c-4f7c-8c5d-d693683b5e77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Interfaces">
+      <UniqueIdentifier>{cb8d40ed-0008-4f1b-b5e7-57adcf33409e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Object2D\Ships">
+      <UniqueIdentifier>{e0bef5f8-c982-4888-910a-bbd8558deb86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Factories">
+      <UniqueIdentifier>{3c2b6823-0463-4dff-ac41-f8e058e3f79f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Ships">
+      <UniqueIdentifier>{0172d6d1-538b-4b06-9962-c0b9eadca00b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Object2Ds">
+      <UniqueIdentifier>{2716de78-6772-4722-ac27-bc77189dd13f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameObjects">
+      <UniqueIdentifier>{df28149b-a333-4913-8252-53bfb0415371}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Factories">
+      <UniqueIdentifier>{89b651be-e433-423e-97e7-130ed93b934e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameObjects">
+      <UniqueIdentifier>{1cdcf8a9-c519-4475-b89e-cd155ba4c244}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\World2D.h">
-      <Filter>Header Files\Object2D</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Ship2D.h">
-      <Filter>Header Files\Object2D</Filter>
+      <Filter>Header Files\Object2Ds</Filter>
     </ClInclude>
     <ClInclude Include="Source\Asteroid2D.h">
-      <Filter>Header Files\Object2D</Filter>
+      <Filter>Header Files\Object2Ds</Filter>
     </ClInclude>
     <ClInclude Include="Source\Bullet2D.h">
-      <Filter>Header Files\Object2D</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\EnemyShip2D.h">
-      <Filter>Header Files\Object2D</Filter>
+      <Filter>Header Files\Object2Ds</Filter>
     </ClInclude>
     <ClInclude Include="Source\Object2D.h">
-      <Filter>Header Files\Object2D</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Object2DFactory.h">
-      <Filter>Header Files\Object2D</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\PlayerShip2D.h">
-      <Filter>Header Files\Object2D</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\GameObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Killable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\SpawnsObjects.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Factory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Bullet2DFactory.h">
-      <Filter>Header Files\Object2D</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\ShipFactory.h">
-      <Filter>Header Files\Object2D</Filter>
+      <Filter>Header Files\Object2Ds</Filter>
     </ClInclude>
     <ClInclude Include="Source\DamagesThings.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Interfaces</Filter>
     </ClInclude>
-    <ClInclude Include="Source\AsteroidFactory.h">
-      <Filter>Header Files\Object2D</Filter>
+    <ClInclude Include="Source\Killable.h">
+      <Filter>Header Files\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Object2DFactory.h">
+      <Filter>Header Files\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PlayerShip2D.h">
+      <Filter>Header Files\Ships</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Ship2D.h">
+      <Filter>Header Files\Ships</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EnemyShip2D.h">
+      <Filter>Header Files\Ships</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Gun2D.h">
+      <Filter>Header Files\Object2Ds</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameObject.h">
+      <Filter>Header Files\GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -76,44 +88,32 @@
     <ClCompile Include="Source\Bullet2D.cpp">
       <Filter>Source Files\Object2D</Filter>
     </ClCompile>
-    <ClCompile Include="Source\EnemyShip2D.cpp">
-      <Filter>Source Files\Object2D</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Object2D.cpp">
       <Filter>Source Files\Object2D</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Object2DFactory.cpp">
-      <Filter>Source Files\Object2D</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\PlayerShip2D.cpp">
-      <Filter>Source Files\Object2D</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Ship2D.cpp">
-      <Filter>Source Files\Object2D</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\GameObject.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Source\DamagesThings.cpp">
+      <Filter>Source Files\Interfaces</Filter>
     </ClCompile>
     <ClCompile Include="Source\Killable.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Interfaces</Filter>
     </ClCompile>
-    <ClCompile Include="Source\SpawnsObjects.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Source\PlayerShip2D.cpp">
+      <Filter>Source Files\Object2D\Ships</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Factory.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Source\Ship2D.cpp">
+      <Filter>Source Files\Object2D\Ships</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Bullet2DFactory.cpp">
+    <ClCompile Include="Source\EnemyShip2D.cpp">
+      <Filter>Source Files\Object2D\Ships</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Gun2D.cpp">
       <Filter>Source Files\Object2D</Filter>
     </ClCompile>
-    <ClCompile Include="Source\ShipFactory.cpp">
-      <Filter>Source Files\Object2D</Filter>
+    <ClCompile Include="Source\Object2DFactory.cpp">
+      <Filter>Source Files\Factories</Filter>
     </ClCompile>
-    <ClCompile Include="Source\DamagesThings.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\AsteroidFactory.cpp">
-      <Filter>Source Files\Object2D</Filter>
+    <ClCompile Include="Source\GameObject.cpp">
+      <Filter>Source Files\GameObjects</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

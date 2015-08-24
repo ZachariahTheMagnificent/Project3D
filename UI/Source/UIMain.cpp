@@ -9,7 +9,7 @@ UIMain::~UIMain(void)
 {
 }
 
-UI* Update(const double& deltaTime)
+UI* UIMain::Update(const double& deltaTime)
 {
-	return NULL;
+	return this;
 }

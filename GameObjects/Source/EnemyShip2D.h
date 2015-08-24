@@ -4,7 +4,7 @@
 class EnemyShip2D : public Ship2D
 {
 public:
-	EnemyShip2D(Factory* factory);
-	~EnemyShip2D();
+	EnemyShip2D();
+	virtual ~EnemyShip2D();
 };
 

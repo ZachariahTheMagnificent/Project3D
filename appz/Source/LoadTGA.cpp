@@ -46,7 +46,7 @@ bool TGALoader::LoadTGA(std::wstring file_path, Texture* texture)	// load TGA fi
 		unsigned char* c = data;
 		for(D4DColor* color = texture->GetBuffer(); color != end; ++color, c+=bytesPerPixel)
 		{
-			const char MAX_ALPHA = 255;
+			const unsigned char MAX_ALPHA = 255;
 			memcpy(color, c, sizeof(unsigned char)*bytesPerPixel);
 			color->alpha = MAX_ALPHA;
 		}

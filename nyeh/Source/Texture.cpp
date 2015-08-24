@@ -42,12 +42,12 @@ void Texture::SetDimensions(const unsigned& width, const unsigned& height)
 	}
 }
 
-const unsigned& Texture::GetWidth()
+const unsigned& Texture::GetWidth() const
 {
 	return width;
 }
 
-const unsigned& Texture::GetHeight()
+const unsigned& Texture::GetHeight() const
 {
 	return height;
 }

@@ -4,12 +4,11 @@ class Killable
 {
 public:
 	Killable();
-	~Killable();
-	const float& GetHealth();
-	void GetDamaged(const float& damage);
-	bool IsDead();
+	virtual ~Killable();
 
-protected:
-	float health;
+	virtual float GetHealth() = 0;
+	virtual void GetDamaged(const float& damage) = 0;
+	virtual bool IsDead() = 0;
+	virtual void UponDeath() = 0;
 };
 

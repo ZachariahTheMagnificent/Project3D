@@ -5,6 +5,7 @@ class UIMain : public UI
 {
 public:
 	UIMain();
-	~UIMain();
-	UI* Update(const double& deltaTime);
+	virtual ~UIMain();
+
+	void Update(const double& deltaTime);
 };

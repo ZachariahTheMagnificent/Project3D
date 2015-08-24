@@ -2,7 +2,7 @@
 
 Bullet2D::Bullet2D()
 {
-	velocity.Set(-20, 0, 0);
+	velocity.Set(-20, 0);
 	damage = 20;
 }
 
@@ -23,7 +23,12 @@ void Bullet2D::DoCollisionWith(Object2D* obj)
 		DoDamageTo(killable);
 		if(killable->IsDead())
 		{
-			obj->active = false;
+			killable->UponDeath();
 		}
 	}
+}
+
+void Bullet2D::DoDamageTo(Killable* theKill)
+{
+	theKill->GetDamaged(damage);
 }

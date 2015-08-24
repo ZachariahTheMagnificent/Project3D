@@ -31,7 +31,7 @@ public:
 	float GetMaxZ() const;
 	float GetMinZ() const;
 	Color GetColor() const;
-	const char& GetSolidness() const;
+	const unsigned char& GetSolidness() const;
 	Mtx44 GetRotationMatrix() const;
 	Vector3 GetPosition() const;
 	float GetSize() const;

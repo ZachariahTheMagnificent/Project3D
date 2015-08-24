@@ -15,12 +15,12 @@ public:
 	~Mouse();
 	virtual void Update() = 0;
 
-	bool LeftMousePress();
-	bool RightMousePress();
+	bool LeftMousePress() const;
+	bool RightMousePress() const;
 
-	bool LeftMouseHold();
-	bool RightMouseHold();
-	const Vector2& GetPosition();
+	bool LeftMouseHold() const;
+	bool RightMouseHold() const;
+	const Vector2& GetPosition() const;
 
 protected:
 	bool buttonState[TOTAL_BUTTONS];

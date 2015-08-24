@@ -1,5 +1,4 @@
 #pragma once
-#include "AABBTree.h"
 #include "CollisionBody.h"
 
 class CollisionSystem

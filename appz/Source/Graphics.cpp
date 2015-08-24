@@ -25,9 +25,6 @@ meshEnd(NULL),
 textureBegin(NULL),
 textureEnd(NULL)
 {
-	//for(Light** light = lights; light != lights + MAX_LIGHTS + 1; ++light)
-	//{
-	//};
 }
 /****************************************************************************/
 /*!
@@ -462,8 +459,9 @@ void Graphics::RenderTextOnScreen(const std::string text, const Color color, con
 	
 	for(unsigned i = 0; i < text.length(); ++i)
 	{
+		const float spacing = 0.7f;
 		Mtx44 characterSpacing;
-		characterSpacing.SetToTranslation(i * 1, 0, 0); // 1.0f is the size of one letter.
+		characterSpacing.SetToTranslation(i * spacing, 0, 0);
 		Mtx44 MVP = projectionStack.Top() * viewStack.Top() * modelStack.Top() * characterSpacing;
 		glUniformMatrix4fv(m_parameters[U_MVP], 1, GL_FALSE, &MVP.a[0]);
 		

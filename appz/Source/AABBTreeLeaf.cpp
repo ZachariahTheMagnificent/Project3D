@@ -434,7 +434,7 @@ void AABBTreeLeaf::GetContacts(AABBTreeLeaf* leaf, Contact** iterator)
 
 bool AABBTreeLeaf::HasAlreadySubdivided() const
 {
-	return leaves;
+	return leaves != NULL;
 }
 
 bool AABBTreeLeaf::IsEmpty() const

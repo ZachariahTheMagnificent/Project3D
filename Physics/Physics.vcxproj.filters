@@ -9,15 +9,21 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Source\Force.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    <Filter Include="Header Files\Forces">
+      <UniqueIdentifier>{ec157b57-84fb-4c21-aa7f-2c842092519d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Forces">
+      <UniqueIdentifier>{1094357d-57c5-4a82-beb5-815533e9aa48}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Force.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Forces</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Force.cpp">
+      <Filter>Source Files\Forces</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,63 +1,88 @@
+#pragma once
 #include "Object2DFactory.h"
 
 Object2DFactory::Object2DFactory()
 	:
-objs(NULL),
-objEnd(NULL)
+bulletProduction(100),
+asteroidProduction(100),
+playerShipProduction(10),
+enemyShipProduction(10),
+gunProduction(10)
 {
-	const unsigned size = 1000;
-
-	objs = new Object2D*[size];
-	objEnd = objs + size;
-
-	for(Object2D** objPointer = objs; objPointer != objEnd; ++objPointer)
-	{
-		*objPointer = NULL;
-	}
 }
 
 Object2DFactory::~Object2DFactory()
 {
-	if(objs)
+}
+
+Object2D* Object2DFactory::GetInstance(unsigned type)
+{
+	switch(type)
 	{
-		for(Object2D** it = objs; it != objEnd; ++it)
-		{
-			Object2D* obj = *it;
-			if(obj)
-			{
-				delete obj;
-			}
-		}
-		delete [] objs;
-		objs = NULL;
+	case BULLET:
+		return bulletProduction.GetInstance();
+		break;
+
+	case ASTEROID:
+		return asteroidProduction.GetInstance();
+		break;
+
+	case PLAYERSHIP:
+		return playerShipProduction.GetInstance();
+		break;
+
+	case ENEMYSHIP:
+		return enemyShipProduction.GetInstance();
+		break;
+
+	case GUN:
+		return gunProduction.GetInstance();
+		break;
+
+	default:
+		return NULL;
 	}
 }
 
-void Object2DFactory::IncreaseSize()
+void Object2DFactory::UpdateAllObjects(const double& deltaTime)
 {
-	const unsigned increase = 100;
-	const unsigned size = objEnd - objs;
-	const unsigned newSize = size + increase;
-
-	Object2D** newObjs = new Object2D*[newSize];
-
-	if(objs)
+	for(Bullet2D* bullet = bulletProduction.GetBegin(); bullet != bulletProduction.GetEnd(); ++bullet)
 	{
-		memcpy(newObjs, objs, size * sizeof(Object2D*));
-
-		delete objs;
-		objs = NULL;
-		objEnd = NULL;
-
-		Object2D** end = newObjs + newSize;
-		for(Object2D** objPointer = newObjs + size; objPointer != end; ++objPointer)
+		if(!bullet->active)
 		{
-			*objPointer = NULL;
+			bullet->Update(deltaTime);
 		}
 	}
 
-	objs = newObjs;
-	objEnd = objs + newSize;
+	for(Asteroid2D* asteroid = asteroidProduction.GetBegin(); asteroid != asteroidProduction.GetEnd(); ++asteroid)
+	{
+		if(!asteroid->active)
+		{
+			asteroid->Update(deltaTime);
+		}
+	}
 
-	newObjs = NULL;
+	for(PlayerShip2D* playerShip = playerShipProduction.GetBegin(); playerShip != playerShipProduction.GetEnd(); ++playerShip)
+	{
+		if(!playerShip->active)
+		{
+			playerShip->Update(deltaTime);
+		}
+	}
+
+	for(EnemyShip2D* enemyShip = enemyShipProduction.GetBegin(); enemyShip != enemyShipProduction.GetEnd(); ++enemyShip)
+	{
+		if(!enemyShip->active)
+		{
+			enemyShip->Update(deltaTime);
+		}
+	}
+
+	for(Gun2D* gun = gunProduction.GetBegin(); gun != gunProduction.GetEnd(); ++gun)
+	{
+		if(!gun->active)
+		{
+			gun->Update(deltaTime);
+		}
+	}
 }

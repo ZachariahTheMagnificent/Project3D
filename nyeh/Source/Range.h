@@ -22,9 +22,12 @@ class Range
 public:
 	Range(const type& start = type(), const type& end = type());
 	~Range();
+
 	const Range<type>& Set(const type& start, const type& end);
+
 	type Length() const;
 	type MidPoint() const;
+
 	bool IsInRange(const type& test) const;
 	bool IsInRange(const Range<type>& test) const;
 	bool IsZero() const;

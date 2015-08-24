@@ -31,18 +31,6 @@ WindowsKeyboard::~WindowsKeyboard()
 /****************************************************************************/
 /*!
 \brief
-Returns if a key is pressed
-\param key
-		the key to be checked
-*/
-/****************************************************************************/
-bool WindowsKeyboard::IsKeyHold(const unsigned short& key)
-{
-	return keyishold[key];
-}
-/****************************************************************************/
-/*!
-\brief
 Returns the key state from windows directly
 \param key
 		the key to be checked
@@ -60,7 +48,8 @@ Updates the keyboard values
 /****************************************************************************/
 void WindowsKeyboard::UpdateInput()
 {
-	keyboardbuffer.clear();
+	//clear the buffer
+	keyboardbuffer.swap(std::queue<char>());
 	for(int index = 0; index < 256; index++)
 	{
 		unsigned short keyIsPressed = GetKey(index);
@@ -87,54 +76,11 @@ void WindowsKeyboard::UpdateInput()
 			keyishold[index] = false;
 		}
 	}
-	for(int index = ' '; index < '~'; index++)
+	for(unsigned index = ' '; index < '~'; index++)
 	{
 		if(IsKeyPressed(index))
 		{
-			keyboardbuffer.push_back((char)index);
+			keyboardbuffer.push((char)index);
 		}
 	}
-}
-/****************************************************************************/
-/*!
-\brief
-Returns if a key is pressed once and won't return true again until the key is released and pressed again
-\param key
-		the key to be checked
-*/
-/****************************************************************************/
-bool WindowsKeyboard::IsKeyPressed(const unsigned short& key)
-{
-	return keyispressed[key];
-}
-/****************************************************************************/
-/*!
-\brief
-Returns the last key stored in the keyboard's buffer then deletes it from the buffer(for keyboard input)
-*/
-/****************************************************************************/
-char WindowsKeyboard::GetKeyboardBuffer()
-{
-	if(keyboardbuffer.empty())
-	{
-		return 0;
-	}
-	else
-	{
-		char letter = keyboardbuffer.back();
-		keyboardbuffer.pop_back();
-		return letter;
-	}
-}
-/****************************************************************************/
-/*!
-\brief
-Returns if a key that has been previously pressed has been released
-\param key
-		the key to be checked
-*/
-/****************************************************************************/
-bool WindowsKeyboard::IsKeyReleased(const unsigned short& key)
-{
-	return !(IsKeyHold(key));
 }

@@ -5,6 +5,7 @@ Object2D::Object2D()
 rotationalVelocity(0),
 rotationalAcceleration(0),
 active(false),
+isUsed(false),
 image(NULL)
 {
 }

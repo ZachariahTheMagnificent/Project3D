@@ -8,8 +8,3 @@ DamagesThings::DamagesThings()
 DamagesThings::~DamagesThings()
 {
 }
-
-void DamagesThings::DoDamageTo(Killable* theKill)
-{
-	theKill->GetDamaged(damage);
-}

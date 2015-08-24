@@ -5,11 +5,8 @@ class DamagesThings
 {
 public:
 	DamagesThings();
-	~DamagesThings();
+	virtual ~DamagesThings();
 
-	void DoDamageTo(Killable* theKill);
-
-protected:
-	float damage;
+	virtual void DoDamageTo(Killable* theKill) = 0;
 };
 

@@ -34,10 +34,12 @@
   <ItemGroup>
     <ClInclude Include="Source\BackwardNode.h" />
     <ClInclude Include="Source\BoundingBox.h" />
+    <ClInclude Include="Source\BoundingBox2D.h" />
     <ClInclude Include="Source\Camera.h" />
     <ClInclude Include="Source\D3DColor.h" />
     <ClInclude Include="Source\D4DColor.h" />
     <ClInclude Include="Source\DrawOrder.h" />
+    <ClInclude Include="Source\Factory.h" />
     <ClInclude Include="Source\ForwardNode.h" />
     <ClInclude Include="Source\Light.h" />
     <ClInclude Include="Source\LinkList.h" />
@@ -48,6 +50,7 @@
     <ClInclude Include="Source\MyMath.h" />
     <ClInclude Include="Source\Node.h" />
     <ClInclude Include="Source\Polygon.h" />
+    <ClInclude Include="Source\ProductionLine.h" />
     <ClInclude Include="Source\Range.h" />
     <ClInclude Include="Source\Rotation.h" />
     <ClInclude Include="Source\Sound.h" />

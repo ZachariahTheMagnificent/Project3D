@@ -81,6 +81,15 @@
     <Filter Include="Header Files\DrawOrder">
       <UniqueIdentifier>{b732ca5b-c984-4efa-9f92-fd581bff8a06}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Factory">
+      <UniqueIdentifier>{0120bd00-3b87-4cec-b36d-f6b9fc9e06c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Event">
+      <UniqueIdentifier>{df4bb081-9f66-4f61-9d2a-85102244d337}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Event">
+      <UniqueIdentifier>{207d405c-f214-495d-8629-15de52e3d4b3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\MatrixStack.cpp">
@@ -219,6 +228,15 @@
     </ClInclude>
     <ClInclude Include="Source\DrawOrder.h">
       <Filter>Header Files\DrawOrder</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BoundingBox2D.h">
+      <Filter>Header Files\Triggers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Factory.h">
+      <Filter>Header Files\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ProductionLine.h">
+      <Filter>Header Files\Factory</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

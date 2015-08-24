@@ -2,35 +2,71 @@
 #include "Bullet2D.h"
 
 Bullet2DFactory::Bullet2DFactory()
+	:
+begin(NULL),
+end(NULL),
+sizeIncrease(100)
 {
 }
 
 Bullet2DFactory::~Bullet2DFactory()
 {
+	if(begin)
+	{
+		delete [] begin;
+		begin = NULL;
+		end = NULL;
+	}
+}
+
+void Bullet2DFactory::UpdateAllObjects(const double& deltaTime)
+{
+	for(Bullet2D* bullet = begin; bullet != end; ++bullet)
+	{
+		if(!bullet->active)
+		{
+			bullet->Update(deltaTime);
+		}
+	}
 }
 
 Object2D* Bullet2DFactory::GetObject()
 {
-	for(Object2D** it = objs; it != objEnd; ++it)
+	for(Bullet2D* bullet = begin; bullet != end; ++bullet)
 	{
-		if(it == NULL)
+		if(!bullet->active)
 		{
-			*it = new Bullet2D;
-			return *it;
-		}
-
-		if(!(*it)->active)
-		{
-			return *it;
+			return bullet;
 		}
 	}
 
-	const unsigned index = objEnd - objs;
-
 	IncreaseSize();
 	
-	Object2D** objPointer = objs + index;
-	*objPointer = new Bullet2D;
-	return *objPointer;
-	
+	return begin + GetCapacity();
+}
+
+void Bullet2DFactory::IncreaseSize()
+{
+	const unsigned oldCapacity = GetCapacity();
+	const unsigned newCapacity = oldCapacity + sizeIncrease;
+
+	Bullet2D* buffer = new Bullet2D[newCapacity];
+
+	if(begin)
+	{
+		//transfer the previous bullet data to the new memory
+		memcpy(buffer, begin, oldCapacity);
+
+		delete [] begin;
+		begin = NULL;
+		end = NULL;
+	}
+
+	begin = buffer;
+	end = buffer + newCapacity;
+}
+
+unsigned Bullet2DFactory::GetCapacity()
+{
+	return end - begin;
 }

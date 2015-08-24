@@ -8,10 +8,14 @@ class BoundingBox
 public:
 	BoundingBox(const Range<t>& rangeX = Range<t>(), const Range<t>& rangeY = Range<t>(), const Range<t>& rangeZ = Range<t>());
 	~BoundingBox();
+
 	void ResizeToFit(const BoundingBox<t>& box);
+
 	t GetVolume() const;
 	Vector3 GetDistanceFrom(const BoundingBox<t>& box) const;
 	Vector3 GetDisplacement() const;
+
+	bool IsInside(const Vector3& point) const;
 	bool IsOverlapping(const BoundingBox<t>& box) const;
 	bool IsBehind(const BoundingBox<t>& box) const;
 	bool IsInFrontOf(const BoundingBox<t>& box) const;
@@ -68,6 +72,14 @@ void BoundingBox<t>::ResizeToFit(const BoundingBox<t>& box)
 	{
 		rangeZ.end = box.rangeZ.end;
 	}
+}
+
+template <class t>
+bool BoundingBox<t>::IsInside(const Vector3& point) const
+{
+	return rangeX.IsInRange(point.x) &&
+		rangeY.IsInRange(point.y) &&
+		rangeZ.IsInRange(point.z);
 }
 
 template <class t>

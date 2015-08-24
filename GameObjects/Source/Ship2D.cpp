@@ -1,19 +1,41 @@
 #include "Ship2D.h"
-#include "Bullet2DFactory.h"
 
-Ship2D::Ship2D(Factory* factory)
+Ship2D::Ship2D()
+	:
+guns(NULL),
+health(100)
 {
-	health = 100;
-	velocity.Set(1,1,1);
-	this->factory = factory;
-	Bullet2DFactory* isBulletFactory = dynamic_cast<Bullet2DFactory*>(factory);
-
-	if(!isBulletFactory)
-	{
-		throw;
-	}
 }
 
 Ship2D::~Ship2D()
+{
+}
+
+void Ship2D::Update(const double& deltaTime)
+{
+	UpdateVelocity(deltaTime);
+	UpdatePosition(deltaTime);
+}
+
+void Ship2D::DoCollisionWith(Object2D* obj)
+{
+}
+
+float Ship2D::GetHealth()
+{
+	return health;
+}
+
+void Ship2D::GetDamaged(const float& damage)
+{
+	health -= damage;
+}
+
+bool Ship2D::IsDead()
+{
+	return health <= 0;
+}
+
+void Ship2D::UponDeath()
 {
 }

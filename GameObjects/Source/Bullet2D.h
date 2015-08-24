@@ -2,13 +2,16 @@
 #include "Object2D.h"
 #include "DamagesThings.h"
 
-class Bullet2D : public DamagesThings, public Object2D
+class Bullet2D : public Object2D, public DamagesThings
 {
 public:
 	Bullet2D();
-	~Bullet2D();
+	virtual ~Bullet2D();
 
-private:
 	virtual void Update(const double& deltaTime);
 	virtual void DoCollisionWith(Object2D* obj);
+	virtual void DoDamageTo(Killable* theKill);
+
+private:
+	float damage;
 };

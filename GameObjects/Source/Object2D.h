@@ -1,5 +1,5 @@
 #pragma once
-#include "Vector3.h"
+#include "Vector2.h"
 #include "Texture.h"
 
 class Object2D
@@ -10,13 +10,14 @@ public:
 	virtual void Update(const double& deltaTime) = 0;
 	virtual void DoCollisionWith(Object2D* obj) = 0;
 
-	Vector3 position;
-	Vector3 velocity;
-	Vector3 acceleration;
+	Vector2 position;
+	Vector2 velocity;
+	Vector2 acceleration;
 	float rotationalVelocity;
 	float rotationalAcceleration;
 
 	bool active;
+	bool isUsed;
 
 	Texture* image;
 protected:

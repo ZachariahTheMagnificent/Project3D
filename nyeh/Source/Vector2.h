@@ -14,7 +14,13 @@ public:
 	~Vector2();
 	void Set(const float& x, const float& y);
 
+	const Vector2& operator+=(const Vector2& vec);
+	const Vector2& operator-=(const Vector2& vec);
+
+	Vector2 operator+(const Vector2& vec) const;
 	Vector2 operator-(const Vector2& vec) const;
+	Vector2 operator*(const float multiplier) const;
+	Vector2 operator/(const float divider) const;
 
 	float x, y;
 };
