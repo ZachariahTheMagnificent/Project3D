@@ -3,43 +3,31 @@
 Texture::Texture(const unsigned& width, const unsigned& height)
 	:
 width(width),
-height(height),
-buffer(NULL)
+height(height)
 {
-	unsigned nPixels = width * height;
-	if(nPixels)
-	{
-		buffer = new D4DColor[nPixels];
-	}
+	const unsigned nPixels = width * height;
+	
+	SetSize(nPixels);
 }
 
 Texture::~Texture()
 {
-	if(buffer)
-	{
-		delete [] buffer;
-		buffer = NULL;
-	}
 }
 
 void Texture::SetDimensions(const unsigned& width, const unsigned& height)
 {
+	//skip function if we are already the appropriate size
 	if(this->width == width && this->height == height)
 	{
 		return;
 	}
+
 	this->width = width;
 	this->height = height;
-	if(buffer)
-	{
-		delete [] buffer;
-		buffer = NULL;
-	}
-	unsigned nPixels = width * height;
-	if(nPixels)
-	{
-		buffer = new D4DColor[nPixels];
-	}
+	
+	const unsigned nPixels = width * height;
+
+	SetSize(nPixels);
 }
 
 const unsigned& Texture::GetWidth() const
@@ -50,9 +38,4 @@ const unsigned& Texture::GetWidth() const
 const unsigned& Texture::GetHeight() const
 {
 	return height;
-}
-
-D4DColor* Texture::GetBuffer()
-{
-	return buffer;
 }

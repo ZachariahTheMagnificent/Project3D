@@ -8,7 +8,12 @@ public:
 	~FirstPersonMouse();
 	virtual void Update() = 0;
 	virtual void SetToCentre() = 0;
+	
+	bool IsLocked() const;
 
+	void ToggleLock();
+	void LockMouse();
+	void UnlockMouse();
 	Vector2 GetDisplacementFromCentre();
 
 protected:

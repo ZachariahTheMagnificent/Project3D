@@ -325,7 +325,7 @@ void Graphics::SendMeshInfo(Mesh* begin, Mesh* end)
 		unsigned ID = 0;
 		glGenBuffers(1, &ID);
 		glBindBuffer(GL_ARRAY_BUFFER, ID);
-		glBufferData(GL_ARRAY_BUFFER, mesh->GetNPolies() * sizeof(Vertex) * 3, mesh->GetPolyBuffer(), GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, mesh->GetSize() * sizeof(Vertex) * 3, mesh->GetBegin(), GL_STATIC_DRAW);
 	}
 }
 
@@ -339,7 +339,7 @@ void Graphics::SendTextureInfo(Texture* begin, Texture* end)
 		glGenTextures(1, &ID);
 		glBindTexture(GL_TEXTURE_2D, ID);
 
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, tex->GetWidth(), tex->GetHeight(), 0, GL_BGRA, GL_UNSIGNED_BYTE, tex->GetBuffer());
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, tex->GetWidth(), tex->GetHeight(), 0, GL_BGRA, GL_UNSIGNED_BYTE, tex->GetBegin());
 
 		glGenerateMipmap( GL_TEXTURE_2D );
 		float maxAnisotropy = 16.f;
@@ -558,7 +558,7 @@ void Graphics::RenderMesh(const Mesh* mesh, const unsigned textureID, const unsi
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)sizeof(Vector3));
 	glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)(sizeof(Vector3) + sizeof(Color)));
 	glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)(sizeof(Vector3) + sizeof(Color) + sizeof(Vector3)));
-	glDrawArrays(mode, 0, mesh->GetNPolies()*3);
+	glDrawArrays(mode, 0, mesh->GetSize()*3);
 
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
@@ -673,7 +673,7 @@ void Graphics::RenderPixels(Color* buffer, Mesh* plane, unsigned sizeX, unsigned
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)sizeof(Vector3));
 	glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)(sizeof(Vector3) + sizeof(Color)));
 	glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)(sizeof(Vector3) + sizeof(Color) + sizeof(Vector3)));
-	glDrawArrays(GL_TRIANGLES, 0, plane->GetNPolies());
+	glDrawArrays(GL_TRIANGLES, 0, plane->GetSize());
 
 	glBindTexture(GL_TEXTURE_2D, 0);
 

@@ -8,6 +8,7 @@
 A class used to store VBO (vertex & color buffer) and polygons and generate voxels from them
 */
 /****************************************************************************/
+#include "MyContainer.h"
 #include "Polygon.h"
 #include "BoundingBox.h"
 
@@ -19,19 +20,11 @@ To store VBO (vertex & color buffer) and polygons and generate voxels from them
 */
 /******************************************************************************/
 
-class Mesh
+class Mesh : public MyContainer<Polygonn>
 {
 public:
 	Mesh(const unsigned& nPolies = 0);
-	~Mesh();
+	virtual ~Mesh();
 	
-	void setPolySize(const unsigned& nPolies);
-
-	Polygonn* GetPolyBuffer();
-	const unsigned& GetNPolies() const;
 	BoundingBox<float> GetBoundingBox() const;
-
-private:
-	Polygonn* polygons;
-	unsigned nPolies;
 };

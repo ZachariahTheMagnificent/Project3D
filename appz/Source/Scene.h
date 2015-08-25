@@ -12,7 +12,7 @@ public:
 
 	virtual void Init() = 0;
 	virtual void SendInfoToGFXCard() = 0;
-	virtual bool Update(const double& dt) = 0;
+	virtual bool Update(const double& deltaTime) = 0;
 	virtual void Render() = 0;
 	virtual void Exit() = 0;
 

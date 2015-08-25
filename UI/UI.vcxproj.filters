@@ -65,12 +65,6 @@
     <ClInclude Include="Source\UIKeyPress.h">
       <Filter>Header Files\Controller</Filter>
     </ClInclude>
-    <ClInclude Include="Source\UIImage.h">
-      <Filter>Header Files\UI Elements</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\UIText.h">
-      <Filter>Header Files\UI Elements</Filter>
-    </ClInclude>
     <ClInclude Include="Source\UIElementFactory.h">
       <Filter>Header Files\Factory</Filter>
     </ClInclude>
@@ -101,6 +95,9 @@
     <ClInclude Include="Source\UIDataClient.h">
       <Filter>Header Files\UIData</Filter>
     </ClInclude>
+    <ClInclude Include="Source\VectorData.h">
+      <Filter>Header Files\UIData</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Mouse.cpp">
@@ -126,12 +123,6 @@
     </ClCompile>
     <ClCompile Include="Source\UIKey.cpp">
       <Filter>Source Files\Controllers</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\UIImage.cpp">
-      <Filter>Source Files\UI Elements</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\UIText.cpp">
-      <Filter>Source Files\UI Elements</Filter>
     </ClCompile>
     <ClCompile Include="Source\UIElementFactory.cpp">
       <Filter>Source Files\Factory</Filter>
@@ -161,6 +152,9 @@
       <Filter>Source Files\UIData</Filter>
     </ClCompile>
     <ClCompile Include="Source\UIDataClient.cpp">
+      <Filter>Source Files\UIData</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\VectorData.cpp">
       <Filter>Source Files\UIData</Filter>
     </ClCompile>
   </ItemGroup>

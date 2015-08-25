@@ -25,12 +25,11 @@
     <ClInclude Include="Source\UIDataClient.h" />
     <ClInclude Include="Source\UIElement.h" />
     <ClInclude Include="Source\UIElementFactory.h" />
-    <ClInclude Include="Source\UIImage.h" />
     <ClInclude Include="Source\UIKey.h" />
     <ClInclude Include="Source\UIKeyHold.h" />
     <ClInclude Include="Source\UIKeyPress.h" />
-    <ClInclude Include="Source\UIText.h" />
     <ClInclude Include="Source\UnsignedData.h" />
+    <ClInclude Include="Source\VectorData.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\CharData.cpp" />
@@ -47,12 +46,11 @@
     <ClCompile Include="Source\UIDataClient.cpp" />
     <ClCompile Include="Source\UIElement.cpp" />
     <ClCompile Include="Source\UIElementFactory.cpp" />
-    <ClCompile Include="Source\UIImage.cpp" />
     <ClCompile Include="Source\UIKey.cpp" />
     <ClCompile Include="Source\UIKeyHold.cpp" />
     <ClCompile Include="Source\UIKeyPress.cpp" />
-    <ClCompile Include="Source\UIText.cpp" />
     <ClCompile Include="Source\UnsignedData.cpp" />
+    <ClCompile Include="Source\VectorData.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{6AD2F4EE-2426-4939-B9D5-E7FCE422DC91}</ProjectGuid>

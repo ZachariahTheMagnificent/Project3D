@@ -1,6 +1,7 @@
 #include "UIDataClient.h"
 #include "StringData.h"
 #include "DoubleData.h"
+#include "VectorData.h"
 #include "FloatData.h"
 #include "UnsignedData.h"
 #include "IntData.h"
@@ -16,53 +17,21 @@ UIDataClient::UIDataClient(const UIDataClient& data)
 	:
 actualData(NULL)
 {
-	StringData* isString = dynamic_cast<StringData*>(data.actualData);
-	if(isString)
-	{
-		actualData = new StringData(*isString);
-		return;
-	}
-	
-	DoubleData* isDouble = dynamic_cast<DoubleData*>(data.actualData);
-	if(isDouble)
-	{
-		actualData = new DoubleData(*isDouble);
-		return;
-	}
-	
-	FloatData* isFloat = dynamic_cast<FloatData*>(data.actualData);
-	if(isFloat)
-	{
-		actualData = new FloatData(*isFloat);
-		return;
-	}
-	
-	UnsignedData* isUnsigned = dynamic_cast<UnsignedData*>(data.actualData);
-	if(isUnsigned)
-	{
-		actualData = new UnsignedData(*isUnsigned);
-		return;
-	}
-	
-	IntData* isInt = dynamic_cast<IntData*>(data.actualData);
-	if(isInt)
-	{
-		actualData = new IntData(*isInt);
-		return;
-	}
-	
-	CharData* isChar = dynamic_cast<CharData*>(data.actualData);
-	if(isChar)
-	{
-		actualData = new CharData(*isChar);
-		return;
-	}
+	*this = data;
 }
+
 UIDataClient::UIDataClient(std::string* string)
 	:
 actualData(NULL)
 {
 	actualData = new StringData(string);
+}
+
+UIDataClient::UIDataClient(Vector3* vec)
+	:
+actualData(NULL)
+{
+	actualData = new VectorData(vec);
 }
 
 UIDataClient::UIDataClient(double* doub)
@@ -109,6 +78,17 @@ void UIDataClient::Set(std::string* string)
 	}
 
 	actualData = new StringData(string);
+}
+
+void UIDataClient::Set(Vector3* vec)
+{
+	if(actualData)
+	{
+		delete actualData;
+		actualData = NULL;
+	}
+
+	actualData = new VectorData(vec);
 }
 
 void UIDataClient::Set(double* doub)
@@ -188,6 +168,13 @@ void UIDataClient::operator=(const UIDataClient& data)
 	if(isDouble)
 	{
 		actualData = new DoubleData(*isDouble);
+		return;
+	}
+	
+	VectorData* isVector = dynamic_cast<VectorData*>(data.actualData);
+	if(isVector)
+	{
+		actualData = new VectorData(*isVector);
 		return;
 	}
 	

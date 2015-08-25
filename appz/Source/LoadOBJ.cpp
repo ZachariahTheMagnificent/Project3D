@@ -120,18 +120,17 @@ bool ObjLoader::LoadOBJ(std::wstring file_path, Mesh* mesh)
 	fileStream.close();
 
 	const unsigned numVerticesInPoly = 3;
-	mesh->setPolySize(vert_indices.size()/numVerticesInPoly);
-	Vertex* begin = (Vertex*)mesh->GetPolyBuffer();
-	Vertex* end = (Vertex*)(mesh->GetPolyBuffer() + mesh->GetNPolies());
+	mesh->SetSize(vert_indices.size()/numVerticesInPoly);
+	Vertex* begin = &mesh->GetBegin()->vertex1;
+	unsigned i = 0;
 
 	// For each vertex of each triangle, after fileStream.close()
-	for(Vertex* vert = begin; vert != end; ++vert)
+	for(Vertex* vert = begin, *end = &mesh->GetEnd()->vertex1; vert != end; ++vert, ++i)
 	{
-		unsigned i = vert - begin;
 		// Get the indices of its attributes
-		unsigned int vertexIndex = vert_indices[i];
-		unsigned int uvIndex = uv_indices[i];
-		unsigned int normalIndex = normal_indices[i];
+		const unsigned vertexIndex = vert_indices[i];
+		const unsigned uvIndex = uv_indices[i];
+		const unsigned normalIndex = normal_indices[i];
 		
 		// Get the attributes thanks to the index
 		Vector3 vertex = temp_vertices[vertexIndex - 1];

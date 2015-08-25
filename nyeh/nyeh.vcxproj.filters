@@ -241,5 +241,8 @@
     <ClInclude Include="Source\ProductionLine.h">
       <Filter>Header Files\Factory</Filter>
     </ClInclude>
+    <ClInclude Include="Source\MyContainer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

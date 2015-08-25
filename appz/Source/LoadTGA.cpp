@@ -42,23 +42,22 @@ bool TGALoader::LoadTGA(std::wstring file_path, Texture* texture)	// load TGA fi
 
 	if(bytesPerPixel == 3)
 	{
-		D4DColor* end = texture->GetBuffer() + texture->GetWidth() * texture->GetHeight();
 		unsigned char* c = data;
-		for(D4DColor* color = texture->GetBuffer(); color != end; ++color, c+=bytesPerPixel)
+		for(D4DColor* color = texture->GetBegin(), *end = texture->GetEnd(); color != end; ++color, c+=bytesPerPixel)
 		{
 			const unsigned char MAX_ALPHA = 255;
-			memcpy(color, c, sizeof(unsigned char)*bytesPerPixel);
+			memcpy(color, c, bytesPerPixel);
 			color->alpha = MAX_ALPHA;
 		}
 	}
 	else //bytesPerPixel == 4
 	{
-		memcpy(texture->GetBuffer(), data, sizeof(unsigned char)*bytesPerPixel*width*height);
+		memcpy(texture->GetBegin(), data, bytesPerPixel*width*height);
 	}
 
 	//end of modifiable code
 
-	delete []data;
+	delete [] data;
 
 	return true;						
 }

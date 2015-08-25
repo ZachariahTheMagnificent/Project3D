@@ -1,4 +1,5 @@
 #include "Mesh.h"
+#include <limits>
 /****************************************************************************/
 /*!
 \file Mesh.cpp
@@ -20,37 +21,9 @@ default constructor
 */
 /****************************************************************************/
 Mesh::Mesh(const unsigned& nPolies)
-	:
-polygons(NULL),
-nPolies(nPolies)
 {
-	if(nPolies)
-	{
-		polygons = new Polygonn[nPolies];
-	}
+	SetSize(nPolies);
 }
-
-void Mesh::setPolySize(const unsigned& nPolies)
-{
-	if(this->nPolies == nPolies)
-	{
-		return;
-	}
-
-	this->nPolies = nPolies;
-
-	if(nPolies)
-	{
-		delete [] polygons;
-		polygons = NULL;
-	}
-
-	if(nPolies)
-	{
-		polygons = new Polygonn[nPolies];
-	}
-}
-
 /****************************************************************************/
 /*!
 \brief
@@ -59,11 +32,6 @@ default destructor
 /****************************************************************************/
 Mesh::~Mesh()
 {
-	if(polygons)
-	{
-		delete [] polygons;
-		polygons = NULL;
-	}
 }
 /****************************************************************************/
 /*!
@@ -79,35 +47,14 @@ Returns the bounds of the mesh
 /****************************************************************************/
 BoundingBox<float> Mesh::GetBoundingBox() const
 {
-	Polygonn* polygon = polygons;
-	BoundingBox<float> box = polygon->GetBoundingBox();
-	++polygon;
+	//set the bounding box to the most extreme values so that the polygon's most extreme values will be stored.
+	BoundingBox<float> box(Range<float>(FLT_MAX, -FLT_MAX), Range<float>(FLT_MAX, -FLT_MAX), Range<float>(FLT_MAX, -FLT_MAX));
 
 	//loop through all our vertices
-	for(; polygon != polygons + nPolies; ++polygon)
+	for(Polygonn* polygon = GetBegin(), *end = GetEnd(); polygon != end; ++polygon)
 	{
 		box.ResizeToFit(box);
 	}
 
 	return box;
-}
-/****************************************************************************/
-/*!
-\brief
-returns the vector of polygons
-*/
-/****************************************************************************/
-Polygonn* Mesh::GetPolyBuffer()
-{
-	return polygons;
-}
-/****************************************************************************/
-/*!
-\brief
-returns the number of polygons
-*/
-/****************************************************************************/
-const unsigned& Mesh::GetNPolies() const
-{
-	return nPolies;
 }

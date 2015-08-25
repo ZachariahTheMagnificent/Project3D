@@ -39,7 +39,7 @@ screenBuffer(NULL)
 default destructor
 */
 /****************************************************************************/
-SceneMain::~SceneMain(void)
+SceneMain::~SceneMain()
 {
 }
 /****************************************************************************/
@@ -97,10 +97,6 @@ Initializes logic like FPS and dt
 /****************************************************************************/
 void SceneMain::InnitLogic()
 {
-	dDeltatime = 0;
-	dCurrentFPS = 60;
-	bDrawVoxels = false;
-	lookWithMouse = true;
 }
 /****************************************************************************/
 /*!
@@ -389,23 +385,6 @@ void SceneMain::InnitDraws()
 
 void SceneMain::InnitUI()
 {
-	//UIText* text = ui.GetFactory().GetText();
-
-	//text->AddToEndOfText(
-	//Vector3 position = currentPlayer->draw->GetGlobalPosition();
-	//sprintf(buffer1,"position:%.3f, %.3f, %.3f",position.x, position.y, position.z);
-	//dCurrentFPS = 1 / dDeltatime;
-
-	//UIText text;
-
-	//std::string fish = "FPS:";
-	//UIDataClient mouse(&fish);
-	//UIDataClient cow(&dCurrentFPS);
-
-	//text.AddToEndOfText(&fish);
-	//text.AddToEndOfText(&dCurrentFPS);
-
-	//sprintf(buffer2,"FPS:%.3f", dCurrentFPS);
 }
 
 /****************************************************************************/
@@ -418,14 +397,13 @@ void SceneMain::InnitCollisions()
 {
 	CollisionBody* body;
 
-	body = globals.GetCollisionBody(L"player1");
+	body = globals.GetCollisionBody(L"player");
 	body->draw = globals.GetDraw(L"player1");
 	body->mesh = globals.GetMesh(L"sphere");
 	body->mass = 1;
 	body->SetTerminalVelocityTo(100);
 	body->SetDecelerationTo(10);
 	body->soundSys = &snd;
-	currentPlayer = body;
 	
 	body = globals.GetCollisionBody(L"player2");
 	body->draw = globals.GetDraw(L"player2");
@@ -473,8 +451,8 @@ void SceneMain::InnitCollisions()
 		Mesh* mesh = body->mesh;
 		if(mesh)
 		{
-			const Polygonn* polies = mesh->GetPolyBuffer();
-			const unsigned size = mesh->GetNPolies();
+			const Polygonn* polies = mesh->GetBegin();
+			const unsigned size = mesh->GetSize();
 			numOfPolys += size;
 
 			body->tree.IncreaseCapacityTo(size);
@@ -517,7 +495,6 @@ void SceneMain::InnitForces()
 	{
 		body->AddForce(accelerationDueToGravity * body->mass);
 	}
-	//globals.GetCollisionBody(L"player").AddForce(Vector
 }
 /****************************************************************************/
 /*!
@@ -529,20 +506,24 @@ used to take in deltatime which allow movements and animations
 is update true or false
 */
 /****************************************************************************/
-bool SceneMain::Update(const double& dt)
+bool SceneMain::Update(const double& deltaTime)
 {
-	dDeltatime = dt;
-	dCurrentFPS = 1 / dDeltatime;
 	if(keyboard->IsKeyPressed(VK_ESCAPE))
 	{
 		return true;
 	}
+
+	//rendering mouse
+	Vector2 mousePosition = mouse->GetPosition();
+	Mtx44 cursorPosition;
+	cursorPosition.SetToTranslation(Vector3(mousePosition.x, mousePosition.y, 0));
+
 	gfx.GetWindowSize(&screenX, &screenY);
-	DoUserInput();
-	UpdateDraws();
-	UpdateView();
-	UpdateLight();
-	UpdateLogic();
+	UpdateUserInput(deltaTime);
+	UpdateDraws(deltaTime);
+	UpdateView(deltaTime);
+	UpdateLight(deltaTime);
+	UpdateLogic(deltaTime);
 
 	return false;
 }
@@ -552,7 +533,7 @@ bool SceneMain::Update(const double& dt)
 updating Logic for lifts, doors and main menus
 */
 /****************************************************************************/
-void SceneMain::UpdateLogic()
+void SceneMain::UpdateLogic(const double& deltaTime)
 {
 }
 /****************************************************************************/
@@ -561,10 +542,11 @@ void SceneMain::UpdateLogic()
 updating view in frog and player perspective, camera lock on.
 */
 /****************************************************************************/
-void SceneMain::UpdateView()
+void SceneMain::UpdateView(const double& deltaTime)
 {
 	DrawOrder* skybox = globals.GetDraw(L"skybox");
 
+	CollisionBody* currentPlayer = globals.GetCollisionBody(L"player");
 	//the skybox is moved according to the camera position
 	skybox->transform.translate = Vector3(0,0,0) + camera.ReturnPosition();
 	Vector3 displacement(0, 0, -1);
@@ -583,7 +565,7 @@ void SceneMain::UpdateView()
 updating lights
 */
 /****************************************************************************/
-void SceneMain::UpdateLight()
+void SceneMain::UpdateLight(const double& deltaTime)
 {
 	gfx.UpdateLights();
 }
@@ -593,8 +575,9 @@ void SceneMain::UpdateLight()
 updating draws
 */
 /****************************************************************************/
-void SceneMain::UpdateDraws()
+void SceneMain::UpdateDraws(const double& deltaTime)
 {
+	CollisionBody* currentPlayer = globals.GetCollisionBody(L"player");
 	Rotation rotate = camera.GetRotation() - currentPlayer->draw->transform.rotate;
 	currentPlayer->rotationVelocity.Set(rotate.yaw, 0, 0);
 
@@ -603,7 +586,7 @@ void SceneMain::UpdateDraws()
 	CollisionBody*const end = globals.GetLastBody();
 	for(CollisionBody* body = begin; body != end; ++body)
 	{
-		body->UpdateVelocity(dDeltatime);
+		body->UpdateVelocity(deltaTime);
 
 		if(body->velocity.IsZero())
 		{
@@ -614,13 +597,13 @@ void SceneMain::UpdateDraws()
 
 		if(mesh)
 		{
-			const Polygonn* polies = mesh->GetPolyBuffer();
-			const unsigned size = mesh->GetNPolies();
+			const Polygonn* polies = mesh->GetBegin();
+			const unsigned size = mesh->GetSize();
 			body->tree.IncreaseCapacityTo(size);
 
-			body->TempUpdateTo(dDeltatime);
+			body->TempUpdateTo(deltaTime);
 			Mtx44 mtx1 = body->GetMatrix();
-			body->TempUpdateTo(-dDeltatime);
+			body->TempUpdateTo(-deltaTime);
 
 			AABBTreeNode* node = body->tree.GetBegin();
 			AABBTreeNode* nodeEnd = body->tree.GetEnd();
@@ -640,12 +623,12 @@ void SceneMain::UpdateDraws()
 		}
 	}
 
-	collisionSystem.UpdateTo(dDeltatime, begin, end);
+	collisionSystem.UpdateTo(deltaTime, begin, end);
 
 	//update the draws
 	for(CollisionBody* body = begin; body != end; ++body)
 	{
-		body->UpdateTo(dDeltatime);
+		body->UpdateTo(deltaTime);
 	}
 }
 /****************************************************************************/
@@ -660,10 +643,7 @@ void SceneMain::Render()
 
 	gfx.RenderDraw(globals.GetDraw(L"main"));
 
-	//rendering mouse
-	Vector2 mousePosition = mouse->GetPosition();
-	Mtx44 cursorPosition;
-	cursorPosition.SetToTranslation(Vector3(mousePosition.x, mousePosition.y, 0));
+	//gfx.RenderUI(currentUI);
 
 	//gfx.RenderTextOnScreen(buffer1,Color(0,1,0),20,1,1);
 	//gfx.RenderTextOnScreen(text.GetText(),Color(0,1,0),20,1,40, ORIENTATION_TOP);
@@ -697,25 +677,18 @@ void SceneMain::Exit()
 All user inputs
 */
 /****************************************************************************/
-void SceneMain::DoUserInput()
+void SceneMain::UpdateUserInput(const double& deltaTime)
 {
+	if(keyboard->IsKeyPressed('X'))
+	{
+		mouse->ToggleLock();
+	}
+
 	Vector2 mouseVector = mouse->GetDisplacementFromCentre();
 	const double CAMERA_SPEED = 2.5;
 	double movingSpeed = 30;
-	if(keyboard->IsKeyPressed('X'))
-	{
-		lookWithMouse = !lookWithMouse;
-	}
-	if(lookWithMouse/* && mouseVector.Length() > 30*/)
-	{
-		//mouseVector = mouseVector.Normalized() * (mouseVector.Length() - 30);
-		camera.Rotate(-mouseVector.x * dDeltatime, mouseVector.y * dDeltatime, 0);
-	}
-	
-	if(keyboard->IsKeyPressed('5'))
-	{
-		bDrawVoxels = !bDrawVoxels;
-	}
+
+	camera.Rotate(-mouseVector.x * deltaTime, mouseVector.y * deltaTime, 0);
 
 	if (keyboard->IsKeyHold(VK_SHIFT))
 	{
@@ -757,39 +730,40 @@ void SceneMain::DoUserInput()
 	Force force;
 	force.SetLifespanTo(0.001f);
 	force.SetVector(direction);
+	CollisionBody* currentPlayer = globals.GetCollisionBody(L"player");
 	currentPlayer->AddForce(force);
 
 	if(keyboard->IsKeyHold('Q'))
 	{
-		camera.Rotate(0, 5 * dDeltatime * movingSpeed, 0);
+		camera.Rotate(0, 5 * deltaTime * movingSpeed, 0);
 	}
 	if(keyboard->IsKeyHold('E'))
 	{
-		camera.Rotate(0, -5 * dDeltatime * movingSpeed, 0);
+		camera.Rotate(0, -5 * deltaTime * movingSpeed, 0);
 	}
 
 	if (keyboard->IsKeyHold(VK_UP))
 	{
-		camera.Move(10.0f * dDeltatime * CAMERA_SPEED, 0.0f, 0.0f);
+		camera.Move(10.0f * deltaTime * CAMERA_SPEED, 0.0f, 0.0f);
 	}
 	if (keyboard->IsKeyHold(VK_LEFT))
 	{
-		camera.Move(0.0f, 0.0f, -10.0f * dDeltatime * CAMERA_SPEED);
+		camera.Move(0.0f, 0.0f, -10.0f * deltaTime * CAMERA_SPEED);
 	}
 	if (keyboard->IsKeyHold(VK_DOWN))
 	{
-		camera.Move(-10.0f * dDeltatime * CAMERA_SPEED, 0.0f, 0.0f);
+		camera.Move(-10.0f * deltaTime * CAMERA_SPEED, 0.0f, 0.0f);
 	}
 	if (keyboard->IsKeyHold(VK_RIGHT))
 	{
-		camera.Move(0.0f, 0.0f, 10.0f * dDeltatime * CAMERA_SPEED);
+		camera.Move(0.0f, 0.0f, 10.0f * deltaTime * CAMERA_SPEED);
 	}
 	if (keyboard->IsKeyHold(VK_SPACE))
 	{
-		camera.Move(0,10 * dDeltatime * CAMERA_SPEED,0);
+		camera.Move(0,10 * deltaTime * CAMERA_SPEED,0);
 	}
 	if (keyboard->IsKeyHold(VK_CONTROL))
 	{
-		camera.Move(0,-10 * dDeltatime * CAMERA_SPEED,0);
+		camera.Move(0,-10 * deltaTime * CAMERA_SPEED,0);
 	}
 }

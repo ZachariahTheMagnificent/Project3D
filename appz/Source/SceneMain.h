@@ -27,14 +27,15 @@ class SceneMain : public Scene
 {
 public:
 	SceneMain(Keyboard* keyboard, FirstPersonMouse* mouse, Sound& snd, Graphics& gfx);
-	~SceneMain(void);
+	~SceneMain();
 	
 	virtual void Init();
 	virtual void SendInfoToGFXCard();
-	virtual bool Update(const double& dt);
+	virtual bool Update(const double& deltaTime);
 	virtual void Render();
 	virtual void Exit();
 private:
+	//globals
 	GlobalList globals;
 	Color* screenBuffer;
 
@@ -44,6 +45,7 @@ private:
 
 	//physics
 	AABBTree world;
+	CollisionSystem collisionSystem;
 
 	//rendering
 	int screenX;
@@ -54,19 +56,9 @@ private:
 	Light light[1];
 	Camera camera;
 	UI ui;
-
-	//print fps
-	double dDeltatime;
-	double dCurrentFPS;
-	CollisionSystem collisionSystem;
-
-	//logic
-	CollisionBody* currentPlayer;
-	bool bDrawVoxels;
-	bool lookWithMouse;
+	UI* currentUI;
 
 	//functions
-	void DoUserInput();
 	void InnitTextures();
 	void InnitLight();
 	void InnitGeometry();
@@ -77,8 +69,9 @@ private:
 	void InnitSounds();
 	void InnitMaterials();
 	void InnitUI();
-	void UpdateLogic();
-	void UpdateView();
-	void UpdateLight();
-	void UpdateDraws();
+	void UpdateUserInput(const double& deltaTime);
+	void UpdateLogic(const double& deltaTime);
+	void UpdateView(const double& deltaTime);
+	void UpdateLight(const double& deltaTime);
+	void UpdateDraws(const double& deltaTime);
 };
