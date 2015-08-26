@@ -121,11 +121,10 @@ bool ObjLoader::LoadOBJ(std::wstring file_path, Mesh* mesh)
 
 	const unsigned numVerticesInPoly = 3;
 	mesh->SetSize(vert_indices.size()/numVerticesInPoly);
-	Vertex* begin = &mesh->GetBegin()->vertex1;
 	unsigned i = 0;
 
 	// For each vertex of each triangle, after fileStream.close()
-	for(Vertex* vert = begin, *end = &mesh->GetEnd()->vertex1; vert != end; ++vert, ++i)
+	for(Vertex* vert = &mesh->GetBegin()->vertex1, *end = &mesh->GetEnd()->vertex1; vert != end; ++vert, ++i)
 	{
 		// Get the indices of its attributes
 		const unsigned vertexIndex = vert_indices[i];
@@ -136,7 +135,7 @@ bool ObjLoader::LoadOBJ(std::wstring file_path, Mesh* mesh)
 		Vector3 vertex = temp_vertices[vertexIndex - 1];
 		Vector2 uv = temp_UVs[uvIndex - 1];
 		Vector3 normal = temp_normals[normalIndex - 1];
-		
+
 		// Put the attributes in buffers
 		vert->pos = vertex;
 		vert->color = Color();

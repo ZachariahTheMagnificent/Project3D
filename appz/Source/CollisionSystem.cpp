@@ -7,32 +7,12 @@ CollisionSystem::CollisionSystem()
 contactBuffer(NULL),
 contactBufferSize(9000000)
 {
-	if(contactBufferSize)
-	{
-		contactBuffer = new Contact[contactBufferSize];
-	}
+	contactBuffer.SetSize(contactBufferSize);
 }
 
 //default destructor
 CollisionSystem::~CollisionSystem()
 {
-	if(contactBuffer)
-	{
-		delete [] contactBuffer;
-		contactBuffer = NULL;
-	}
-}
-
-void CollisionSystem::IncreaseBufferTo(const unsigned& size)
-{
-	if(size > contactBufferSize)
-	{
-		delete [] contactBuffer;
-		contactBuffer = NULL;
-
-		contactBufferSize = size;
-		contactBuffer = new Contact[contactBufferSize];
-	}
 }
 
 void CollisionSystem::Respond(CollisionBody* body1, CollisionBody* body2, Polygonn& poly1, Polygonn& poly2)
@@ -96,8 +76,8 @@ void CollisionSystem::UpdateTo(const double& deltaTime, CollisionBody*const begi
 			}
 			bool collisionIsDone = false;
 			
-			Contact* bufferBegin = contactBuffer;
-			Contact* bufferEnd = contactBuffer;
+			Contact* bufferBegin = contactBuffer.GetBegin();
+			Contact* bufferEnd = contactBuffer.GetBegin();
 			body1->tree.GetContacts(&body2->tree, bufferBegin, &bufferEnd);
 
 			//std::cout << bufferEnd - bufferBegin << std::endl;

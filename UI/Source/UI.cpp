@@ -14,7 +14,14 @@ void UI::Update(const double& deltaTime)
 	elementFactory.UpdateAllElements(deltaTime);
 }
 
-UIElementFactory& UI::GetFactory()
+void UI::Render(const unsigned& screenX, const unsigned& screenY)
 {
-	return elementFactory;
+	Mtx44 projection;
+	const unsigned depth = 100;
+	projection.SetToOrtho(0, screenX, 0, screenY, -depth, depth);
+	displaysFactory.Render(projection);
+}
+
+void UI::OnTransition()
+{
 }

@@ -16,6 +16,8 @@ A class that contains all of our graphics functions and handles our shader and O
 #include "shader.hpp"
 #include "Camera.h"
 #include "DrawOrder.h"
+#include "GLMesh.h"
+#include "GLTexture.h"
 /****************************************************************************/
 /*!
 \brief
@@ -53,8 +55,22 @@ public:
 	void RenderPixels(Color* buffer, Mesh* plane, unsigned sizeX, unsigned sizeY);
 	void SetViewAt(const Camera& camera);
 	void InitText(const DrawOrder* meshText);
+
 	void BeginDrawing() const;
 	void EndDrawing() const;
+
+	void BindTexture(const Texture* texture) const;
+	void BindMesh(const Mesh* mesh) const;
+	void BindMatrix(const Mtx44& matrix) const;
+
+	void EnableLighting(const Mtx44& modelView, const Material* material) const;
+	void DisableLighting() const;
+
+	void EnableText(const Color& color) const;
+	void DisableText() const;
+
+	const Mesh* GetRenderingPlane() const;
+
 	void RenderText(const std::string text, const Color color);
 	void RenderTextOnScreen(const std::string text, const Color color, const float size, const float x, const float y, const ORIENTATION orientation = ORIENTATION_BOTTOM);
 	void RenderMeshOnScreen(const DrawOrder& object, const Mtx44& matrix, const ORIENTATION orientation = ORIENTATION_BOTTOM);
@@ -62,13 +78,14 @@ public:
 	void RenderDraw(const DrawOrder* draw);
 	void RenderMesh(const Mesh* mesh, const unsigned offset, const unsigned count, const unsigned textureID, const unsigned mode);
 	void RenderMesh(const Mesh* mesh, const unsigned textureID, const unsigned mode);
+
 	bool AddLight(Light* light);
 	void UpdateLights();
 	
 	void GetWindowSize(int*const width, int*const height);
 
-	void SendMeshInfo(Mesh* begin, Mesh* end);
-	void SendTextureInfo(Texture* begin, Texture* end);
+	void SendMeshInfo(GLMesh* begin, GLMesh* end);
+	void SendTextureInfo(GLTexture* begin, GLTexture* end);
 	void ClearGFXCard();
 
 	unsigned GetID(const Texture* tex) const;
@@ -198,11 +215,13 @@ private:
 	int currentNumOfLights;
 	GLFWwindow* m_window;
 
-	Mesh* meshBegin;
-	Mesh* meshEnd;
+	GLMesh* meshBegin;
+	GLMesh* meshEnd;
 
-	Texture* textureBegin;
-	Texture* textureEnd;
+	GLTexture* textureBegin;
+	GLTexture* textureEnd;
 
 	MS viewStack, modelStack, projectionStack;
+
+	Mesh* renderingPlane;
 };

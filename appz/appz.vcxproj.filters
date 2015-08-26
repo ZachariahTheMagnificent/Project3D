@@ -73,6 +73,9 @@
     <ClCompile Include="Source\Scene.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="Source\GLMesh.cpp" />
+    <ClCompile Include="Source\GLFont.cpp" />
+    <ClCompile Include="Source\GLTexture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Application.h">
@@ -144,6 +147,9 @@
     <ClInclude Include="Source\WindowsKeyboard.h">
       <Filter>Header Files\Application</Filter>
     </ClInclude>
+    <ClInclude Include="Source\GLMesh.h" />
+    <ClInclude Include="Source\GLFont.h" />
+    <ClInclude Include="Source\GLTexture.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shader\MultiLight.fragmentshader">

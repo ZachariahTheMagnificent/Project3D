@@ -45,7 +45,7 @@ Returns the bounds of the mesh
 		the reference to the buffer storing the z-range
 */
 /****************************************************************************/
-BoundingBox<float> Mesh::GetBoundingBox() const
+MeshBox Mesh::GetBoundingBox() const
 {
 	//set the bounding box to the most extreme values so that the polygon's most extreme values will be stored.
 	BoundingBox<float> box(Range<float>(FLT_MAX, -FLT_MAX), Range<float>(FLT_MAX, -FLT_MAX), Range<float>(FLT_MAX, -FLT_MAX));

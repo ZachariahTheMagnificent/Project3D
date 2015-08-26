@@ -11,7 +11,10 @@ A class used to store VBO (vertex & color buffer) and polygons and generate voxe
 #include "MyContainer.h"
 #include "Polygon.h"
 #include "BoundingBox.h"
+#include "Mtx44.h"
+#include "Material.h"
 
+typedef BoundingBox<float> MeshBox;
 /******************************************************************************/
 /*!
 Class Mesh:
@@ -26,5 +29,8 @@ public:
 	Mesh(const unsigned& nPolies = 0);
 	virtual ~Mesh();
 	
-	BoundingBox<float> GetBoundingBox() const;
+	virtual void Render(const Mtx44& projection, const Mtx44& view, const Mtx44& transform, const Material* material, const bool& lightingEnabled) const = 0;
+	virtual void Render(const Mtx44& projection, const Mtx44& view, const Mtx44& transform, const Material* material, const bool& lightingEnabled, const unsigned& offset, const unsigned& count) const = 0;
+
+	virtual MeshBox GetBoundingBox() const;
 };

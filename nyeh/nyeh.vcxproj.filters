@@ -90,6 +90,9 @@
     <Filter Include="Source Files\Factory">
       <UniqueIdentifier>{df4bb081-9f66-4f61-9d2a-85102244d337}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Containers">
+      <UniqueIdentifier>{236ea7b5-453d-4b3f-870b-ed93d2e422d2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\MatrixStack.cpp">
@@ -151,6 +154,9 @@
     </ClCompile>
     <ClCompile Include="Source\Factory.cpp">
       <Filter>Source Files\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Font.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -242,6 +248,9 @@
       <Filter>Header Files\Factory</Filter>
     </ClInclude>
     <ClInclude Include="Source\MyContainer.h">
+      <Filter>Header Files\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Font.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

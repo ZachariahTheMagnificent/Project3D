@@ -19,15 +19,21 @@
     <ClInclude Include="Source\Keyboard.h" />
     <ClInclude Include="Source\Mouse.h" />
     <ClInclude Include="Source\StringData.h" />
+    <ClInclude Include="Source\TransitionButton.h" />
     <ClInclude Include="Source\UI.h" />
     <ClInclude Include="Source\UIButton.h" />
     <ClInclude Include="Source\UIData.h" />
     <ClInclude Include="Source\UIDataClient.h" />
+    <ClInclude Include="Source\UIDisplays.h" />
+    <ClInclude Include="Source\UIDisplaysFactory.h" />
     <ClInclude Include="Source\UIElement.h" />
     <ClInclude Include="Source\UIElementFactory.h" />
+    <ClInclude Include="Source\UIImage.h" />
     <ClInclude Include="Source\UIKey.h" />
     <ClInclude Include="Source\UIKeyHold.h" />
     <ClInclude Include="Source\UIKeyPress.h" />
+    <ClInclude Include="Source\UIMesh.h" />
+    <ClInclude Include="Source\UIText.h" />
     <ClInclude Include="Source\UnsignedData.h" />
     <ClInclude Include="Source\VectorData.h" />
   </ItemGroup>
@@ -40,15 +46,21 @@
     <ClCompile Include="Source\Keyboard.cpp" />
     <ClCompile Include="Source\Mouse.cpp" />
     <ClCompile Include="Source\StringData.cpp" />
+    <ClCompile Include="Source\TransitionButton.cpp" />
     <ClCompile Include="Source\UI.cpp" />
     <ClCompile Include="Source\UIButton.cpp" />
     <ClCompile Include="Source\UIData.cpp" />
     <ClCompile Include="Source\UIDataClient.cpp" />
+    <ClCompile Include="Source\UIDisplays.cpp" />
+    <ClCompile Include="Source\UIDisplaysFactory.cpp" />
     <ClCompile Include="Source\UIElement.cpp" />
     <ClCompile Include="Source\UIElementFactory.cpp" />
+    <ClCompile Include="Source\UIImage.cpp" />
     <ClCompile Include="Source\UIKey.cpp" />
     <ClCompile Include="Source\UIKeyHold.cpp" />
     <ClCompile Include="Source\UIKeyPress.cpp" />
+    <ClCompile Include="Source\UIMesh.cpp" />
+    <ClCompile Include="Source\UIText.cpp" />
     <ClCompile Include="Source\UnsignedData.cpp" />
     <ClCompile Include="Source\VectorData.cpp" />
   </ItemGroup>

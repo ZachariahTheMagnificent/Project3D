@@ -1,11 +1,7 @@
 #include "Application.h"
 
-
 #include <stdio.h>
 #include <stdlib.h>
-
-
-#include "SceneMain.h"
 
 const unsigned char FPS = 60;
 const unsigned int frameTime = 1000 / FPS;
@@ -32,6 +28,8 @@ void resize_callback(GLFWwindow* window, const int w, const int h)
 }
 
 Application::Application()
+	:
+mainScene(&keyboard, &mouse, snd, gfx)
 {
 }
 
@@ -96,7 +94,7 @@ void Application::Run()
 {
 	//Main Loop
 	bool gameQuit = false;
-	Scene* pScene = new SceneMain(&keyboard, &mouse, snd, gfx);
+	Scene* pScene = &mainScene;
 	pScene->Init();
 	pScene->SendInfoToGFXCard();
 	m_timer.startTimer();    // Start timer to calculate how long it takes to render this frame
@@ -114,7 +112,6 @@ void Application::Run()
 
 	} //Check if the ESC key had been pressed or if the window had been closed
 	pScene->Exit();
-	delete pScene;
 }
 
 void Application::Exit()

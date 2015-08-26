@@ -1,20 +1,20 @@
 #pragma once
 #include "Vector2.h"
 #include "BoundingBox2D.h"
+#include "Trigger.h"
 
-#define UIBox BoundingBox2D<unsigned>
+typedef BoundingBox2D<unsigned> UIBox;
 
-class UIElement
+class UIElement : public Trigger
 {
 public:
 	UIElement();
 	virtual ~UIElement();
 
-	virtual void Update(const double& dt) = 0;
+	virtual void Update(const double& deltaTime) = 0;
 	virtual UIBox GetBoundingBox() const = 0;
+	virtual bool HasTriggered() = 0;
 
-	float size;
-	Vector2 position;
 	bool active;
 	bool isUsed;
 };

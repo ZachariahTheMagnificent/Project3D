@@ -39,6 +39,12 @@
     <Filter Include="Header Files\UIData">
       <UniqueIdentifier>{0215cc1e-8a62-4264-b1af-84efd18b01b9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Displays">
+      <UniqueIdentifier>{8b5f1c62-cc65-4539-a27a-199d55a6f37c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Displays">
+      <UniqueIdentifier>{5a3ddbb3-9b10-4341-8636-1473d6443622}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Mouse.h">
@@ -68,9 +74,6 @@
     <ClInclude Include="Source\UIElementFactory.h">
       <Filter>Header Files\Factory</Filter>
     </ClInclude>
-    <ClInclude Include="Source\UIButton.h">
-      <Filter>Header Files\Controller</Filter>
-    </ClInclude>
     <ClInclude Include="Source\UIData.h">
       <Filter>Header Files\UIData</Filter>
     </ClInclude>
@@ -97,6 +100,27 @@
     </ClInclude>
     <ClInclude Include="Source\VectorData.h">
       <Filter>Header Files\UIData</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UIButton.h">
+      <Filter>Header Files\UI Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UIDisplays.h">
+      <Filter>Header Files\Displays</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UIText.h">
+      <Filter>Header Files\Displays</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UIMesh.h">
+      <Filter>Header Files\Displays</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UIImage.h">
+      <Filter>Header Files\Displays</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UIDisplaysFactory.h">
+      <Filter>Header Files\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TransitionButton.h">
+      <Filter>Header Files\UI Elements</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -127,9 +151,6 @@
     <ClCompile Include="Source\UIElementFactory.cpp">
       <Filter>Source Files\Factory</Filter>
     </ClCompile>
-    <ClCompile Include="Source\UIButton.cpp">
-      <Filter>Source Files\Controllers</Filter>
-    </ClCompile>
     <ClCompile Include="Source\UIData.cpp">
       <Filter>Source Files\UIData</Filter>
     </ClCompile>
@@ -156,6 +177,27 @@
     </ClCompile>
     <ClCompile Include="Source\VectorData.cpp">
       <Filter>Source Files\UIData</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UIButton.cpp">
+      <Filter>Source Files\UI Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UIDisplays.cpp">
+      <Filter>Source Files\Displays</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UIText.cpp">
+      <Filter>Source Files\Displays</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UIImage.cpp">
+      <Filter>Source Files\Displays</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UIMesh.cpp">
+      <Filter>Source Files\Displays</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UIDisplaysFactory.cpp">
+      <Filter>Source Files\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TransitionButton.cpp">
+      <Filter>Source Files\UI Elements</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

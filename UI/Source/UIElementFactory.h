@@ -5,13 +5,6 @@
 class UIElementFactory : public Factory
 {
 public:
-	enum ELEMENT_TYPE
-	{
-		UI_TEXT,
-		UI_IMAGE,
-		UI_TRANSITION_BUTTON,
-		TOTAL_ELEMENTS
-	};
 	UIElementFactory();
 	virtual ~UIElementFactory();
 	

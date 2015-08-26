@@ -30,7 +30,8 @@ Scene(snd, gfx),
 keyboard(keyboard),
 mouse(mouse),
 collisionSystem(),
-screenBuffer(NULL)
+screenBuffer(NULL),
+globals(&gfx)
 {
 }
 /****************************************************************************/
@@ -311,7 +312,6 @@ void SceneMain::InnitDraws()
 	//Draw player2
 	draw = globals.GetDraw(L"player2");
 	draw->SetTo(globals.GetMesh(L"sentinel"), globals.GetMaterial(L"metal floor"), globals.GetDraw(L"main"), false);
-	//draw->transform.translate.Set(21.7, 5, 68.3);
 	draw->transform.translate.Set(-217, -631, -20);
 
 	//Draw ball
@@ -411,7 +411,7 @@ void SceneMain::InnitCollisions()
 	body->mass = 1;
 	body->SetTerminalVelocityTo(100);
 	body->SetDecelerationTo(10);
-	//body->soundSys = &snd;
+	body->soundSys = &snd;
 	
 	body = globals.GetCollisionBody(L"sphere");
 	body->draw = globals.GetDraw(L"sphere");

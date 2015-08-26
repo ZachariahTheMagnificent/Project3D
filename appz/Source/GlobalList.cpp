@@ -15,8 +15,9 @@ A list of all our assets
 Default constructor
 */
 /****************************************************************************/
-GlobalList::GlobalList()
+GlobalList::GlobalList(Graphics* gfx)
 	:
+gfx(gfx),
 bodies(NULL),
 draws(NULL),
 meshes(NULL),
@@ -39,13 +40,13 @@ textureCapacity(100)
 	draws = new DrawOrder[drawCapacity];
 	lastDraw = draws;
 
-	meshes = new Mesh[meshCapacity];
+	meshes = new GLMesh[meshCapacity];
 	lastMesh = meshes;
 
 	materials = new Material[materialCapacity];
 	lastMaterial = materials;
 
-	textures = new Texture[textureCapacity];
+	textures = new GLTexture[textureCapacity];
 	lastTexture = textures;
 }
 /****************************************************************************/
@@ -90,7 +91,7 @@ Get a mesh from the list
 		the name of the mesh
 */
 /****************************************************************************/
-Mesh* GlobalList::GetMesh(const std::wstring& meshName)
+GLMesh* GlobalList::GetMesh(const std::wstring& meshName)
 {
 	MeshMap::iterator it = meshList.find(meshName);
 	if(it != meshList.end())
@@ -104,6 +105,7 @@ Mesh* GlobalList::GetMesh(const std::wstring& meshName)
 			throw;
 		}
 		meshList[meshName] = lastMesh;
+		lastMesh->graphics = gfx;
 		return lastMesh++;
 	}
 }
@@ -190,7 +192,7 @@ Get a texture from the list
 		the name of the texture
 */
 /****************************************************************************/
-Texture* GlobalList::GetTexture(const std::wstring& textureName)
+GLTexture* GlobalList::GetTexture(const std::wstring& textureName)
 {
 	TextureMap::iterator it = textureList.find(textureName);
 	if(it != textureList.end())
@@ -218,7 +220,7 @@ DrawOrder* GlobalList::GetDraws()
 	return draws;
 }
 
-Mesh* GlobalList::GetMeshes()
+GLMesh* GlobalList::GetMeshes()
 {
 	return meshes;
 }
@@ -228,7 +230,7 @@ Material* GlobalList::GetMaterials()
 	return materials;
 }
 
-Texture* GlobalList::GetTextures()
+GLTexture* GlobalList::GetTextures()
 {
 	return textures;
 }
@@ -243,7 +245,7 @@ DrawOrder* GlobalList::GetLastDraw()
 	return lastDraw;
 }
 
-Mesh* GlobalList::GetLastMesh()
+GLMesh* GlobalList::GetLastMesh()
 {
 	return lastMesh;
 }
@@ -253,7 +255,7 @@ Material* GlobalList::GetLastMaterial()
 	return lastMaterial;
 }
 
-Texture* GlobalList::GetLastTexture()
+GLTexture* GlobalList::GetLastTexture()
 {
 	return lastTexture;
 }

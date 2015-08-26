@@ -16,6 +16,7 @@
     <ClCompile Include="Source\D4DColor.cpp" />
     <ClCompile Include="Source\DrawOrder.cpp" />
     <ClCompile Include="Source\Factory.cpp" />
+    <ClCompile Include="Source\Font.cpp" />
     <ClCompile Include="Source\Light.cpp" />
     <ClCompile Include="Source\Material.cpp" />
     <ClCompile Include="Source\MatrixStack.cpp" />
@@ -41,6 +42,7 @@
     <ClInclude Include="Source\D4DColor.h" />
     <ClInclude Include="Source\DrawOrder.h" />
     <ClInclude Include="Source\Factory.h" />
+    <ClInclude Include="Source\Font.h" />
     <ClInclude Include="Source\ForwardNode.h" />
     <ClInclude Include="Source\Light.h" />
     <ClInclude Include="Source\LinkList.h" />

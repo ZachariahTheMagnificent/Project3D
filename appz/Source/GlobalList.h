@@ -11,46 +11,49 @@ A list of all our assets
 #include "CollisionBody.h"
 #include "Camera.h"
 #include "Light.h"
+#include "GLMesh.h"
+#include "GLFont.h"
+#include "GLTexture.h"
 #include <string>
 #include <map>
 /****************************************************************************/
 /*!
 Class GlobalList:
 \brief
-A list of all our assets
+A list of all our assets with names attached to each individual asset for ease of access and debugging during runtime
 */
 /****************************************************************************/
 typedef std::map<std::wstring, CollisionBody*> BodyMap;
 typedef std::map<std::wstring, DrawOrder*> DrawMap;
-typedef std::map<std::wstring, Mesh*> MeshMap;
+typedef std::map<std::wstring, GLMesh*> MeshMap;
 typedef std::map<std::wstring, Material*> MaterialMap;
-typedef std::map<std::wstring, Texture*> TextureMap;
+typedef std::map<std::wstring, GLTexture*> TextureMap;
 typedef std::map<std::wstring, Camera*> CameraMap;
 typedef std::map<std::wstring, Light*> LightMap;
 
 class GlobalList
 {
 public:
-	GlobalList();
+	GlobalList(Graphics* gfx);
 	~GlobalList();
 
-	Mesh* GetMesh(const std::wstring& meshName);
+	GLMesh* GetMesh(const std::wstring& meshName);
 	DrawOrder* GetDraw(const std::wstring& drawName);
 	Material* GetMaterial(const std::wstring& materialName);
 	CollisionBody* GetCollisionBody(const std::wstring& collisionBodyName);
-	Texture* GetTexture(const std::wstring& textureName);
+	GLTexture* GetTexture(const std::wstring& textureName);
 	
 	CollisionBody* GetBodies();
 	DrawOrder* GetDraws();
-	Mesh* GetMeshes();
+	GLMesh* GetMeshes();
 	Material* GetMaterials();
-	Texture* GetTextures();
+	GLTexture* GetTextures();
 	
 	CollisionBody* GetLastBody();
 	DrawOrder* GetLastDraw();
-	Mesh* GetLastMesh();
+	GLMesh* GetLastMesh();
 	Material* GetLastMaterial();
-	Texture* GetLastTexture();
+	GLTexture* GetLastTexture();
 
 private:
 	MeshMap meshList;
@@ -61,19 +64,21 @@ private:
 
 	CollisionBody* bodies;
 	DrawOrder* draws;
-	Mesh* meshes;
+	GLMesh* meshes;
 	Material* materials;
-	Texture* textures;
+	GLTexture* textures;
 
 	CollisionBody* lastBody;
 	DrawOrder* lastDraw;
-	Mesh* lastMesh;
+	GLMesh* lastMesh;
 	Material* lastMaterial;
-	Texture* lastTexture;
+	GLTexture* lastTexture;
 
 	unsigned bodyCapacity;
 	unsigned drawCapacity;
 	unsigned meshCapacity;
 	unsigned materialCapacity;
 	unsigned textureCapacity;
+
+	Graphics* gfx;
 };

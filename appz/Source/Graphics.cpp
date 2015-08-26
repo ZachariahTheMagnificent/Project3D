@@ -23,7 +23,8 @@ m_window(NULL),
 meshBegin(NULL),
 meshEnd(NULL),
 textureBegin(NULL),
-textureEnd(NULL)
+textureEnd(NULL),
+renderingPlane(NULL)
 {
 }
 /****************************************************************************/
@@ -133,9 +134,10 @@ void Graphics::Init(GLFWwindow* window)
 
 unsigned Graphics::GetID(const Texture* tex) const
 {
-	if(tex >= textureBegin && tex < textureEnd)
+	const GLTexture* texture = dynamic_cast<const GLTexture*>(tex);
+	if(texture >= textureBegin && texture < textureEnd)
 	{
-		return tex - textureBegin + 1;
+		return texture - textureBegin + 1;
 	}
 
 	return 0;
@@ -143,9 +145,10 @@ unsigned Graphics::GetID(const Texture* tex) const
 
 unsigned Graphics::GetID(const Mesh* mesh) const
 {
-	if(mesh >= meshBegin && mesh < meshEnd)
+	const GLMesh* glMesh = dynamic_cast<const GLMesh*>(mesh);
+	if(glMesh >= meshBegin && glMesh < meshEnd)
 	{
-		return mesh - meshBegin + 1;
+		return glMesh - meshBegin + 1;
 	}
 
 	return 0;
@@ -316,11 +319,11 @@ void Graphics::RenderDraw(const DrawOrder& object, const Mtx44& matrix)
 	RenderMesh(object.geometry, ID, GL_TRIANGLES);
 }
 
-void Graphics::SendMeshInfo(Mesh* begin, Mesh* end)
+void Graphics::SendMeshInfo(GLMesh* begin, GLMesh* end)
 {
 	meshBegin = begin;
 	meshEnd = end;
-	for(Mesh* mesh = begin; mesh != end; ++mesh)
+	for(GLMesh* mesh = begin; mesh != end; ++mesh)
 	{
 		unsigned ID = 0;
 		glGenBuffers(1, &ID);
@@ -329,11 +332,11 @@ void Graphics::SendMeshInfo(Mesh* begin, Mesh* end)
 	}
 }
 
-void Graphics::SendTextureInfo(Texture* begin, Texture* end)
+void Graphics::SendTextureInfo(GLTexture* begin, GLTexture* end)
 {
 	textureBegin = begin;
 	textureEnd = end;
-	for(Texture* tex = begin; tex != end; ++tex)
+	for(GLTexture* tex = begin; tex != end; ++tex)
 	{
 		unsigned ID = 0;
 		glGenTextures(1, &ID);
@@ -358,17 +361,93 @@ void Graphics::SendTextureInfo(Texture* begin, Texture* end)
 void Graphics::ClearGFXCard()
 {
 	unsigned id = 0;
-	for(Mesh* mesh = meshBegin; mesh != meshEnd; ++mesh, ++id)
+	for(GLMesh* mesh = meshBegin; mesh != meshEnd; ++mesh, ++id)
 	{
 		glDeleteBuffers(1, &id);
 	}
 
 	id = 0;
-	for(Texture* tex = textureBegin; tex != textureEnd; ++tex, ++id)
+	for(GLTexture* tex = textureBegin; tex != textureEnd; ++tex, ++id)
 	{
 		glDeleteTextures(1, &id);
 	}
 }
+
+void Graphics::BindTexture(const Texture* texture) const
+{
+	const unsigned textureID = GetID(texture);
+	if(textureID)
+	{
+		glBindTexture(GL_TEXTURE_2D, textureID);
+		glUniform1i(m_parameters[U_COLOR_TEXTURE_ENABLED], 1);
+		glActiveTexture(GL_TEXTURE0);
+		glUniform1i(m_parameters[U_COLOR_TEXTURE], 0);
+	}
+	else
+	{
+		glUniform1i(m_parameters[U_COLOR_TEXTURE_ENABLED], 0);
+	}
+}
+
+void Graphics::BindMesh(const Mesh* mesh) const
+{
+	const unsigned meshID = GetID(mesh);
+	glBindBuffer(GL_ARRAY_BUFFER, meshID);
+
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)sizeof(Vector3));
+	glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)(sizeof(Vector3) + sizeof(Color)));
+	glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)(sizeof(Vector3) + sizeof(Color) + sizeof(Vector3)));
+}
+
+void Graphics::EnableLighting(const Mtx44& modelView, const Material* material) const
+{
+	glUniform1i(m_parameters[U_LIGHTENABLED], 1);
+	glUniformMatrix4fv(m_parameters[U_MODELVIEW], 1, GL_FALSE, &modelView.a[0]);
+
+	const Mtx44 modelView_inverse_transpose = modelView.GetInverse().GetTranspose();
+
+	glUniformMatrix4fv(m_parameters[U_MODELVIEW_INVERSE_TRANSPOSE], 1, GL_FALSE, &modelView_inverse_transpose.a[0]);
+
+	//load material
+	glUniform3fv(m_parameters[U_MATERIAL_AMBIENT], 1, &material->kAmbient.r);
+	glUniform3fv(m_parameters[U_MATERIAL_DIFFUSE], 1, &material->kDiffuse.r);
+	glUniform3fv(m_parameters[U_MATERIAL_SPECULAR], 1, &material->kSpecular.r);
+	glUniform1f(m_parameters[U_MATERIAL_SHININESS], material->kShininess);
+}
+
+void Graphics::DisableLighting() const
+{
+	glUniform1i(m_parameters[U_LIGHTENABLED], 0);
+}
+
+
+void Graphics::BindMatrix(const Mtx44& matrix) const
+{
+	glUniformMatrix4fv(m_parameters[U_MVP], 1, GL_FALSE, &matrix.a[0]);
+}
+
+void Graphics::EnableText(const Color& color) const
+{
+	glUniform1i(m_parameters[U_TEXT_ENABLED], 1);
+	glUniform3fv(m_parameters[U_TEXT_COLOR], 1, &color.r);
+
+	glUniform1i(m_parameters[U_LIGHTENABLED], 0);
+	glUniform1i(m_parameters[U_COLOR_TEXTURE_ENABLED], 1);
+	glActiveTexture(GL_TEXTURE0);
+	glUniform1i(m_parameters[U_COLOR_TEXTURE], 0);
+}
+
+void Graphics::DisableText() const
+{
+	glUniform1i(m_parameters[U_TEXT_ENABLED], 0);
+}
+
+const Mesh* Graphics::GetRenderingPlane() const
+{
+	return renderingPlane;
+}
+
 /****************************************************************************/
 /*!
 \brief
@@ -549,6 +628,10 @@ Renders the mesh
 /****************************************************************************/
 void Graphics::RenderMesh(const Mesh* mesh, const unsigned textureID, const unsigned mode)
 {
+	if(mesh == NULL)
+	{
+		throw;
+	}
 	unsigned ID = GetID(mesh);
 	glBindBuffer(GL_ARRAY_BUFFER, ID);
 
