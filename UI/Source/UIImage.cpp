@@ -21,6 +21,6 @@ void UIImage::Render(const Mtx44& projection) const
 	{
 		Mtx44 view;
 		view.SetToIdentity();
-		image->Render(projection, view, transform.Matrix());
+		//image->Render(projection, view, transform.Matrix());
 	}
 }

@@ -508,6 +508,8 @@ is update true or false
 /****************************************************************************/
 bool SceneMain::Update(const double& deltaTime)
 {
+	std::cout << 1/deltaTime << std::endl;
+
 	if(keyboard->IsKeyPressed(VK_ESCAPE))
 	{
 		return true;
@@ -549,7 +551,7 @@ void SceneMain::UpdateView(const double& deltaTime)
 	CollisionBody* currentPlayer = globals.GetCollisionBody(L"player");
 	//the skybox is moved according to the camera position
 	skybox->transform.translate = Vector3(0,0,0) + camera.ReturnPosition();
-	Vector3 displacement(0, 0, -1);
+	Vector3 displacement(0, 5, -1);
 	//camera.SetRotate(currentPlayer->draw->transform.rotate);
 	Mtx44 rotation;
 	rotation = camera.GetRotationMatrix(0,0,1);

@@ -24,6 +24,6 @@ void UIMesh::Render(const Mtx44& projection) const
 
 		Material material;
 
-		mesh->Render(projection, view, transform.Matrix(), &material, false);
+		//mesh->Render(projection, view, transform.Matrix(), &material, false);
 	}
 }

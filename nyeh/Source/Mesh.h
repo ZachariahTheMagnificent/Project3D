@@ -23,14 +23,16 @@ To store VBO (vertex & color buffer) and polygons and generate voxels from them
 */
 /******************************************************************************/
 
+class Graphics;
+
 class Mesh : public MyContainer<Polygonn>
 {
 public:
 	Mesh(const unsigned& nPolies = 0);
 	virtual ~Mesh();
 	
-	virtual void Render(const Mtx44& projection, const Mtx44& view, const Mtx44& transform, const Material* material, const bool& lightingEnabled) const = 0;
-	virtual void Render(const Mtx44& projection, const Mtx44& view, const Mtx44& transform, const Material* material, const bool& lightingEnabled, const unsigned& offset, const unsigned& count) const = 0;
+	virtual void Render(const Graphics* graphics, const Mtx44& projection, const Mtx44& view, const Mtx44& transform, const Material* material, const bool& lightingEnabled) const = 0;
+	virtual void Render(const Graphics* graphics, const Mtx44& projection, const Mtx44& view, const Mtx44& transform, const Material* material, const bool& lightingEnabled, const unsigned& offset, const unsigned& count) const = 0;
 
 	virtual MeshBox GetBoundingBox() const;
 };

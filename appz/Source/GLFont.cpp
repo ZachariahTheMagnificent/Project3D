@@ -30,7 +30,7 @@ void GLFont::Render(const std::string text, const Mtx44& projection, const Mtx44
 		const Mtx44 model = transform * characterSpacing;
 		
 		const unsigned numofverts = 6;
-		mesh->Render(projection, view, model, &material, false, (unsigned)text[i] * numofverts, numofverts);
+		//mesh->Render(projection, view, model, &material, false, (unsigned)text[i] * numofverts, numofverts);
 	}
 
 	graphics->DisableText();

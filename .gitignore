@@ -40,3 +40,8 @@ Release/UI.lib
 *.suo
 *.user
 *.log
+*.db
+*.db-shm
+*.db-wal
+*.ipdb
+*.iobj

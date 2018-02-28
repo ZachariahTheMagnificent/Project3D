@@ -105,7 +105,7 @@ GLMesh* GlobalList::GetMesh(const std::wstring& meshName)
 			throw;
 		}
 		meshList[meshName] = lastMesh;
-		lastMesh->graphics = gfx;
+		//lastMesh->graphics = gfx;
 		return lastMesh++;
 	}
 }
